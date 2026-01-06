@@ -1,0 +1,56 @@
+{
+  "project": {
+    "name": "LeadBox Sites Automation",
+    "type": "Robot Framework Test Automation",
+    "domain": "IMS/Concesionary Websites (Automotive Dealerships)",
+    "purpose": "Web-based QA scanning and testing tools for dealership websites",
+    "version": "1.0.0"
+  },
+  "structure": {
+    "test_suites": "Suites/",
+    "shared_resources": "Shared resources/",
+    "reports": [
+      "log.html",
+      "output.xml",
+      "report.html"
+    ]
+  },
+  "common_variables": {
+    "BASE_URL": "https://drummondmotors.ca/",
+    "browser": "chrome",
+    "timeout": "10s"
+  },
+  "testing_focus": {
+    "functional": [
+      "Contact link validation (phone, email, address)",
+      "Link clickability verification",
+      "HREF attribute matching",
+      "Social media links"
+    ],
+    "accessibility": [
+      "Non-clickable labels validation",
+      "Text pattern detection"
+    ],
+    "content": [
+      "Sitemap scanning",
+      "Text normalization",
+      "Pattern matching (phone, email, postal codes)"
+    ]
+  },
+  "patterns": {
+    "phone": [
+      "1[-\\s]?\\d{3}[-\\s]?\\d{3}[-\\s]?\\d{4}",
+      "\\(?\\d{3}\\)?[-\\s]?\\d{3}[-\\s]?\\d{4}",
+      "\\+?1?[-\\s]?\\(?\\d{3}\\)?[-\\s]?\\d{3}[-\\s]?\\d{4}"
+    ],
+    "email": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
+    "postal_code_ca": "[A-Z]\\d[A-Z]\\s?\\d[A-Z]\\d"
+  },
+  "libraries": {
+    "core": [
+      "SeleniumLibrary",
+      "String",
+      "RequestsLibrary"
+    ]
+  }
+}
