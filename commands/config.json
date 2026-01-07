@@ -25,17 +25,45 @@
       "Contact link validation (phone, email, address)",
       "Link clickability verification",
       "HREF attribute matching",
-      "Social media links"
+      "Social media links",
+      "Multi-site batch testing"
     ],
     "accessibility": [
       "Non-clickable labels validation",
       "Text pattern detection"
     ],
     "content": [
-      "Sitemap scanning",
+      "Sitemap scanning and URL extraction",
+      "Sitemap section categorization (pages, vehicles, models, etc.)",
+      "Random URL sampling for testing",
       "Text normalization",
       "Pattern matching (phone, email, postal codes)"
     ]
+  },
+  "sitemap_sampling": {
+    "sections": [
+      "pages - General website pages",
+      "used_vehicles - Used vehicle detail pages",
+      "new_vehicles - New vehicle detail pages",
+      "showroom - Inventory/showroom pages",
+      "models - Vehicle model pages",
+      "model_trims - Model trim/variant pages"
+    ],
+    "parameters": {
+      "pages_samples": "Integer or None - Number of page URLs to test (None = all pages)",
+      "used_vehicle_samples": "Integer - Number of used vehicle URLs to test",
+      "new_vehicle_samples": "Integer - Number of new vehicle URLs to test",
+      "showroom_samples": "Integer - Number of showroom URLs to test",
+      "models_samples": "Integer - Number of model URLs to test",
+      "model_trims_samples": "Integer - Number of trim URLs to test"
+    },
+    "detection": {
+      "used_vehicles": "URLs containing '/vehicle/' and 'used' keyword",
+      "new_vehicles": "URLs containing '/vehicle/' and 'new' keyword (or default if neither)",
+      "showroom": "URLs containing '/showroom/'",
+      "models": "URLs containing '/models/'",
+      "model_trims": "URLs containing '/model-trims/'"
+    }
   },
   "patterns": {
     "phone": [
