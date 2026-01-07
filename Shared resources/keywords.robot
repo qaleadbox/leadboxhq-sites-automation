@@ -9,7 +9,14 @@ Resource    ../Parser/sitemap_parser.robot
 
 ** Keywords **
 Open LeadBox Portal
-    Open Browser                  ${BASE_URL}                       chrome
+    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    IF    '${HEADLESS}' == 'true'
+        Call Method    ${chrome_options}    add_argument    headless
+        Call Method    ${chrome_options}    add_argument    no-sandbox
+        Call Method    ${chrome_options}    add_argument    disable-dev-shm-usage
+        Call Method    ${chrome_options}    add_argument    disable-gpu
+    END
+    Open Browser    ${BASE_URL}    chrome    options=${chrome_options}
 
 Validate Contact Links Are Clickable
     ${elements}=    Get WebElements    xpath=//*/text()[normalize-space()]/parent::*
@@ -48,13 +55,21 @@ Parse Sitemap URLs
     ${failed}=    Set Variable    0
     @{failed_urls}=    Create List
 
-    Open Browser    about:blank    chrome
+    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    IF    '${HEADLESS}' == 'true'
+        Call Method    ${chrome_options}    add_argument    headless
+        Call Method    ${chrome_options}    add_argument    no-sandbox
+        Call Method    ${chrome_options}    add_argument    disable-dev-shm-usage
+        Call Method    ${chrome_options}    add_argument    disable-gpu
+    END
+    Open Browser    about:blank    chrome    options=${chrome_options}
 
     FOR    ${site}    IN    @{sites}
         ${url}=    Get From Dictionary    ${site}    url
         ${name}=    Get From Dictionary    ${site}    name
 
-        IF    '${url}' == ''
+        ${is_empty}=    Run Keyword And Return Status    Should Be Empty    ${url}
+        IF    ${is_empty}
             CONTINUE
         END
 

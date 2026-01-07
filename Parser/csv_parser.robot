@@ -20,7 +20,8 @@ Parse Sites From CSV
     FOR    ${line}    IN    @{lines}
         # Skip empty lines
         ${line_stripped}=    Strip String    ${line}
-        IF    '${line_stripped}' == ''
+        ${is_empty}=    Run Keyword And Return Status    Should Be Empty    ${line_stripped}
+        IF    ${is_empty}
             CONTINUE
         END
 
@@ -86,18 +87,24 @@ Parse Site Row
         ${value}=    Remove String    ${value}    "    '
 
         # Map to dictionary keys
-        IF    '${header}' == 'Dealer Name'
+        ${is_dealer_name}=    Run Keyword And Return Status    Should Be Equal    ${header}    Dealer Name
+        ${is_url}=    Run Keyword And Return Status    Should Be Equal    ${header}    URL
+        ${is_version}=    Run Keyword And Return Status    Should Be Equal    ${header}    Website Version
+        ${is_status}=    Run Keyword And Return Status    Should Be Equal    ${header}    Status
+        ${is_theme}=    Run Keyword And Return Status    Should Be Equal    ${header}    Theme
+
+        IF    ${is_dealer_name}
             Set To Dictionary    ${site}    name=${value}
-        ELSE IF    '${header}' == 'URL'
-            ${is_url}=    Run Keyword And Return Status    Should Match Regexp    ${value}    ^https?://
-            IF    ${is_url}
+        ELSE IF    ${is_url}
+            ${is_valid_url}=    Run Keyword And Return Status    Should Match Regexp    ${value}    ^https?://
+            IF    ${is_valid_url}
                 Set To Dictionary    ${site}    url=${value}
             END
-        ELSE IF    '${header}' == 'Website Version'
+        ELSE IF    ${is_version}
             Set To Dictionary    ${site}    version=${value}
-        ELSE IF    '${header}' == 'Status'
+        ELSE IF    ${is_status}
             Set To Dictionary    ${site}    status=${value}
-        ELSE IF    '${header}' == 'Theme'
+        ELSE IF    ${is_theme}
             Set To Dictionary    ${site}    theme=${value}
         END
     END

@@ -9,6 +9,7 @@ Test contact links from sitemap URLs
     ...    pages_samples=1
     ...    used_vehicle_samples=1
     ...    new_vehicle_samples=1
-    ...    showroom_samples=1
-    ...    models_samples=1
+    ...    showroom_samples=4
+    ...    models_samples=4
     ...    model_trims_samples=1
+    # blogs is missing

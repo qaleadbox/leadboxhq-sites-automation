@@ -3,9 +3,11 @@ Library  SeleniumLibrary
 Library  OperatingSystem
 Library  String
 Library  Collections
+Library  Process
 
 Resource    ../Parser/csv_parser.robot
 Resource    ../Parser/sitemap_parser.robot
+Resource    variables.robot
 
 *** Keywords ***
 
@@ -31,7 +33,8 @@ Verify Phone Links On Current Page
         ${href_raw}=    Get Element Attribute    ${link}    href
 
         ${txt_stripped}=    Strip String    ${txt_raw}
-        IF    '${txt_stripped}' == ''
+        ${is_empty}=    Run Keyword And Return Status    Should Be Empty    ${txt_stripped}
+        IF    ${is_empty}
             CONTINUE
         END
 
@@ -80,7 +83,8 @@ Read URLs From CSV
     FOR    ${line}    IN    @{lines}
         # Skip empty lines
         ${line_stripped}=    Strip String    ${line}
-        IF    '${line_stripped}' == ''
+        ${is_empty}=    Run Keyword And Return Status    Should Be Empty    ${line_stripped}
+        IF    ${is_empty}
             CONTINUE
         END
 
@@ -121,7 +125,8 @@ Read URLs From CSV
         ${url}=    Remove String    ${url}    "    '
 
         # Skip if empty
-        IF    '${url}' == ''
+        ${is_empty}=    Run Keyword And Return Status    Should Be Empty    ${url}
+        IF    ${is_empty}
             CONTINUE
         END
 
@@ -134,7 +139,31 @@ Read URLs From CSV
 
     RETURN    @{urls}
 
+Download CSV From Google Sheets
+    [Documentation]    Downloads CSV from Google Sheets if sites.csv doesn't exist
+    ${file_exists}=    Run Keyword And Return Status    File Should Exist    sites.csv
+
+    IF    not ${file_exists}
+        Log To Console    \nsites.csv not found. Downloading from Google Sheets...
+
+        # Convert Google Sheets URL to CSV export URL
+        ${export_url}=    Replace String    ${SPREADSHEET_LINK}    /edit?gid=0#gid=0    /export?format=csv&gid=0
+        ${export_url}=    Replace String    ${export_url}    /edit#gid=0    /export?format=csv&gid=0
+
+        Log To Console    Downloading from: ${export_url}
+
+        # Download the CSV file
+        ${result}=    Run Process    curl    -L    ${export_url}    -o    sites.csv
+
+        IF    ${result.rc} != 0
+            Fail    Failed to download CSV from Google Sheets: ${result.stderr}
+        END
+
+        Log To Console    Successfully downloaded sites.csv
+    END
+
 Load Sites From Spreadsheet
+    Download CSV From Google Sheets
     @{sites}=    Parse Sites From CSV    sites.csv
     RETURN    @{sites}
 

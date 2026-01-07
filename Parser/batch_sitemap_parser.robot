@@ -25,7 +25,8 @@ Parse All Sitemaps From CSV
         ${url}=    Get From Dictionary    ${site}    url
         ${name}=    Get From Dictionary    ${site}    name
 
-        IF    '${url}' == ''
+        ${is_empty}=    Run Keyword And Return Status    Should Be Empty    ${url}
+        IF    ${is_empty}
             Log To Console    \nSkipping ${name} - No URL
             CONTINUE
         END
