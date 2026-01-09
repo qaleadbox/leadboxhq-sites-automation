@@ -2,8 +2,9 @@
 Documentation    Sitemap Parser Runner - Entry point to run the parser
 ...              This is NOT a test suite, it's a parser utility
 ...              Use this to parse sitemaps and generate data for tests
+Resource    ../Resources/variables.robot
 Resource    batch_sitemap_parser.robot
-Library    SeleniumLibrary
+Library    SeleniumLibrary    run_on_failure=Nothing
 
 *** Variables ***
 ${CSV_FILE}    ../sites.csv

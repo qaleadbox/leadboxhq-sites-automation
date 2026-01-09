@@ -1,50 +1,14 @@
-** Settings **
-Library  SeleniumLibrary
+*** Settings ***
+Documentation    Integrated multi-site testing orchestration keywords
+Resource    ../variables.robot
+Resource    ../Helpers/browser_helpers.robot
+Resource    ../Helpers/csv_helpers.robot
+Resource    ../../Parser/sitemap_parser.robot
+Library    SeleniumLibrary    run_on_failure=Nothing
 Library    String
-Library    RequestsLibrary
-Resource    variables.robot
-Resource    helpers.robot
-Resource    ../Parser/csv_parser.robot
-Resource    ../Parser/sitemap_parser.robot
+Library    Collections
 
-** Keywords **
-Open LeadBox Portal
-    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-    IF    '${HEADLESS}' == 'true'
-        Call Method    ${chrome_options}    add_argument    headless
-        Call Method    ${chrome_options}    add_argument    no-sandbox
-        Call Method    ${chrome_options}    add_argument    disable-dev-shm-usage
-        Call Method    ${chrome_options}    add_argument    disable-gpu
-    END
-    Open Browser    ${BASE_URL}    chrome    options=${chrome_options}
-
-Validate Contact Links Are Clickable
-    ${elements}=    Get WebElements    xpath=//*/text()[normalize-space()]/parent::*
-
-    FOR    ${el}    IN    @{elements}
-        ${txt}=    Get Text    ${el}
-        ${converted_txt}=    Convert To String    ${txt}
-
-        ${type}=   Detect Text Type    ${converted_txt}
-        ${converted_type}=   Convert To String    ${type}
-
-        IF    '${converted_type}' != 'None'
-
-            ${href}=    Execute Javascript    try { let a = arguments[0]?.closest('a'); return a ? a.href : null; } catch(e) { return null; }    ${el}
-
-            Log To Console    ${txt}${href}
-            IF    '${href}' == 'None'
-                Fail    ${type} "${txt}" is NOT clickable
-            END
-        END
-    END
-
-Validate Contact Links Matches It HREF
-    [Documentation]    Validates that contact link text matches its HREF attribute
-    ...                Can be used in any test to validate phone links on the current page
-    ...                Example: Navigate to a page, then call this keyword to validate
-    Verify Phone Links On Current Page
-
+*** Keywords ***
 Parse Sitemap URLs
     [Documentation]    Multi-site validation using sitemap URL sampling
     ...                Loads sites from spreadsheet and tests sampled URLs with specified validation keyword
@@ -97,10 +61,8 @@ Parse Sitemap URLs
         Fail    ${failed} URL(s) failed
     END
 
-Validate Phone Links
-    Verify Phone Links On Current Page
-
 Test Sitemap URLs In Real Time
+    [Documentation]    Tests sampled URLs from sitemap sections with specified validation keyword
     [Arguments]    ${url}    ${name}    ${validation_keyword}    ${pages_samples}=None    ${used_vehicle_samples}=1    ${new_vehicle_samples}=1    ${showroom_samples}=1    ${models_samples}=1    ${model_trims_samples}=1
     ${sitemap_url}=    Build Sitemap URL    ${url}
     Go To    ${sitemap_url}
@@ -276,38 +238,8 @@ Test Sitemap URLs In Real Time
 
     RETURN    ${passed}    ${failed}    @{failed_urls}
 
-Parse Sitemap And Get Test URLs
-    [Arguments]    ${url}    ${name}    ${pages_samples}=None    ${used_vehicle_samples}=1    ${new_vehicle_samples}=1    ${showroom_samples}=1    ${models_samples}=1    ${model_trims_samples}=1
-    ${sitemap_url}=    Build Sitemap URL    ${url}
-    Go To    ${sitemap_url}
-    Sleep    2s
-
-    ${sitemap_source}=    Get Source
-    @{test_urls}=    Get Test URLs From Sitemap    ${sitemap_source}    ${pages_samples}    ${used_vehicle_samples}    ${new_vehicle_samples}    ${showroom_samples}    ${models_samples}    ${model_trims_samples}
-
-    ${url_count}=    Get Length    ${test_urls}
-    Log To Console    Found ${url_count} URLs (p=${pages_samples} uv=${used_vehicle_samples} nv=${new_vehicle_samples} s=${showroom_samples} m=${models_samples} mt=${model_trims_samples})
-
-    RETURN    @{test_urls}
-
-Cleanup Browser Windows
-    [Documentation]    Closes all windows except the main one to prevent memory buildup
-    ${all_handles}=    Get Window Handles
-    ${main_handle}=    Get From List    ${all_handles}    0
-
-    ${handles_count}=    Get Length    ${all_handles}
-    IF    ${handles_count} > 1
-        FOR    ${handle}    IN    @{all_handles}
-            IF    '${handle}' != '${main_handle}'
-                Switch Window    ${handle}
-                Close Window
-            END
-        END
-        Switch Window    ${main_handle}
-        Log To Console    Closed ${handles_count - 1} extra window(s)
-    END
-
 Test URL In New Tab
+    [Documentation]    Opens URL in new tab, runs validation keyword, closes tab and returns to main window
     [Arguments]    ${url}    ${validation_keyword}
     ${main_handle}=    Get Window Handles
     ${main_handle}=    Get From List    ${main_handle}    0
@@ -330,86 +262,17 @@ Test URL In New Tab
 
     RETURN    ${result}
 
-# Verify Sitemap URL
-#     [Documentation]    Verifies that a sitemap URL is accessible and returns 200 OK
-#     [Arguments]    ${base_url}
+Parse Sitemap And Get Test URLs
+    [Documentation]    Parses sitemap and returns list of URLs for testing (without running validations)
+    [Arguments]    ${url}    ${name}    ${pages_samples}=None    ${used_vehicle_samples}=1    ${new_vehicle_samples}=1    ${showroom_samples}=1    ${models_samples}=1    ${model_trims_samples}=1
+    ${sitemap_url}=    Build Sitemap URL    ${url}
+    Go To    ${sitemap_url}
+    Sleep    2s
 
-#     # Ensure URL ends with /sitemap
-#     ${sitemap_url}=    Set Variable    ${base_url}
-#     ${has_sitemap}=    Run Keyword And Return Status    Should End With    ${sitemap_url}    /sitemap
-#     IF    not ${has_sitemap}
-#         ${ends_with_slash}=    Run Keyword And Return Status    Should End With    ${sitemap_url}    /
-#         IF    ${ends_with_slash}
-#             ${sitemap_url}=    Set Variable    ${sitemap_url}sitemap
-#         ELSE
-#             ${sitemap_url}=    Set Variable    ${sitemap_url}/sitemap
-#         END
-#     END
+    ${sitemap_source}=    Get Source
+    @{test_urls}=    Get Test URLs From Sitemap    ${sitemap_source}    ${pages_samples}    ${used_vehicle_samples}    ${new_vehicle_samples}    ${showroom_samples}    ${models_samples}    ${model_trims_samples}
 
-#     Log To Console    \nChecking: ${sitemap_url}
+    ${url_count}=    Get Length    ${test_urls}
+    Log To Console    Found ${url_count} URLs (p=${pages_samples} uv=${used_vehicle_samples} nv=${new_vehicle_samples} s=${showroom_samples} m=${models_samples} mt=${model_trims_samples})
 
-#     # Create session and make request
-#     Create Session    sitemap_check    ${sitemap_url}    verify=True
-
-#     ${response}=    Run Keyword And Ignore Error    GET On Session    sitemap_check    /    expected_status=200    timeout=30
-
-#     IF    '${response[0]}' == 'PASS'
-#         Log To Console    ✓ SUCCESS: ${sitemap_url} is accessible
-#         RETURN    True
-#     ELSE
-#         Log To Console    ✗ FAILED: ${sitemap_url} is not accessible - ${response[1]}
-#         RETURN    False
-#     END
-
-# Verify Sitemap URL In Browser
-#     [Documentation]    Opens sitemap URL in Chrome browser and verifies it loads
-#     [Arguments]    ${base_url}
-
-#     # Ensure URL ends with /sitemap
-#     ${sitemap_url}=    Set Variable    ${base_url}
-#     ${has_sitemap}=    Run Keyword And Return Status    Should End With    ${sitemap_url}    /sitemap
-#     IF    not ${has_sitemap}
-#         ${ends_with_slash}=    Run Keyword And Return Status    Should End With    ${sitemap_url}    /
-#         IF    ${ends_with_slash}
-#             ${sitemap_url}=    Set Variable    ${sitemap_url}sitemap
-#         ELSE
-#             ${sitemap_url}=    Set Variable    ${sitemap_url}/sitemap
-#         END
-#     END
-
-#     Log To Console    \nOpening in browser: ${sitemap_url}
-
-#     # Navigate to sitemap URL
-#     ${status}=    Run Keyword And Return Status    Go To    ${sitemap_url}
-
-#     IF    ${status}
-#         # Wait for page to load
-#         Sleep    2s
-
-#         # Check if page loaded successfully
-#         ${page_source}=    Get Source
-
-#         # Check for common error indicators
-#         ${has_404}=    Run Keyword And Return Status    Should Contain    ${page_source}    404 Not Found
-#         ${has_error}=    Run Keyword And Return Status    Should Contain    ${page_source}    Error 404
-#         ${has_not_found}=    Run Keyword And Return Status    Should Contain    ${page_source}    Page Not Found
-
-#         # Check for sitemap indicators (XML structure)
-#         ${has_urlset}=    Run Keyword And Return Status    Should Contain    ${page_source}    <urlset
-#         ${has_sitemapindex}=    Run Keyword And Return Status    Should Contain    ${page_source}    <sitemapindex
-
-#         IF    ${has_404} or ${has_error} or ${has_not_found}
-#             Log To Console    ✗ FAILED: ${sitemap_url} returned an error page
-#             RETURN    False
-#         ELSE IF    ${has_urlset} or ${has_sitemapindex}
-#             Log To Console    ✓ SUCCESS: ${sitemap_url} loaded successfully (valid sitemap)
-#             RETURN    True
-#         ELSE
-#             # If no error but also no sitemap tags, still consider it success if page loaded
-#             Log To Console    ✓ SUCCESS: ${sitemap_url} loaded (content type unknown)
-#             RETURN    True
-#         END
-#     ELSE
-#         Log To Console    ✗ FAILED: Could not navigate to ${sitemap_url}
-#         RETURN    False
-#     END
+    RETURN    @{test_urls}

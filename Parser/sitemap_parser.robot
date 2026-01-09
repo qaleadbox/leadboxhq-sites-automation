@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Sitemap Parser - Handles sitemap URL construction and navigation
-Library    SeleniumLibrary
+Resource    ../Resources/variables.robot
+Library    SeleniumLibrary    run_on_failure=Nothing
 Library    String
 
 *** Keywords ***
