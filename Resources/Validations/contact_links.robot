@@ -34,3 +34,9 @@ Validate Contact Links Matches It HREF
     ...                Can be used in any test to validate phone links on the current page
     ...                Example: Navigate to a page, then call this keyword to validate
     Verify Phone Links On Current Page
+
+Validate Contact Links With Details
+    [Documentation]    Validates contact links and returns detailed results without failing
+    ...                Returns: Dictionary with validation results and error details
+    ${result}=    Verify Phone Links With Details
+    RETURN    ${result}

@@ -1,0 +1,135 @@
+{
+  "checkpoint": {
+    "timestamp": "2026-01-09T11:57:17Z",
+    "test_run_id": "test_contact_links_20260109T114920Z",
+    "total_sites": 106,
+    "sites_processed": 9,
+    "current_site": {
+      "name": "Capital Cadillac Regina",
+      "url": "https://www.capitalcadillac.ca/",
+      "status": "in_progress",
+      "sections_processed": [],
+      "pages_tested": "0",
+      "pages_total": "0"
+    },
+    "sites_completed": [
+      {
+        "name": "Addison Chevrolet Eglinton",
+        "url": "https://addisononeglinton.com",
+        "status": "completed",
+        "results": {
+          "passed": 6,
+          "failed": "0"
+        },
+        "total_tests": 6,
+        "total_passed": 6,
+        "total_failed": "0"
+      },
+      {
+        "name": "Addison Chevrolet Erin Mills",
+        "url": "https://addisononerinmills.com",
+        "status": "completed",
+        "results": {
+          "passed": 6,
+          "failed": "0"
+        },
+        "total_tests": 6,
+        "total_passed": 6,
+        "total_failed": "0"
+      },
+      {
+        "name": "Addison GM Group",
+        "url": "https://addisongm.com",
+        "status": "completed",
+        "results": {
+          "passed": 6,
+          "failed": "0"
+        },
+        "total_tests": 6,
+        "total_passed": 6,
+        "total_failed": "0"
+      },
+      {
+        "name": "AM Ford",
+        "url": "https://amford.com/",
+        "status": "completed",
+        "results": {
+          "passed": 6,
+          "failed": "0"
+        },
+        "total_tests": 6,
+        "total_passed": 6,
+        "total_failed": "0"
+      },
+      {
+        "name": "Barrhaven Ford",
+        "url": "https://barrhavenford.com/",
+        "status": "completed",
+        "results": {
+          "passed": "0",
+          "failed": 6
+        },
+        "total_tests": 6,
+        "total_passed": "0",
+        "total_failed": 6
+      },
+      {
+        "name": "Bluestar Ford",
+        "url": "https://bluestarford.com/",
+        "status": "completed",
+        "results": {
+          "passed": 4,
+          "failed": "0"
+        },
+        "total_tests": 4,
+        "total_passed": 4,
+        "total_failed": "0"
+      },
+      {
+        "name": "Bluestar Lincoln",
+        "url": "https://bluestarlincoln.ca/",
+        "status": "completed",
+        "results": {
+          "passed": 4,
+          "failed": "0"
+        },
+        "total_tests": 4,
+        "total_passed": 4,
+        "total_failed": "0"
+      },
+      {
+        "name": "Brennen Ford",
+        "url": "https://brennenford.com/",
+        "status": "completed",
+        "results": {
+          "passed": 6,
+          "failed": "0"
+        },
+        "total_tests": 6,
+        "total_passed": 6,
+        "total_failed": "0"
+      },
+      {
+        "name": "Bridges GM",
+        "url": "https://www.bridgesgm.com/",
+        "status": "completed",
+        "results": {
+          "passed": 6,
+          "failed": "0"
+        },
+        "total_tests": 6,
+        "total_passed": 6,
+        "total_failed": "0"
+      }
+    ]
+  },
+  "summary": {
+    "sites_pending": 97,
+    "total_urls_tested": 50,
+    "total_passed": 44,
+    "total_failed": 6,
+    "failed_sites": [
+      "Barrhaven Ford"
+    ]
+  }
+}

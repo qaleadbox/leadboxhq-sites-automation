@@ -1,0 +1,65 @@
+{
+  "issues": [
+    {
+      "site_name": "Barrhaven Ford",
+      "url": "https://barrhavenford.com/award-winning-suvs-line-up/",
+      "issue_type": "validation_failure",
+      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
+      "raw_description": "1 phone link(s) text does not match href attribute",
+      "category": "Pages",
+      "timestamp": "2026-01-09T11:54:25Z",
+      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
+    },
+    {
+      "site_name": "Barrhaven Ford",
+      "url": "https://barrhavenford.com/view/used-2021-ford-bronco-sport-1569967/",
+      "issue_type": "validation_failure",
+      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
+      "raw_description": "1 phone link(s) text does not match href attribute",
+      "category": "Used Vehicle",
+      "timestamp": "2026-01-09T11:54:25Z",
+      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
+    },
+    {
+      "site_name": "Barrhaven Ford",
+      "url": "https://barrhavenford.com/view/new-2026-ford-escape-1567962/",
+      "issue_type": "validation_failure",
+      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
+      "raw_description": "1 phone link(s) text does not match href attribute",
+      "category": "New Vehicle",
+      "timestamp": "2026-01-09T11:54:25Z",
+      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
+    },
+    {
+      "site_name": "Barrhaven Ford",
+      "url": "https://barrhavenford.com/showroom/2025-ford-maverick_42764/",
+      "issue_type": "validation_failure",
+      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
+      "raw_description": "1 phone link(s) text does not match href attribute",
+      "category": "Showroom",
+      "timestamp": "2026-01-09T11:54:25Z",
+      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
+    },
+    {
+      "site_name": "Barrhaven Ford",
+      "url": "https://barrhavenford.com/new/2025-ford-mustang-mach-e/",
+      "issue_type": "validation_failure",
+      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
+      "raw_description": "1 phone link(s) text does not match href attribute",
+      "category": "Model",
+      "timestamp": "2026-01-09T11:54:25Z",
+      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
+    },
+    {
+      "site_name": "Barrhaven Ford",
+      "url": "https://barrhavenford.com/new/2025-ford-mustang-ecoboost-premium-convertible/",
+      "issue_type": "validation_failure",
+      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
+      "raw_description": "1 phone link(s) text does not match href attribute",
+      "category": "Model Trim",
+      "timestamp": "2026-01-09T11:54:25Z",
+      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
+    }
+  ],
+  "total_issues": 6
+}
