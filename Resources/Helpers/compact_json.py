@@ -48,7 +48,7 @@ class CompactJSONEncoder(json.JSONEncoder):
         return "{\n" + ",\n".join(items) + f"\n{indent}}}"
 
     def _encode_tested_links(self, obj, level):
-        """Special encoding for tested_links dictionary - keep URL and tests on same line."""
+        """Special encoding for tested_links dictionary - keep URL and tests on same line, sorted alphabetically."""
         if not obj:
             return "{}"
 
@@ -56,7 +56,9 @@ class CompactJSONEncoder(json.JSONEncoder):
         next_indent = self.indent_str * (level + 1)
         items = []
 
-        for key, value in obj.items():
+        # Sort keys alphabetically for consistent ordering
+        for key in sorted(obj.keys()):
+            value = obj[key]
             encoded_key = json.dumps(key, ensure_ascii=False)
             # Keep the URL and its test array on the same line
             encoded_value = json.dumps(value, ensure_ascii=False)

@@ -26,6 +26,9 @@ Parse Sitemap URLs
     ${checkpoint}=    Initialize Checkpoint    ${sites_count}
     ${issues_data}=    Initialize Issue Log
 
+    # DISABLED: This was incorrectly "fixing" counters with total=0 back to tested/tested
+    # Update Completed Sites Pages Counters    ${checkpoint}
+
     ${passed}=    Set Variable    0
     ${failed}=    Set Variable    0
     @{failed_urls}=    Create List
@@ -407,12 +410,42 @@ Test Sitemap URLs In Real Time With Details
     ${sitemap_source}=    Get Source
     &{sections}=    Extract Sitemap Sections    ${sitemap_source}
 
+    # IMPORTANT: Get pages list and immediately set the pages counter with total count
+    @{pages_list}=    Get From Dictionary    ${sections}    pages
+    ${total_pages}=    Get Length    ${pages_list}
+
+    # Set pages counter immediately after fetching sitemap (before testing)
+    ${site}=    Get In Progress Site    ${checkpoint}
+    ${section_counters}=    Get From Dictionary    ${site}    section_counters
+    ${pages_tracking}=    Get From Dictionary    ${site}    pages_link_tracking
+    ${tested_links}=    Get From Dictionary    ${pages_tracking}    tested_links
+    ${tested_count}=    Get Length    ${tested_links}
+
+    # Initialize pages counter with actual sitemap count
+    ${has_pages}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${section_counters}    pages
+    IF    not ${has_pages}
+        Set To Dictionary    ${section_counters}    pages=${tested_count}/${total_pages}
+        Save Checkpoint Data    ${checkpoint}
+        Log To Console    [Sitemap] Initialized pages counter: ${tested_count}/${total_pages}
+    ELSE
+        ${pages_counter}=    Get From Dictionary    ${section_counters}    pages
+        @{parts}=    Split String    ${pages_counter}    /
+        ${current_total}=    Get From List    ${parts}    1
+        ${current_total_int}=    Convert To Integer    ${current_total}
+
+        # Update if total doesn't match sitemap
+        IF    ${current_total_int} != ${total_pages}
+            Set To Dictionary    ${section_counters}    pages=${tested_count}/${total_pages}
+            Save Checkpoint Data    ${checkpoint}
+            Log To Console    [Sitemap] Updated pages counter: ${tested_count}/${total_pages} (was ${pages_counter})
+        END
+    END
+
     ${passed}=    Set Variable    0
     ${failed}=    Set Variable    0
     @{failed_data}=    Create List
 
-    # Test pages (using link tracking instead of counter)
-    @{pages_list}=    Get From Dictionary    ${sections}    pages
+    # Test pages (using link tracking)
     ${passed}    ${failed}=    Test Pages Section With Link Tracking    ${checkpoint}    ${pages_list}    ${pages_samples}    ${skip_pages_if_sampled}    Pages    ${validation_keyword}    ${passed}    ${failed}    ${failed_data}
 
     # Test used vehicles
@@ -528,6 +561,17 @@ Test Pages Section With Link Tracking
     [Arguments]    ${checkpoint}    ${url_list}    ${samples_param}    ${skip_if_sampled}    ${category_label}    ${test_name}    ${passed}    ${failed}    ${failed_data}
     ${url_count}=    Get Length    ${url_list}
 
+    # Pages counter should already be set when sitemap was opened
+    # Just verify it exists (shouldn't need this, but safety check)
+    ${site}=    Get In Progress Site    ${checkpoint}
+    ${section_counters}=    Get From Dictionary    ${site}    section_counters
+    ${has_pages}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${section_counters}    pages
+    IF    not ${has_pages}
+        # This shouldn't happen, but add as fallback
+        Set To Dictionary    ${section_counters}    pages=0/${url_count}
+        Log To Console    [Pages] WARNING: Counter was not initialized, setting to 0/${url_count}
+    END
+
     # Check if we should skip based on all_pages_covered flag for this test
     ${all_covered}=    Are All Pages Covered    ${checkpoint}    ${test_name}
     IF    ${all_covered}
@@ -566,25 +610,30 @@ Test Pages Section With Link Tracking
         RETURN    ${passed}    ${failed}
     END
 
-    # Determine how many samples to test
+    # Determine how many samples to test and select pages
     IF    '${samples_param}' == 'None'
+        # Test all pages in alphabetical order (no sampling)
         ${samples_to_test}=    Set Variable    ${untested_count}
+        @{pages_to_test}=    Evaluate    sorted(${untested_pages})    # Sort alphabetically
+        Log To Console    [Pages] Testing all ${samples_to_test} untested pages in alphabetical order (${tested_count} already tested, ${url_count} total)...
     ELSE
+        # Random sampling
         ${samples_int}=    Convert To Integer    ${samples_param}
         ${samples_to_test}=    Evaluate    min(${samples_int}, ${untested_count})
+        @{pages_to_test}=    Evaluate    random.sample(${untested_pages}, ${samples_to_test})    random
+        Log To Console    [Pages] Testing ${samples_to_test} random samples from ${untested_count} untested pages for ${test_name} (${tested_count} already tested, ${url_count} total)...
     END
 
-    # Randomly sample from untested pages
-    @{random_pages}=    Evaluate    random.sample(${untested_pages}, ${samples_to_test})    random
-    Log To Console    [Pages] Testing ${samples_to_test} from ${untested_count} untested pages for ${test_name} (${tested_count} already tested, ${url_count} total)...
-
-    FOR    ${test_url}    IN    @{random_pages}
+    FOR    ${test_url}    IN    @{pages_to_test}
         Log To Console    [${category_label}] ${test_url}
         ${result}=    Test URL In New Tab With Details    ${test_url}
         ${status}=    Get From Dictionary    ${result}    status
 
         # Add to tested links with test name, regardless of pass/fail
         Add Tested Link    ${checkpoint}    ${test_url}    ${test_name}
+
+        # Update pages counter
+        Update Section Counter    ${checkpoint}    pages
 
         IF    '${status}' == 'PASS'
             ${passed}=    Evaluate    ${passed} + 1

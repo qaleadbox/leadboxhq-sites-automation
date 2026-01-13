@@ -17,7 +17,7 @@ Test contact links from sitemap URLs
     # This is useful when you want to sample all sections at least once, then skip on resume
     Parse Sitemap URLs
     ...    validation_keyword=Validate Contact Links Matches It HREF
-    ...    pages_samples=1
+    # ...    pages_samples=1
     ...    used_vehicle_samples=1
     ...    new_vehicle_samples=1
     ...    showroom_samples=1

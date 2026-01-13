@@ -1,74 +1,144 @@
 {
   "checkpoint": {
-    "timestamp": "2026-01-13T12:30:38Z",
+    "timestamp": "2026-01-13T20:01:43Z",
     "test_run_id": "test_contact_links_20260112T184903Z",
     "total_sites": 106,
-    "sites_processed": 5,
-    "current_site": {
-      "name": "Bluestar Ford",
-      "url": "https://bluestarford.com/",
-      "status": "in_progress",
-      "section_counters": {
-        "used_vehicles": "0/1",
-        "new_vehicles": "0/0",
-        "showroom": "0/0",
-        "models": "0/0",
-        "model_trims": "0/0"
-      },
-      "pages_link_tracking": {
-        "tested_links": {
-          "https://bluestarford.com/contact-us/": ["Validate Contact Links Matches It HREF"],
-          "https://bluestarford.com/new-inventory/": ["Validate Contact Links Matches It HREF"],
-          "https://bluestarford.com/build-and-price/": ["Validate Contact Links Matches It HREF"],
-          "https://bluestarford.com/view/": ["Validate Contact Links Matches It HREF"],
-          "https://bluestarford.com/warranty-maintenance/": ["Validate Contact Links Matches It HREF"],
-          "https://bluestarford.com/form/": ["Validate Contact Links Matches It HREF"]
-        },
-        "all_pages_covered": {}
-      }
-    },
+    "sites_processed": 8,
     "sites_completed": [
       {
         "name": "Addison Chevrolet Eglinton",
         "url": "https://addisononeglinton.com",
         "status": "completed",
         "results": {
-          "passed": 8,
-          "failed": "0"
+          "passed": 27,
+          "failed": 0
         },
-        "total_tests": 8,
-        "total_passed": 8,
-        "total_failed": "0"
+        "total_tests": 27,
+        "total_passed": 27,
+        "total_failed": 0,
+        "section_counters": {
+          "pages": "53/53",
+          "used_vehicles": "0/0",
+          "new_vehicles": "0/0",
+          "showroom": "0/0",
+          "models": "0/0",
+          "model_trims": "0/0"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://addisononeglinton.com/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/24-hour-test-drive/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/about-us/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/accessories/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/addison-express-service/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/aoda/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/blog/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/book-a-test-drive/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/book-service-appointment/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/business-elite/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/can-i-get-financing/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/certified-service/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/contact-us/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/demo-vehicles/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/discover-the-addison-difference-2/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/discover-the-addison-difference/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/explore-your-drive-new-pre-owned-choices/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/fleet/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/instant-cash-offer/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/jaw-droppers/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/meet-the-team/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/motocommerce/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/my-garage/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/new-vehicles/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/order-parts/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/parts-accessories-request/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/parts-pick-up/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/parts/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/popular-accessories/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/portuguese-sales/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/precision-performance-expert-service-authentic-parts/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/prequalify-for-financing/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/privacy-policy/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/reserve-bolt-euv/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/schedule-service-appointment/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/search/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/service-menu/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/service/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/sitemap/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/smartcoverage/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/special/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/specials/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/tariff-faqs/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/terms-and-conditions/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/thank-you/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/tire-finder/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/touchless-experience/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/touchless-test-drive/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/trade-in-appraisal/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/used-vehicles/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/value-your-trade/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/vehicles-under-15k/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononeglinton.com/warranties-protection/": ["Validate Contact Links Matches It HREF"]
+          },
+          "all_pages_covered": {}
+        }
       },
       {
         "name": "Addison Chevrolet Erin Mills",
         "url": "https://addisononerinmills.com",
-        "status": "completed",
+        "status": "in_progress",
         "results": {
-          "passed": 7,
+          "passed": 1,
           "failed": "0"
         },
-        "total_tests": 7,
-        "total_passed": 7,
+        "total_tests": 1,
+        "total_passed": 1,
         "total_failed": "0",
         "section_counters": {
           "used_vehicles": "1/1",
           "new_vehicles": "1/1",
           "showroom": "1/1",
           "models": "1/1",
-          "model_trims": "1/1"
+          "model_trims": "1/1",
+          "pages": "35/58"
         },
         "pages_link_tracking": {
           "tested_links": {
-            "https://addisononerinmills.com/contact-us/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/touchless-experience/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/customer-testimonials/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/24-hour-test-drive/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/about-us/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/accessories/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/thank-you/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/payment-estimator/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/addison-express-service/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/aoda/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/blog/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/instant-cash-offer/": ["Validate Contact Links Matches It HREF"]
+            "https://addisononerinmills.com/book-a-test-drive/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/book-service-appointment/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/business-elite/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/can-i-get-financing/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/certified-service/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/contact-us/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/customer-testimonials/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/discover-the-addison-difference-2/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/discover-the-addison-difference/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/explore-your-drive-new-pre-owned-choices/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/fleet/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/guaranteed-car-loans/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/instant-cash-offer/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/jaw-droppers/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/meet-the-team/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/motocommerce/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/my-garage/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/new-vehicles/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/order-parts/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/parts-accessories-request/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/parts-pick-up/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/parts/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/payment-estimator/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/popular-accessories/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/special/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/thank-you/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/touchless-experience/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/touchless-test-drive/": ["Validate Contact Links Matches It HREF"]
           },
           "all_pages_covered": {}
         }
@@ -89,68 +159,69 @@
           "new_vehicles": "1/1",
           "showroom": "1/1",
           "models": "1/1",
-          "model_trims": "1/1"
+          "model_trims": "1/1",
+          "pages": "58/58"
         },
         "pages_link_tracking": {
           "tested_links": {
-            "https://addisononerinmills.com/search/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/fleet/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/service-menu/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/24-hour-test-drive/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/about-us/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/accessories/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/addison-express-service/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/aoda/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/blog/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/popular-accessories/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/instant-cash-offer/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/request-brochure/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/payment-estimator/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/parts-accessories-request/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/order-parts/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/privacy-policy/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/vehicles-under-15k/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/precision-performance-expert-service-authentic-parts/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/book-a-test-drive/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/book-service-appointment/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/business-elite/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/can-i-get-financing/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/certified-service/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/contact-us/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/customer-testimonials/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/discover-the-addison-difference-2/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/discover-the-addison-difference/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/prequalify-for-financing/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/reserve-the-2024-chevrolet-trax/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/explore-your-drive-new-pre-owned-choices/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/fleet/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/guaranteed-car-loans/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/instant-cash-offer/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/jaw-droppers/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/meet-the-team/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/motocommerce/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/jaw-droppers/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/addison-express-service/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/book-a-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/accessories/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/certified-service/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/preffered-pricing/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/tire-finder/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/parts-pick-up/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/special/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/thank-you/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/schedule-service-appointment/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/smartcoverage/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/warranties-protection/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/wish-and-win/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/can-i-get-financing/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/service/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/touchless-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/terms-and-conditions/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/specials/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/discover-the-addison-difference-2/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/touchless-experience/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/book-service-appointment/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/sitemap/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/new-vehicles/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/contact-us/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/my-garage/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/customer-testimonials/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/reserve-bolt-euv/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/value-your-trade/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/request-appraisal/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/tariff-faqs/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/explore-your-drive-new-pre-owned-choices/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/24-hour-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/aoda/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/used-vehicles/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/new-vehicles/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/order-parts/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/parts-accessories-request/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/parts-pick-up/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/parts/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/about-us/": ["Validate Contact Links Matches It HREF"]
+            "https://addisononerinmills.com/payment-estimator/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/popular-accessories/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/precision-performance-expert-service-authentic-parts/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/preffered-pricing/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/prequalify-for-financing/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/privacy-policy/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/request-appraisal/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/request-brochure/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/reserve-bolt-euv/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/reserve-the-2024-chevrolet-trax/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/schedule-service-appointment/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/search/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/service-menu/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/service/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/sitemap/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/smartcoverage/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/special/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/specials/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/tariff-faqs/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/terms-and-conditions/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/thank-you/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/tire-finder/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/touchless-experience/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/touchless-test-drive/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/used-vehicles/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/value-your-trade/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/vehicles-under-15k/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/warranties-protection/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/wish-and-win/": ["Validate Contact Links Matches It HREF"]
           },
           "all_pages_covered": {}
         }
@@ -160,24 +231,26 @@
         "url": "https://amford.com/",
         "status": "completed",
         "results": {
-          "passed": 8,
+          "passed": 1,
           "failed": "0"
         },
-        "total_tests": 8,
-        "total_passed": 8,
+        "total_tests": 1,
+        "total_passed": 1,
         "total_failed": "0",
         "section_counters": {
           "used_vehicles": "1/1",
           "new_vehicles": "1/1",
           "showroom": "1/1",
           "models": "1/1",
-          "model_trims": "1/1"
+          "model_trims": "1/1",
+          "pages": "4/68"
         },
         "pages_link_tracking": {
           "tested_links": {
+            "https://amford.com/about-us/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/affordable-choices-great-financing-options-at-am-ford-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
             "https://amford.com/am-ford-waneta/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/sitemap/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/affordable-choices-great-financing-options-at-am-ford-in-trail-bc/": ["Validate Contact Links Matches It HREF"]
+            "https://amford.com/sitemap/": ["Validate Contact Links Matches It HREF"]
           },
           "all_pages_covered": {}
         }
@@ -188,12 +261,102 @@
         "status": "completed",
         "results": {
           "passed": "0",
-          "failed": 8
+          "failed": 1
         },
-        "total_tests": 8,
+        "total_tests": 1,
         "total_passed": "0",
-        "total_failed": 8,
+        "total_failed": 1,
         "section_counters": {
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "1/1",
+          "model_trims": "1/1",
+          "pages": "4/185"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://barrhavenford.com/engine-light-diagnostic/": ["Validate Contact Links Matches It HREF"],
+            "https://barrhavenford.com/in-loving-memory/": ["Validate Contact Links Matches It HREF"],
+            "https://barrhavenford.com/service-parts-specials/": ["Validate Contact Links Matches It HREF"],
+            "https://barrhavenford.com/tire-centre/": ["Validate Contact Links Matches It HREF"]
+          },
+          "all_pages_covered": {}
+        }
+      },
+      {
+        "name": "Bluestar Ford",
+        "url": "https://bluestarford.com/",
+        "status": "completed",
+        "results": {
+          "passed": 1,
+          "failed": "0"
+        },
+        "total_tests": 1,
+        "total_passed": 1,
+        "total_failed": "0",
+        "section_counters": {
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "0/0",
+          "model_trims": "0/0",
+          "pages": "8/51"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://bluestarford.com/build-and-price/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/contact-us/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/customer-reviews/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/form/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/new-inventory/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/trade-in-value/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/view/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/warranty-maintenance/": ["Validate Contact Links Matches It HREF"]
+          },
+          "all_pages_covered": {}
+        }
+      },
+      {
+        "name": "Bluestar Lincoln",
+        "url": "https://bluestarlincoln.ca/",
+        "status": "completed",
+        "results": {
+          "passed": 1,
+          "failed": "0"
+        },
+        "total_tests": 1,
+        "total_passed": 1,
+        "total_failed": "0",
+        "section_counters": {
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "0/0",
+          "model_trims": "0/0",
+          "pages": "2/45"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://bluestarlincoln.ca/customer-reviews/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarlincoln.ca/view-print/": ["Validate Contact Links Matches It HREF"]
+          },
+          "all_pages_covered": {}
+        }
+      },
+      {
+        "name": "Brennen Ford",
+        "url": "https://brennenford.com/",
+        "status": "completed",
+        "results": {
+          "passed": 1,
+          "failed": "0"
+        },
+        "total_tests": 1,
+        "total_passed": 1,
+        "total_failed": "0",
+        "section_counters": {
+          "pages": "3/41",
           "used_vehicles": "1/1",
           "new_vehicles": "1/1",
           "showroom": "1/1",
@@ -202,20 +365,37 @@
         },
         "pages_link_tracking": {
           "tested_links": {
-            "https://barrhavenford.com/service-parts-specials/": ["Validate Contact Links Matches It HREF"],
-            "https://barrhavenford.com/in-loving-memory/": ["Validate Contact Links Matches It HREF"],
-            "https://barrhavenford.com/tire-centre/": ["Validate Contact Links Matches It HREF"]
+            "https://brennenford.com/about-us/": ["Validate Contact Links Matches It HREF"],
+            "https://brennenford.com/schedule-a-test-drive/": ["Validate Contact Links Matches It HREF"],
+            "https://brennenford.com/the-works/": ["Validate Contact Links Matches It HREF"]
           },
+          "all_pages_covered": {}
+        }
+      },
+      {
+        "name": "Bridges GM",
+        "url": "https://www.bridgesgm.com/",
+        "status": "in_progress",
+        "section_counters": {
+          "pages": "0/87",
+          "used_vehicles": "0/0",
+          "new_vehicles": "0/0",
+          "showroom": "0/0",
+          "models": "0/0",
+          "model_trims": "0/0"
+        },
+        "pages_link_tracking": {
+          "tested_links": {},
           "all_pages_covered": {}
         }
       }
     ]
   },
   "summary": {
-    "sites_pending": 101,
-    "total_urls_tested": 39,
-    "total_passed": 31,
-    "total_failed": 8,
-    "failed_sites": ["Barrhaven Ford"]
+    "sites_pending": 98,
+    "total_urls_tested": 92,
+    "total_passed": 83,
+    "total_failed": 9,
+    "failed_sites": ["Barrhaven Ford", "Barrhaven Ford"]
   }
 }
