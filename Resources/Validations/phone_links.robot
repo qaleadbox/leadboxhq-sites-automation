@@ -63,13 +63,14 @@ Verify Phone Links On Current Page
 
 Verify Phone Links With Details
     [Documentation]    Verifies phone links and returns detailed results without failing
-    ...    Returns: Dictionary with status (PASS/FAIL), error_count, errors list, and description
+    ...    Returns: Dictionary with status (PASS/FAIL), error_count, errors list, description, and parent_span
     ${tel_links}=    Get WebElements    xpath=//a[starts-with(@href, 'tel:')]
     ${count}=    Get Length    ${tel_links}
     Log To Console    Found ${count} tel: links
 
     ${failed_count}=    Set Variable    0
     @{errors}=    Create List
+    ${parent_span}=    Set Variable    ${EMPTY}
 
     FOR    ${link}    IN    @{tel_links}
         ${txt_raw}=    Get Element Attribute    ${link}    textContent
@@ -100,6 +101,11 @@ Verify Phone Links With Details
             ${error_msg}=    Set Variable    Phone "${txt_raw}" (${phone_normalized}) != href "${href_raw}" (${href_normalized})
             Append To List    ${errors}    ${error_msg}
             Log To Console    ✗ ${error_msg}
+
+            # Extract parent span identifier (only for the first error to avoid duplicates)
+            IF    '${parent_span}' == '${EMPTY}'
+                ${parent_span}=    Get Parent Span Identifier    ${link}
+            END
         ELSE
             Log To Console    ✓ Phone "${phone_normalized}" matches href "${href_normalized}"
         END
@@ -121,8 +127,34 @@ Verify Phone Links With Details
     ...    errors=${errors}
     ...    description=${description}
     ...    details=${details}
+    ...    parent_span=${parent_span}
 
     RETURN    ${result}
+
+Get Parent Span Identifier
+    [Documentation]    Extracts a unique identifier for the parent container of a phone link
+    ...    Returns a combination of parent tag, class, and id to uniquely identify the parent element
+    [Arguments]    ${link}
+
+    # Try to get the closest parent with an id or meaningful class
+    ${parent_id}=    Execute Javascript
+    ...    const link = arguments[0];
+    ...    let parent = link.parentElement;
+    ...    while (parent && parent !== document.body) {
+    ...        if (parent.id) return 'id:' + parent.id;
+    ...        if (parent.className && typeof parent.className === 'string') {
+    ...            const classes = parent.className.trim();
+    ...            if (classes) return 'class:' + classes;
+    ...        }
+    ...        parent = parent.parentElement;
+    ...    }
+    ...    // Fallback: use tag name + text content hash
+    ...    const tag = link.parentElement?.tagName || 'unknown';
+    ...    const text = link.parentElement?.textContent?.substring(0, 50) || '';
+    ...    return 'tag:' + tag + ':text:' + text.replace(/[^a-zA-Z0-9]/g, '').substring(0, 20);
+    ...    ARGUMENTS    ${link}
+
+    RETURN    ${parent_id}
 
 Add Prefix If Needed
     [Documentation]    Adds prefix to phone number if it doesn't start with 1

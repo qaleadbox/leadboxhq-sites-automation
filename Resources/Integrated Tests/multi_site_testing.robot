@@ -125,8 +125,24 @@ Parse Sitemap URLs
             ${description}=    Get From Dictionary    ${failed_data}    description
             ${details}=    Get From Dictionary    ${failed_data}    details
 
-            Log Issue    ${issues_data}    ${name}    ${failed_url}    ${description}    ${category}    details=${details}
-            Append To List    ${failed_urls}    ${name}: ${failed_url}
+            # Check if parent_span exists in failed_data
+            ${has_parent_span}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${failed_data}    parent_span
+            IF    ${has_parent_span}
+                ${parent_span}=    Get From Dictionary    ${failed_data}    parent_span
+
+                # Check if issue with same parent_span already exists
+                ${has_duplicate}=    Has Issue With Parent Span    ${issues_data}    ${name}    ${parent_span}    ${description}
+                IF    not ${has_duplicate}
+                    Log Issue    ${issues_data}    ${name}    ${failed_url}    ${description}    ${category}    details=${details}    parent_span=${parent_span}
+                    Append To List    ${failed_urls}    ${name}: ${failed_url}
+                ELSE
+                    Log To Console    Skipping duplicate issue with same parent_span: ${parent_span}
+                END
+            ELSE
+                # No parent_span, log as usual
+                Log Issue    ${issues_data}    ${name}    ${failed_url}    ${description}    ${category}    details=${details}
+                Append To List    ${failed_urls}    ${name}: ${failed_url}
+            END
         END
 
         ${passed}=    Evaluate    ${passed} + ${site_passed}
@@ -426,6 +442,7 @@ Test Sitemap URLs In Real Time With Details
 
 Test Section With Counter
     [Documentation]    Tests a section with counter-based checkpoint tracking
+    ...    Also skips URLs that have logged issues in issues.json
     [Arguments]    ${checkpoint}    ${section_name}    ${section_key}    ${url_list}    ${samples_param}    ${skip_if_sampled}    ${category_label}    ${passed}    ${failed}    ${failed_data}
     ${url_count}=    Get Length    ${url_list}
 
@@ -453,27 +470,53 @@ Test Section With Counter
         ${remaining}=    Evaluate    ${target_int} - ${tested_int}
 
         IF    ${remaining} > 0 and ${url_count} > 0
-            ${actual_samples}=    Evaluate    min(${remaining}, ${url_count})
-            @{random_urls}=    Evaluate    random.sample(${url_list}, ${actual_samples})    random
-            Log To Console    [${section_name}] Sampling ${actual_samples} URLs (counter: ${counter})...
-            FOR    ${test_url}    IN    @{random_urls}
-                Log To Console    [${category_label}] ${test_url}
-                ${result}=    Test URL In New Tab With Details    ${test_url}
-                ${status}=    Get From Dictionary    ${result}    status
-                Update Section Counter    ${checkpoint}    ${section_key}
-                IF    '${status}' == 'PASS'
-                    ${passed}=    Evaluate    ${passed} + 1
-                ELSE
-                    ${failed}=    Evaluate    ${failed} + 1
-                    ${description}=    Get From Dictionary    ${result}    description
-                    ${details}=    Get From Dictionary    ${result}    details
-                    &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}
-                    Append To List    ${failed_data}    ${fail_info}
+            # Load issues data to filter out URLs with logged issues
+            ${issues_data}=    Load Issues
+
+            # Filter out URLs with logged issues
+            @{urls_without_issues}=    Create List
+            FOR    ${url}    IN    @{url_list}
+                ${has_issue}=    Has Issue For URL    ${issues_data}    ${url}
+                IF    not ${has_issue}
+                    Append To List    ${urls_without_issues}    ${url}
                 END
-                Sleep    0.5s
             END
-            Log To Console    ${section_name} section complete. Cleaning up...
-            Cleanup Browser Windows
+
+            ${filtered_count}=    Get Length    ${urls_without_issues}
+            IF    ${filtered_count} > 0
+                ${actual_samples}=    Evaluate    min(${remaining}, ${filtered_count})
+                @{random_urls}=    Evaluate    random.sample(${urls_without_issues}, ${actual_samples})    random
+                Log To Console    [${section_name}] Sampling ${actual_samples} URLs (counter: ${counter})...
+                FOR    ${test_url}    IN    @{random_urls}
+                    Log To Console    [${category_label}] ${test_url}
+                    ${result}=    Test URL In New Tab With Details    ${test_url}
+                    ${status}=    Get From Dictionary    ${result}    status
+                    Update Section Counter    ${checkpoint}    ${section_key}
+                    IF    '${status}' == 'PASS'
+                        ${passed}=    Evaluate    ${passed} + 1
+                    ELSE
+                        ${failed}=    Evaluate    ${failed} + 1
+                        ${description}=    Get From Dictionary    ${result}    description
+                        ${details}=    Get From Dictionary    ${result}    details
+
+                        # Extract parent_span if available
+                        ${has_parent_span}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    parent_span
+                        IF    ${has_parent_span}
+                            ${parent_span}=    Get From Dictionary    ${result}    parent_span
+                            &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}    parent_span=${parent_span}
+                        ELSE
+                            &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}
+                        END
+
+                        Append To List    ${failed_data}    ${fail_info}
+                    END
+                    Sleep    0.5s
+                END
+                Log To Console    ${section_name} section complete. Cleaning up...
+                Cleanup Browser Windows
+            ELSE
+                Log To Console    [${section_name}] All URLs have logged issues, skipping section
+            END
         END
     END
 
@@ -481,6 +524,7 @@ Test Section With Counter
 
 Test Pages Section With Link Tracking
     [Documentation]    Tests pages section using link tracking instead of counters, skipping pages already tested with this specific test
+    ...    Also skips pages that have logged issues in issues.json
     [Arguments]    ${checkpoint}    ${url_list}    ${samples_param}    ${skip_if_sampled}    ${category_label}    ${test_name}    ${passed}    ${failed}    ${failed_data}
     ${url_count}=    Get Length    ${url_list}
 
@@ -500,11 +544,15 @@ Test Pages Section With Link Tracking
         END
     END
 
-    # Filter out pages already tested with this specific test
+    # Load issues data to check for URLs with logged issues
+    ${issues_data}=    Load Issues
+
+    # Filter out pages already tested with this specific test OR that have logged issues
     @{untested_pages}=    Create List
     FOR    ${page_url}    IN    @{url_list}
         ${is_tested}=    Is Link Already Tested    ${checkpoint}    ${page_url}    ${test_name}
-        IF    not ${is_tested}
+        ${has_issue}=    Has Issue For URL    ${issues_data}    ${page_url}
+        IF    not ${is_tested} and not ${has_issue}
             Append To List    ${untested_pages}    ${page_url}
         END
     END
@@ -544,7 +592,16 @@ Test Pages Section With Link Tracking
             ${failed}=    Evaluate    ${failed} + 1
             ${description}=    Get From Dictionary    ${result}    description
             ${details}=    Get From Dictionary    ${result}    details
-            &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}
+
+            # Extract parent_span if available
+            ${has_parent_span}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    parent_span
+            IF    ${has_parent_span}
+                ${parent_span}=    Get From Dictionary    ${result}    parent_span
+                &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}    parent_span=${parent_span}
+            ELSE
+                &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}
+            END
+
             Append To List    ${failed_data}    ${fail_info}
         END
         Sleep    0.5s

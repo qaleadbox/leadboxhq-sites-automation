@@ -1,65 +1,27 @@
 {
   "issues": [
     {
+      "site_name": "Addison Chevrolet Erin Mills",
+      "url": "https://addisononerinmills.com/contact-us/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Erin Mills after the 1 phone link(s) text does not match href attribute",
+      "raw_description": "1 phone link(s) text does not match href attribute",
+      "category": "Pages",
+      "timestamp": "2026-01-13T13:17:33Z",
+      "details": "Phone \"8833-226-7914\" (188332267914) != href \"tel:+18332267914\" (18332267914)",
+      "parent_span": "class:stk-block-text__text has-text-align-left"
+    },
+    {
       "site_name": "Barrhaven Ford",
-      "url": "https://barrhavenford.com/award-winning-suvs-line-up/",
+      "url": "https://barrhavenford.com/service-parts-specials/",
       "issue_type": "validation_failure",
       "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
       "raw_description": "1 phone link(s) text does not match href attribute",
       "category": "Pages",
-      "timestamp": "2026-01-09T11:54:25Z",
-      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
-    },
-    {
-      "site_name": "Barrhaven Ford",
-      "url": "https://barrhavenford.com/view/used-2021-ford-bronco-sport-1569967/",
-      "issue_type": "validation_failure",
-      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
-      "raw_description": "1 phone link(s) text does not match href attribute",
-      "category": "Used Vehicle",
-      "timestamp": "2026-01-09T11:54:25Z",
-      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
-    },
-    {
-      "site_name": "Barrhaven Ford",
-      "url": "https://barrhavenford.com/view/new-2026-ford-escape-1567962/",
-      "issue_type": "validation_failure",
-      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
-      "raw_description": "1 phone link(s) text does not match href attribute",
-      "category": "New Vehicle",
-      "timestamp": "2026-01-09T11:54:25Z",
-      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
-    },
-    {
-      "site_name": "Barrhaven Ford",
-      "url": "https://barrhavenford.com/showroom/2025-ford-maverick_42764/",
-      "issue_type": "validation_failure",
-      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
-      "raw_description": "1 phone link(s) text does not match href attribute",
-      "category": "Showroom",
-      "timestamp": "2026-01-09T11:54:25Z",
-      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
-    },
-    {
-      "site_name": "Barrhaven Ford",
-      "url": "https://barrhavenford.com/new/2025-ford-mustang-mach-e/",
-      "issue_type": "validation_failure",
-      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
-      "raw_description": "1 phone link(s) text does not match href attribute",
-      "category": "Model",
-      "timestamp": "2026-01-09T11:54:25Z",
-      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
-    },
-    {
-      "site_name": "Barrhaven Ford",
-      "url": "https://barrhavenford.com/new/2025-ford-mustang-ecoboost-premium-convertible/",
-      "issue_type": "validation_failure",
-      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
-      "raw_description": "1 phone link(s) text does not match href attribute",
-      "category": "Model Trim",
-      "timestamp": "2026-01-09T11:54:25Z",
-      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)"
+      "timestamp": "2026-01-13T12:20:40Z",
+      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)",
+      "parent_span": "class:pb-2 sales_phone"
     }
   ],
-  "total_issues": 6
+  "total_issues": 2
 }
