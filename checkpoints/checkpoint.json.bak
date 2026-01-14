@@ -1,9 +1,9 @@
 {
   "checkpoint": {
-    "timestamp": "2026-01-14T19:12:00Z",
+    "timestamp": "2026-01-14T18:42:53Z",
     "test_run_id": "test_contact_links_20260112T184903Z",
     "total_sites": 106,
-    "sites_processed": 2,
+    "sites_processed": 7,
     "sites_completed": [
       {
         "name": "Addison Chevrolet Eglinton",
@@ -84,15 +84,15 @@
         }
       },
       {
-        "name": "Addison Chevrolet Erin Mills",
-        "url": "https://addisononerinmills.com",
+        "name": "Addison GM Group",
+        "url": "https://addisongm.com",
         "status": "completed",
         "results": {
-          "passed": 6,
+          "passed": 8,
           "failed": "0"
         },
-        "total_tests": 6,
-        "total_passed": 6,
+        "total_tests": 8,
+        "total_passed": 8,
         "total_failed": "0",
         "section_counters": {
           "used_vehicles": "1/1",
@@ -135,10 +135,6 @@
             "https://addisononerinmills.com/parts/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/payment-estimator/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/popular-accessories/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/special/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/thank-you/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/touchless-experience/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/touchless-test-drive/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/precision-performance-expert-service-authentic-parts/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/preffered-pricing/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/prequalify-for-financing/": ["Validate Contact Links Matches It HREF"],
@@ -153,27 +149,175 @@
             "https://addisononerinmills.com/service/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/sitemap/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/smartcoverage/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/special/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/specials/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/tariff-faqs/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/terms-and-conditions/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/thank-you/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/tire-finder/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/touchless-experience/": ["Validate Contact Links Matches It HREF"],
+            "https://addisononerinmills.com/touchless-test-drive/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/used-vehicles/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/value-your-trade/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/vehicles-under-15k/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/warranties-protection/": ["Validate Contact Links Matches It HREF"],
             "https://addisononerinmills.com/wish-and-win/": ["Validate Contact Links Matches It HREF"]
           },
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
-          }
+          "all_pages_covered": {}
         }
       },
       {
-        "name": "Addison GM Group",
-        "url": "https://addisongm.com",
+        "name": "AM Ford",
+        "url": "https://amford.com/",
+        "status": "completed",
+        "results": {
+          "passed": 1,
+          "failed": "0"
+        },
+        "total_tests": 1,
+        "total_passed": 1,
+        "total_failed": "0",
+        "section_counters": {
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "1/1",
+          "model_trims": "1/1",
+          "pages": "4/68"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://amford.com/about-us/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/affordable-choices-great-financing-options-at-am-ford-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/am-ford-waneta/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/sitemap/": ["Validate Contact Links Matches It HREF"]
+          },
+          "all_pages_covered": {}
+        }
+      },
+      {
+        "name": "Barrhaven Ford",
+        "url": "https://barrhavenford.com/",
+        "status": "completed",
+        "results": {
+          "passed": "0",
+          "failed": 1
+        },
+        "total_tests": 1,
+        "total_passed": "0",
+        "total_failed": 1,
+        "section_counters": {
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "1/1",
+          "model_trims": "1/1",
+          "pages": "4/185"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://barrhavenford.com/engine-light-diagnostic/": ["Validate Contact Links Matches It HREF"],
+            "https://barrhavenford.com/in-loving-memory/": ["Validate Contact Links Matches It HREF"],
+            "https://barrhavenford.com/service-parts-specials/": ["Validate Contact Links Matches It HREF"],
+            "https://barrhavenford.com/tire-centre/": ["Validate Contact Links Matches It HREF"]
+          },
+          "all_pages_covered": {}
+        }
+      },
+      {
+        "name": "Bluestar Ford",
+        "url": "https://bluestarford.com/",
+        "status": "completed",
+        "results": {
+          "passed": 1,
+          "failed": "0"
+        },
+        "total_tests": 1,
+        "total_passed": 1,
+        "total_failed": "0",
+        "section_counters": {
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "0/0",
+          "model_trims": "0/0",
+          "pages": "8/51"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://bluestarford.com/build-and-price/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/contact-us/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/customer-reviews/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/form/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/new-inventory/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/trade-in-value/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/view/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarford.com/warranty-maintenance/": ["Validate Contact Links Matches It HREF"]
+          },
+          "all_pages_covered": {}
+        }
+      },
+      {
+        "name": "Bluestar Lincoln",
+        "url": "https://bluestarlincoln.ca/",
+        "status": "completed",
+        "results": {
+          "passed": 1,
+          "failed": "0"
+        },
+        "total_tests": 1,
+        "total_passed": 1,
+        "total_failed": "0",
+        "section_counters": {
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "0/0",
+          "model_trims": "0/0",
+          "pages": "2/45"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://bluestarlincoln.ca/customer-reviews/": ["Validate Contact Links Matches It HREF"],
+            "https://bluestarlincoln.ca/view-print/": ["Validate Contact Links Matches It HREF"]
+          },
+          "all_pages_covered": {}
+        }
+      },
+      {
+        "name": "Brennen Ford",
+        "url": "https://brennenford.com/",
+        "status": "completed",
+        "results": {
+          "passed": 1,
+          "failed": "0"
+        },
+        "total_tests": 1,
+        "total_passed": 1,
+        "total_failed": "0",
+        "section_counters": {
+          "pages": "3/41",
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "1/1",
+          "model_trims": "1/1"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://brennenford.com/about-us/": ["Validate Contact Links Matches It HREF"],
+            "https://brennenford.com/schedule-a-test-drive/": ["Validate Contact Links Matches It HREF"],
+            "https://brennenford.com/the-works/": ["Validate Contact Links Matches It HREF"]
+          },
+          "all_pages_covered": {}
+        }
+      },
+      {
+        "name": "Addison Chevrolet Erin Mills",
+        "url": "https://addisononerinmills.com",
         "status": "in_progress",
         "section_counters": {
-          "pages": "3/30",
+          "pages": "0/58",
           "used_vehicles": "0/0",
           "new_vehicles": "0/0",
           "showroom": "0/0",
@@ -181,20 +325,16 @@
           "model_trims": "0/0"
         },
         "pages_link_tracking": {
-          "tested_links": {
-            "https://addisongm.com/": ["Validate Contact Links Matches It HREF"],
-            "https://addisongm.com/about-us/": ["Validate Contact Links Matches It HREF"],
-            "https://addisongm.com/apply-for-financing/": ["Validate Contact Links Matches It HREF"]
-          },
+          "tested_links": {},
           "all_pages_covered": {}
         }
       }
     ]
   },
   "summary": {
-    "sites_pending": 104,
-    "total_urls_tested": 98,
-    "total_passed": 89,
+    "sites_pending": 98,
+    "total_urls_tested": 92,
+    "total_passed": 83,
     "total_failed": 9,
     "failed_sites": ["Barrhaven Ford", "Barrhaven Ford"]
   }

@@ -6,6 +6,7 @@ Library    SeleniumLibrary    run_on_failure=Nothing
 Library    BuiltIn
 Library    Collections
 Library    Process
+Library    ${CURDIR}${/}compact_json.py
 
 *** Keywords ***
 Open LeadBox Portal
@@ -19,6 +20,11 @@ Open LeadBox Portal
         Call Method    ${chrome_options}    add_argument    disable-gpu
     END
     Open Browser    ${url}    chrome    options=${chrome_options}
+
+    # Set timeouts to prevent hanging
+    Set Selenium Timeout    30 seconds
+    Set Selenium Implicit Wait    10 seconds
+    Set Selenium Page Load Timeout    30 seconds
 
 Cleanup Browser Windows
     [Documentation]    Closes all windows except the main one to prevent memory buildup
@@ -49,40 +55,19 @@ Cleanup Browser Windows
 
 Close Browser Safely
     [Documentation]    Ensures browser is closed properly with fallback mechanisms
-    Log To Console    Closing browser...
-    TRY
-        # First, try to close all windows
-        ${handles}=    Get Window Handles
-        ${handle_count}=    Get Length    ${handles}
-        IF    ${handle_count} > 0
-            Log To Console    Closing ${handle_count} browser window(s)...
-            FOR    ${handle}    IN    @{handles}
-                TRY
-                    Switch Window    ${handle}
-                    Close Window
-                    Sleep    0.1s
-                EXCEPT
-                    Log To Console    Failed to close window, continuing...
-                END
-            END
-        END
-    EXCEPT    AS    ${error}
-        Log To Console    Error closing windows: ${error}
-    END
 
-    # Now close the browser session
-    TRY
-        Close Browser
-        Sleep    0.5s
-        Log To Console    Browser closed successfully
-    EXCEPT    AS    ${error}
-        Log To Console    Error closing browser: ${error}
-        # Force kill Chrome processes as fallback
-        Log To Console    Attempting to force kill Chrome processes...
-        Run Keyword And Ignore Error    Run Process    pkill    -9    chrome
-        Run Keyword And Ignore Error    Run Process    pkill    -9    chromedriver
-        Sleep    1s
-    END
+    # Flush checkpoint instantly (no-op, but kept for compatibility)
+    Flush All Pending Writes
+
+    # Force kill Chrome immediately - don't try to close gracefully
+    Log To Console    \n⚡ Force killing Chrome processes...
+    Run Keyword And Ignore Error    Run Process    pkill    -9    chrome    chromedriver
+    Sleep    0.5s
+
+    # Try to close browser session (will likely fail since Chrome is dead, that's OK)
+    Run Keyword And Ignore Error    Close Browser
+
+    Log To Console    ✓ Cleanup complete
 
 Navigate To Site Sitemap
     [Documentation]    Navigates to a site's sitemap

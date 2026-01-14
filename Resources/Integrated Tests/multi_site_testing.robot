@@ -10,6 +10,7 @@ Resource    ../../Parser/sitemap_parser.robot
 Library    SeleniumLibrary    run_on_failure=Nothing
 Library    String
 Library    Collections
+Library    ${CURDIR}${/}..${/}Helpers${/}signal_checker.py
 
 *** Keywords ***
 Parse Sitemap URLs
@@ -19,6 +20,10 @@ Parse Sitemap URLs
     ...                Flexible framework: Pass any validation keyword to test different functionality
     ...                skip_*_if_sampled: Set to 'true' to skip section if at least one sample was already tested
     [Arguments]    ${validation_keyword}    ${pages_samples}=None    ${used_vehicle_samples}=1    ${new_vehicle_samples}=1    ${showroom_samples}=1    ${models_samples}=1    ${model_trims_samples}=1    ${use_checkpoint}=true    ${skip_pages_if_sampled}=false    ${skip_used_vehicles_if_sampled}=false    ${skip_new_vehicles_if_sampled}=false    ${skip_showroom_if_sampled}=false    ${skip_models_if_sampled}=false    ${skip_model_trims_if_sampled}=false
+
+    # Install signal handler for graceful interrupts
+    Install Signal Handler
+
     @{sites}=    Load Sites From Spreadsheet
     ${sites_count}=    Get Length    ${sites}
 
@@ -52,7 +57,11 @@ Parse Sitemap URLs
     Call Method    ${chrome_options}    add_argument    --disable-breakpad
     Call Method    ${chrome_options}    add_argument    --disable-component-update
     Call Method    ${chrome_options}    add_argument    --disable-domain-reliability
-    ${disable_features_arg}=    Set Variable    --disable-features=TranslateUI,BlinkGenPropertyTrees
+    Call Method    ${chrome_options}    add_argument    --disable-notifications
+    Call Method    ${chrome_options}    add_argument    --disable-popup-blocking
+    ${blink_features_arg}=    Set Variable    --disable-blink-features=AutomationControlled
+    Call Method    ${chrome_options}    add_argument    ${blink_features_arg}
+    ${disable_features_arg}=    Set Variable    --disable-features=TranslateUI,BlinkGenPropertyTrees,VizDisplayCompositor
     Call Method    ${chrome_options}    add_argument    ${disable_features_arg}
 
     # Memory management
@@ -60,14 +69,14 @@ Parse Sitemap URLs
     Call Method    ${chrome_options}    add_argument    ${js_flags_arg}
     Call Method    ${chrome_options}    add_argument    --disable-renderer-backgrounding
 
-    # Headless mode if enabled
+    # Headless mode if enabled (using old headless for stability)
     IF    '${HEADLESS}' == 'true'
-        ${headless_arg}=    Set Variable    --headless=new
-        Call Method    ${chrome_options}    add_argument    ${headless_arg}
+        Call Method    ${chrome_options}    add_argument    headless
         # Window size for headless (helps with rendering)
         ${window_size_arg}=    Set Variable    --window-size=1920,1080
         Call Method    ${chrome_options}    add_argument    ${window_size_arg}
         Call Method    ${chrome_options}    add_argument    --start-maximized
+        Call Method    ${chrome_options}    add_argument    --disable-crash-reporter
     END
 
     # Page load strategy
@@ -75,7 +84,15 @@ Parse Sitemap URLs
 
     Open Browser    about:blank    chrome    options=${chrome_options}
 
+    # Set timeouts to prevent hanging
+    Set Selenium Timeout    30 seconds
+    Set Selenium Implicit Wait    10 seconds
+    Set Selenium Page Load Timeout    30 seconds
+
     FOR    ${site}    IN    @{sites}
+        # Check for interrupt signal at start of each site
+        Check For Interrupt
+
         ${url}=    Get From Dictionary    ${site}    url
         ${name}=    Get From Dictionary    ${site}    name
 
@@ -115,6 +132,9 @@ Parse Sitemap URLs
             Close Browser Safely
             Sleep    2s
             Open Browser    about:blank    chrome    options=${chrome_options}
+            Set Selenium Timeout    30 seconds
+            Set Selenium Implicit Wait    10 seconds
+            Set Selenium Page Load Timeout    30 seconds
             Sleep    2s
             # Try again with the same site
             Log To Console    Retrying site: ${name}
@@ -377,8 +397,36 @@ Test URL In New Tab
     RETURN    ${result}
 
 Test URL In New Tab With Details
-    [Documentation]    Opens URL in new tab, runs detailed validation, returns results with error details
+    [Documentation]    Opens URL in new tab (or navigates directly in headless), runs detailed validation, returns results with error details
     [Arguments]    ${url}
+
+    # In headless mode, navigate directly to avoid Chrome crashes with many tabs
+    IF    '${HEADLESS}' == 'true'
+        TRY
+            Go To    ${url}
+            Sleep    3s
+
+            # Wait for page to be ready
+            Wait Until Page Contains Element    xpath=//body    timeout=10s
+            Execute Javascript    return document.readyState === 'complete'
+
+            ${result}=    Validate Contact Links With Details
+            RETURN    ${result}
+        EXCEPT    AS    ${error}
+            Log To Console    ⚠️ Failed to load/validate ${url}: ${error}
+            # Return FAIL result
+            &{result}=    Create Dictionary
+            ...    status=FAIL
+            ...    error_count=1
+            ...    errors=Failed to load page
+            ...    description=Page load failed: ${error}
+            ...    details=${error}
+            ...    parent_span=${EMPTY}
+            RETURN    ${result}
+        END
+    END
+
+    # In headed mode, use tabs as normal
     ${main_handle}=    Get Window Handles
     ${main_handle}=    Get From List    ${main_handle}    0
 
@@ -404,8 +452,16 @@ Test Sitemap URLs In Real Time With Details
     [Documentation]    Tests sampled URLs from sitemap sections with detailed error tracking and counter-based checkpoint support
     [Arguments]    ${checkpoint}    ${url}    ${name}    ${validation_keyword}    ${pages_samples}=None    ${used_vehicle_samples}=1    ${new_vehicle_samples}=1    ${showroom_samples}=1    ${models_samples}=1    ${model_trims_samples}=1    ${skip_pages_if_sampled}=false    ${skip_used_vehicles_if_sampled}=false    ${skip_new_vehicles_if_sampled}=false    ${skip_showroom_if_sampled}=false    ${skip_models_if_sampled}=false    ${skip_model_trims_if_sampled}=false
     ${sitemap_url}=    Build Sitemap URL    ${url}
-    Go To    ${sitemap_url}
-    Sleep    2s
+    Log To Console    Loading sitemap: ${sitemap_url}
+
+    TRY
+        Go To    ${sitemap_url}
+        Sleep    2s
+        Log To Console    ✓ Sitemap loaded successfully
+    EXCEPT    AS    ${error}
+        Log To Console    ✗ Failed to load sitemap: ${error}
+        Fail    Could not load sitemap for ${name}: ${error}
+    END
 
     ${sitemap_source}=    Get Source
     &{sections}=    Extract Sitemap Sections    ${sitemap_source}
@@ -521,6 +577,9 @@ Test Section With Counter
                 @{random_urls}=    Evaluate    random.sample(${urls_without_issues}, ${actual_samples})    random
                 Log To Console    [${section_name}] Sampling ${actual_samples} URLs (counter: ${counter})...
                 FOR    ${test_url}    IN    @{random_urls}
+                    # Check for interrupt before testing each URL
+                    Check For Interrupt
+
                     Log To Console    [${category_label}] ${test_url}
                     ${result}=    Test URL In New Tab With Details    ${test_url}
                     ${status}=    Get From Dictionary    ${result}    status
@@ -625,8 +684,36 @@ Test Pages Section With Link Tracking
     END
 
     FOR    ${test_url}    IN    @{pages_to_test}
+        # Check for interrupt before testing each page
+        Check For Interrupt
+
         Log To Console    [${category_label}] ${test_url}
-        ${result}=    Test URL In New Tab With Details    ${test_url}
+
+        # Try to test the URL, catch any browser errors
+        TRY
+            ${result}=    Test URL In New Tab With Details    ${test_url}
+        EXCEPT    AS    ${error}
+            Log To Console    ⚠️ Error testing page: ${error}
+
+            # Check if it's a browser crash (will trigger site-level retry)
+            ${is_browser_error}=    Run Keyword And Return Status
+            ...    Should Contain Any    ${error}    Connection refused    Broken pipe    Session not found
+
+            IF    ${is_browser_error}
+                # Re-raise error to trigger site-level browser restart
+                Fail    ${error}
+            END
+
+            # Not a browser error, just mark this page as failed
+            &{result}=    Create Dictionary
+            ...    status=FAIL
+            ...    error_count=1
+            ...    errors=${error}
+            ...    description=Test failed: ${error}
+            ...    details=${error}
+            ...    parent_span=${EMPTY}
+        END
+
         ${status}=    Get From Dictionary    ${result}    status
 
         # Add to tested links with test name, regardless of pass/fail
@@ -653,7 +740,13 @@ Test Pages Section With Link Tracking
 
             Append To List    ${failed_data}    ${fail_info}
         END
-        Sleep    0.5s
+
+        # Longer sleep in headless mode for stability
+        IF    '${HEADLESS}' == 'true'
+            Sleep    1s
+        ELSE
+            Sleep    0.5s
+        END
     END
 
     # Check if all pages are now covered for this test
