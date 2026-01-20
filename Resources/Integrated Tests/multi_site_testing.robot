@@ -502,7 +502,7 @@ Test Sitemap URLs In Real Time With Details
     @{failed_data}=    Create List
 
     # Test pages (using link tracking)
-    ${passed}    ${failed}=    Test Pages Section With Link Tracking    ${checkpoint}    ${pages_list}    ${pages_samples}    ${skip_pages_if_sampled}    Pages    ${validation_keyword}    ${passed}    ${failed}    ${failed_data}
+    ${passed}    ${failed}=    Test Pages Section With Link Tracking    ${checkpoint}    ${pages_list}    ${pages_samples}    ${skip_pages_if_sampled}    Pages    ${validation_keyword}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     # Test used vehicles
     @{used_vehicles_list}=    Get From Dictionary    ${sections}    used_vehicles
@@ -617,7 +617,7 @@ Test Section With Counter
 Test Pages Section With Link Tracking
     [Documentation]    Tests pages section using link tracking instead of counters, skipping pages already tested with this specific test
     ...    Also skips pages that have logged issues in issues.json
-    [Arguments]    ${checkpoint}    ${url_list}    ${samples_param}    ${skip_if_sampled}    ${category_label}    ${test_name}    ${passed}    ${failed}    ${failed_data}
+    [Arguments]    ${checkpoint}    ${url_list}    ${samples_param}    ${skip_if_sampled}    ${category_label}    ${test_name}    ${passed}    ${failed}    ${failed_data}    ${site_name}
     ${url_count}=    Get Length    ${url_list}
 
     # Pages counter should already be set when sitemap was opened
@@ -632,7 +632,7 @@ Test Pages Section With Link Tracking
     END
 
     # Check if we should skip based on all_pages_covered flag for this test
-    ${all_covered}=    Are All Pages Covered    ${checkpoint}    ${test_name}
+    ${all_covered}=    Are All Pages Covered    ${checkpoint}    ${test_name}    ${site_name}
     IF    ${all_covered}
         Log To Console    [Pages] All pages already covered for test: ${test_name}, skipping
         RETURN    ${passed}    ${failed}
@@ -640,7 +640,7 @@ Test Pages Section With Link Tracking
 
     # Check if skip_if_sampled is true and at least one page was tested with this test
     IF    '${skip_if_sampled}' == 'true'
-        ${tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}
+        ${tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}    ${site_name}
         IF    ${tested_count} > 0
             Log To Console    [Pages] At least one page sampled for test: ${test_name} (${tested_count} tested), skipping
             RETURN    ${passed}    ${failed}
@@ -653,7 +653,7 @@ Test Pages Section With Link Tracking
     # Filter out pages already tested with this specific test OR that have logged issues
     @{untested_pages}=    Create List
     FOR    ${page_url}    IN    @{url_list}
-        ${is_tested}=    Is Link Already Tested    ${checkpoint}    ${page_url}    ${test_name}
+        ${is_tested}=    Is Link Already Tested    ${checkpoint}    ${page_url}    ${test_name}    ${site_name}
         ${has_issue}=    Has Issue For URL    ${issues_data}    ${page_url}
         IF    not ${is_tested} and not ${has_issue}
             Append To List    ${untested_pages}    ${page_url}
@@ -661,11 +661,11 @@ Test Pages Section With Link Tracking
     END
 
     ${untested_count}=    Get Length    ${untested_pages}
-    ${tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}
+    ${tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}    ${site_name}
 
     IF    ${untested_count} == 0
         Log To Console    [Pages] All ${url_count} pages already tested for: ${test_name}
-        Mark All Pages Covered    ${checkpoint}    ${test_name}
+        Mark All Pages Covered    ${checkpoint}    ${test_name}    ${site_name}
         RETURN    ${passed}    ${failed}
     END
 
@@ -717,7 +717,7 @@ Test Pages Section With Link Tracking
         ${status}=    Get From Dictionary    ${result}    status
 
         # Add to tested links with test name, regardless of pass/fail
-        Add Tested Link    ${checkpoint}    ${test_url}    ${test_name}
+        Add Tested Link    ${checkpoint}    ${test_url}    ${test_name}    ${site_name}
 
         # Update pages counter
         Update Section Counter    ${checkpoint}    pages
@@ -750,9 +750,9 @@ Test Pages Section With Link Tracking
     END
 
     # Check if all pages are now covered for this test
-    ${new_tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}
+    ${new_tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}    ${site_name}
     IF    ${new_tested_count} >= ${url_count}
-        Mark All Pages Covered    ${checkpoint}    ${test_name}
+        Mark All Pages Covered    ${checkpoint}    ${test_name}    ${site_name}
         Log To Console    [Pages] All pages now covered for: ${test_name}
     END
 

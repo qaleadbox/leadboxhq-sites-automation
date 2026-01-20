@@ -444,8 +444,17 @@ Update Completed Sites Pages Counters
 
 Is Link Already Tested
     [Documentation]    Check if a link was already tested with a specific test in the pages section
-    [Arguments]    ${checkpoint}    ${link}    ${test_name}
-    ${site}=    Get In Progress Site    ${checkpoint}
+    [Arguments]    ${checkpoint}    ${link}    ${test_name}    ${site_name}=${None}
+    # Get site by name if provided, otherwise fall back to in_progress site
+    IF    '${site_name}' != '${None}'
+        ${site}=    Get Site By Name    ${checkpoint}    ${site_name}
+        IF    ${site} == ${None}
+            Log To Console    WARNING: Site ${site_name} not found, cannot check link
+            RETURN    ${False}
+        END
+    ELSE
+        ${site}=    Get In Progress Site    ${checkpoint}
+    END
     ${pages_tracking}=    Get From Dictionary    ${site}    pages_link_tracking
     ${tested_links}=    Get From Dictionary    ${pages_tracking}    tested_links
 
@@ -468,9 +477,22 @@ Is Link Already Tested
     RETURN    ${False}
 
 Add Tested Link
-    [Documentation]    Add a link with test name to tested links dictionary in in_progress site
-    [Arguments]    ${checkpoint}    ${link}    ${test_name}
-    ${site}=    Get In Progress Site    ${checkpoint}
+    [Documentation]    Add a link with test name to tested links dictionary in specified site (or in_progress site if not specified)
+    [Arguments]    ${checkpoint}    ${link}    ${test_name}    ${site_name}=${None}
+    # Get site by name if provided, otherwise fall back to in_progress site
+    IF    '${site_name}' != '${None}'
+        ${site}=    Get Site By Name    ${checkpoint}    ${site_name}
+        IF    ${site} == ${None}
+            Log To Console    ERROR: Site ${site_name} not found, cannot add tested link
+            RETURN
+        END
+    ELSE
+        ${site}=    Get In Progress Site    ${checkpoint}
+        IF    ${site} == ${None}
+            Log To Console    ERROR: No in_progress site found, cannot add tested link
+            RETURN
+        END
+    END
     ${pages_tracking}=    Get From Dictionary    ${site}    pages_link_tracking
     ${tested_links}=    Get From Dictionary    ${pages_tracking}    tested_links
 
@@ -492,9 +514,18 @@ Add Tested Link
     Save Checkpoint Data    ${checkpoint}
 
 Get Tested Links Count
-    [Documentation]    Get count of tested links for a specific test in in_progress site
-    [Arguments]    ${checkpoint}    ${test_name}
-    ${site}=    Get In Progress Site    ${checkpoint}
+    [Documentation]    Get count of tested links for a specific test in specified site (or in_progress site if not specified)
+    [Arguments]    ${checkpoint}    ${test_name}    ${site_name}=${None}
+    # Get site by name if provided, otherwise fall back to in_progress site
+    IF    '${site_name}' != '${None}'
+        ${site}=    Get Site By Name    ${checkpoint}    ${site_name}
+        IF    ${site} == ${None}
+            Log To Console    WARNING: Site ${site_name} not found, returning 0
+            RETURN    0
+        END
+    ELSE
+        ${site}=    Get In Progress Site    ${checkpoint}
+    END
     ${pages_tracking}=    Get From Dictionary    ${site}    pages_link_tracking
     ${tested_links}=    Get From Dictionary    ${pages_tracking}    tested_links
 
@@ -511,8 +542,17 @@ Get Tested Links Count
 
 Are All Pages Covered
     [Documentation]    Check if all pages were covered for a specific test
-    [Arguments]    ${checkpoint}    ${test_name}
-    ${site}=    Get In Progress Site    ${checkpoint}
+    [Arguments]    ${checkpoint}    ${test_name}    ${site_name}=${None}
+    # Get site by name if provided, otherwise fall back to in_progress site
+    IF    '${site_name}' != '${None}'
+        ${site}=    Get Site By Name    ${checkpoint}    ${site_name}
+        IF    ${site} == ${None}
+            Log To Console    WARNING: Site ${site_name} not found, returning False
+            RETURN    ${False}
+        END
+    ELSE
+        ${site}=    Get In Progress Site    ${checkpoint}
+    END
     ${pages_tracking}=    Get From Dictionary    ${site}    pages_link_tracking
     ${all_covered_dict}=    Get From Dictionary    ${pages_tracking}    all_pages_covered
 
@@ -527,8 +567,17 @@ Are All Pages Covered
 
 Mark All Pages Covered
     [Documentation]    Mark that all pages have been covered for a specific test
-    [Arguments]    ${checkpoint}    ${test_name}
-    ${site}=    Get In Progress Site    ${checkpoint}
+    [Arguments]    ${checkpoint}    ${test_name}    ${site_name}=${None}
+    # Get site by name if provided, otherwise fall back to in_progress site
+    IF    '${site_name}' != '${None}'
+        ${site}=    Get Site By Name    ${checkpoint}    ${site_name}
+        IF    ${site} == ${None}
+            Log To Console    ERROR: Site ${site_name} not found, cannot mark pages covered
+            RETURN
+        END
+    ELSE
+        ${site}=    Get In Progress Site    ${checkpoint}
+    END
     ${pages_tracking}=    Get From Dictionary    ${site}    pages_link_tracking
     ${all_covered_dict}=    Get From Dictionary    ${pages_tracking}    all_pages_covered
     Set To Dictionary    ${all_covered_dict}    ${test_name}=${True}
