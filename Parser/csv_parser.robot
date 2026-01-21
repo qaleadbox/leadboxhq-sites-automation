@@ -15,7 +15,7 @@ Parse Sites From CSV
 
     @{sites}=    Create List
     ${header_found}=    Set Variable    False
-    @{headers}=    Create List
+    ${headers}=    Create List
 
     FOR    ${line}    IN    @{lines}
         # Skip empty lines
@@ -34,7 +34,7 @@ Parse Sites From CSV
             ${is_header}=    Run Keyword And Return Status    Should Contain    ${line}    URL
             IF    ${is_header}
                 ${header_found}=    Set Variable    True
-                @{headers}=    Set Variable    ${columns}
+                ${headers}=    Copy List    ${columns}
                 CONTINUE
             END
         END
@@ -50,10 +50,11 @@ Parse Sites From CSV
         END
 
         # Parse row into dictionary
-        &{site}=    Parse Site Row    ${columns}    ${headers}
+        ${site}=    Parse Site Row    ${columns}    ${headers}
 
         # Only add if URL exists
-        IF    '${site}[url]' != ''
+        ${site_url}=    Get From Dictionary    ${site}    url
+        IF    '${site_url}' != ''
             Append To List    ${sites}    ${site}
         END
     END
@@ -64,7 +65,7 @@ Parse Site Row
     [Documentation]    Parses a single CSV row into a site dictionary
     [Arguments]    ${columns}    ${headers}
 
-    &{site}=    Create Dictionary
+    ${site}=    Create Dictionary
     ...    name=${EMPTY}
     ...    url=${EMPTY}
     ...    version=${EMPTY}
@@ -109,7 +110,7 @@ Parse Site Row
         END
     END
 
-    RETURN    &{site}
+    RETURN    ${site}
 
 Get URLs From Sites
     [Documentation]    Extracts just the URLs from a list of site dictionaries

@@ -1,0 +1,27 @@
+{
+  "issues": [
+    {
+      "site_name": "Addison Chevrolet Erin Mills",
+      "url": "https://addisononerinmills.com/contact-us/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Erin Mills after the 1 phone link(s) text does not match href attribute",
+      "raw_description": "1 phone link(s) text does not match href attribute",
+      "category": "Pages",
+      "timestamp": "2026-01-13T13:17:33Z",
+      "details": "Phone \"8833-226-7914\" (188332267914) != href \"tel:+18332267914\" (18332267914)",
+      "parent_span": "class:stk-block-text__text has-text-align-left"
+    },
+    {
+      "site_name": "Barrhaven Ford",
+      "url": "https://barrhavenford.com/service-parts-specials/",
+      "issue_type": "validation_failure",
+      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
+      "raw_description": "1 phone link(s) text does not match href attribute",
+      "category": "Pages",
+      "timestamp": "2026-01-13T12:20:40Z",
+      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)",
+      "parent_span": "class:pb-2 sales_phone"
+    }
+  ],
+  "total_issues": 2
+}
