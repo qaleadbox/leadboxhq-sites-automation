@@ -1,6 +1,6 @@
 {
   "checkpoint": {
-    "timestamp": "2026-01-20T15:15:52Z",
+    "timestamp": "2026-01-26T20:04:37Z",
     "test_run_id": "test_contact_links_20260112T184903Z",
     "total_sites": 106,
     "sites_processed": 2,
@@ -401,14 +401,14 @@
       {
         "name": "AM Ford",
         "url": "https://amford.com/",
-        "status": "in_progress",
+        "status": "completed",
         "section_counters": {
-          "pages": "45/68",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
+          "pages": "68/68",
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "1/1",
+          "model_trims": "1/1"
         },
         "pages_link_tracking": {
           "tested_links": {
@@ -456,7 +456,70 @@
             "https://amford.com/new-vehicles/": ["Validate Contact Links Matches It HREF"],
             "https://amford.com/oil-changes-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
             "https://amford.com/order-parts/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/owner-advantage-rewards/": ["Validate Contact Links Matches It HREF"]
+            "https://amford.com/owner-advantage-rewards/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/owning-a-ford-electric-vehicle-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/parts/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/privacy-policy/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/quick-quote/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/radio-broadcast-test/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/radio-broadcast/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/search/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/servicing-wheels-and-tires-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/shop-for-tires/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/sitemap/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/terms-and-conditions/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/thank-you/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/used-vehicles/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/we-want-to-buy-your-vehicle/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/wheel-alignment/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/why-buy-a-ford-suv-for-your-commute-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/why-buy-a-hybrid-ford-f-150-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/why-buy-from-am-ford-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/why-buy-nearby/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/why-buy-ranger/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/why-buy-used-at-am-ford-sales-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/why-service-at-am-ford-sales-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
+            "https://amford.com/winter-car-maintenance-tips-to-battle-the-cold-in-trail-bc/": ["Validate Contact Links Matches It HREF"]
+          },
+          "all_pages_covered": {
+            "Validate Contact Links Matches It HREF": true
+          }
+        },
+        "results": {
+          "passed": 23,
+          "failed": "0"
+        },
+        "total_tests": 23,
+        "total_passed": 23,
+        "total_failed": "0"
+      },
+      {
+        "name": "Barrhaven Ford",
+        "url": "https://barrhavenford.com/",
+        "status": "in_progress",
+        "section_counters": {
+          "pages": "24/185",
+          "used_vehicles": "0/0",
+          "new_vehicles": "0/0",
+          "showroom": "0/0",
+          "models": "0/0",
+          "model_trims": "0/0"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://barrhavenford.com/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS", "Validate URL Links Matches It HREF"],
+            "https://barrhavenford.com/%d8%a7%d9%84%d9%84%d8%ba%d8%a9-%d8%a7%d9%84%d8%b9%d8%b1%d8%a8%d9%8a%d8%a9/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS", "Validate URL Links Matches It HREF"],
+            "https://barrhavenford.com/%e0%a4%b9%e0%a4%a6/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS", "Validate URL Links Matches It HREF"],
+            "https://barrhavenford.com/%e4%b8%ad%e6%96%87%e9%a1%b5%e9%9d%a2/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS", "Validate URL Links Matches It HREF"],
+            "https://barrhavenford.com/2020-ranger/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS", "Validate URL Links Matches It HREF"],
+            "https://barrhavenford.com/2021-ford-bronco-ottawa/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS", "Validate URL Links Matches It HREF"],
+            "https://barrhavenford.com/2021-ford-bronco/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS", "Validate URL Links Matches It HREF"],
+            "https://barrhavenford.com/2021-mustang-mach-e/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS", "Validate URL Links Matches It HREF"],
+            "https://barrhavenford.com/2022-f-150-clearance-sale/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS"],
+            "https://barrhavenford.com/2023-ford-escape-inventory-ottawa/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS"],
+            "https://barrhavenford.com/2023-ford-maverick/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS"],
+            "https://barrhavenford.com/2023-ford-mustang-mach-e/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS"],
+            "https://barrhavenford.com/about-us/": ["Validate Contact Links Matches It HREF", "Validate Page URL Is Secure HTTPS"]
           },
           "all_pages_covered": {}
         }
@@ -465,8 +528,8 @@
   },
   "summary": {
     "sites_pending": 104,
-    "total_urls_tested": 237,
-    "total_passed": 228,
+    "total_urls_tested": 267,
+    "total_passed": 258,
     "total_failed": 9,
     "failed_sites": ["Barrhaven Ford", "Barrhaven Ford"]
   }

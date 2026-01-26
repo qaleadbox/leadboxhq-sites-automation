@@ -1,6 +1,8 @@
 *** Settings ***
 Resource    ../../Resources/variables.robot
 Resource    ../../Resources/Validations/contact_links.robot
+Resource    ../../Resources/Validations/url_links.robot
+Resource    ../../Resources/Validations/security.robot
 Resource    ../../Resources/Integrated Tests/multi_site_testing.robot
 Suite Teardown    Close Browser Safely
 
@@ -15,8 +17,12 @@ Test contact links from sitemap URLs
     # Skip parameters: Set to 'true' to skip section if at least one sample was already tested
     # Example: skip_pages_if_sampled=true means skip pages section if counter is "1/50" or higher
     # This is useful when you want to sample all sections at least once, then skip on resume
+    #
+    # Multi-validation: Each URL is tested once with ALL validations listed below
     Parse Sitemap URLs
-    ...    validation_keyword=Validate Contact Links Matches It HREF
+    ...    Validate Contact Links Matches It HREF
+    ...    Validate URL Links Matches It HREF
+    ...    Validate Page URL Is Secure HTTPS
     # ...    pages_samples=1
     ...    used_vehicle_samples=1
     ...    new_vehicle_samples=1
