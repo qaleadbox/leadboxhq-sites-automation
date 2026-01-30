@@ -3,11 +3,12 @@ Documentation    {{DESCRIPTION}}
 ...              Test suite for validating {{FEATURE}} on dealership websites
 ...              Target: {{BASE_URL}}
 
-Resource    ../../Resources/variables.robot
-Resource    ../../Resources/Helpers/browser_helpers.robot
-Resource    ../../Resources/Integrated Tests/multi_site_testing.robot
+Resource    ../../Shared resources/variables.robot
+Resource    ../../Shared resources/keywords.robot
+Resource    ../../Shared resources/helpers.robot
 
-Suite Teardown    Close Browser Safely
+Suite Setup       Open LeadBox Portal
+Suite Teardown    Close Browser
 
 *** Variables ***
 # Add test-specific variables here

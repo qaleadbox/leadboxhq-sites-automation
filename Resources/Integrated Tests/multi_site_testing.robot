@@ -10,6 +10,7 @@ Resource    ../../Parser/sitemap_parser.robot
 Library    SeleniumLibrary    run_on_failure=Nothing
 Library    String
 Library    Collections
+Library    ${CURDIR}${/}..${/}Helpers${/}signal_checker.py
 
 *** Keywords ***
 Parse Sitemap URLs
@@ -19,12 +20,19 @@ Parse Sitemap URLs
     ...                Flexible framework: Pass any validation keyword to test different functionality
     ...                skip_*_if_sampled: Set to 'true' to skip section if at least one sample was already tested
     [Arguments]    ${validation_keyword}    ${pages_samples}=None    ${used_vehicle_samples}=1    ${new_vehicle_samples}=1    ${showroom_samples}=1    ${models_samples}=1    ${model_trims_samples}=1    ${use_checkpoint}=true    ${skip_pages_if_sampled}=false    ${skip_used_vehicles_if_sampled}=false    ${skip_new_vehicles_if_sampled}=false    ${skip_showroom_if_sampled}=false    ${skip_models_if_sampled}=false    ${skip_model_trims_if_sampled}=false
+
+    # Install signal handler for graceful interrupts
+    Install Signal Handler
+
     @{sites}=    Load Sites From Spreadsheet
     ${sites_count}=    Get Length    ${sites}
 
     # Initialize checkpoint and issue logger
     ${checkpoint}=    Initialize Checkpoint    ${sites_count}
     ${issues_data}=    Initialize Issue Log
+
+    # DISABLED: This was incorrectly "fixing" counters with total=0 back to tested/tested
+    # Update Completed Sites Pages Counters    ${checkpoint}
 
     ${passed}=    Set Variable    0
     ${failed}=    Set Variable    0
@@ -49,7 +57,11 @@ Parse Sitemap URLs
     Call Method    ${chrome_options}    add_argument    --disable-breakpad
     Call Method    ${chrome_options}    add_argument    --disable-component-update
     Call Method    ${chrome_options}    add_argument    --disable-domain-reliability
-    ${disable_features_arg}=    Set Variable    --disable-features=TranslateUI,BlinkGenPropertyTrees
+    Call Method    ${chrome_options}    add_argument    --disable-notifications
+    Call Method    ${chrome_options}    add_argument    --disable-popup-blocking
+    ${blink_features_arg}=    Set Variable    --disable-blink-features=AutomationControlled
+    Call Method    ${chrome_options}    add_argument    ${blink_features_arg}
+    ${disable_features_arg}=    Set Variable    --disable-features=TranslateUI,BlinkGenPropertyTrees,VizDisplayCompositor
     Call Method    ${chrome_options}    add_argument    ${disable_features_arg}
 
     # Memory management
@@ -57,14 +69,14 @@ Parse Sitemap URLs
     Call Method    ${chrome_options}    add_argument    ${js_flags_arg}
     Call Method    ${chrome_options}    add_argument    --disable-renderer-backgrounding
 
-    # Headless mode if enabled
+    # Headless mode if enabled (using old headless for stability)
     IF    '${HEADLESS}' == 'true'
-        ${headless_arg}=    Set Variable    --headless=new
-        Call Method    ${chrome_options}    add_argument    ${headless_arg}
+        Call Method    ${chrome_options}    add_argument    headless
         # Window size for headless (helps with rendering)
         ${window_size_arg}=    Set Variable    --window-size=1920,1080
         Call Method    ${chrome_options}    add_argument    ${window_size_arg}
         Call Method    ${chrome_options}    add_argument    --start-maximized
+        Call Method    ${chrome_options}    add_argument    --disable-crash-reporter
     END
 
     # Page load strategy
@@ -72,7 +84,15 @@ Parse Sitemap URLs
 
     Open Browser    about:blank    chrome    options=${chrome_options}
 
+    # Set timeouts to prevent hanging
+    Set Selenium Timeout    30 seconds
+    Set Selenium Implicit Wait    10 seconds
+    Set Selenium Page Load Timeout    30 seconds
+
     FOR    ${site}    IN    @{sites}
+        # Check for interrupt signal at start of each site
+        Check For Interrupt
+
         ${url}=    Get From Dictionary    ${site}    url
         ${name}=    Get From Dictionary    ${site}    name
 
@@ -112,6 +132,9 @@ Parse Sitemap URLs
             Close Browser Safely
             Sleep    2s
             Open Browser    about:blank    chrome    options=${chrome_options}
+            Set Selenium Timeout    30 seconds
+            Set Selenium Implicit Wait    10 seconds
+            Set Selenium Page Load Timeout    30 seconds
             Sleep    2s
             # Try again with the same site
             Log To Console    Retrying site: ${name}
@@ -374,8 +397,36 @@ Test URL In New Tab
     RETURN    ${result}
 
 Test URL In New Tab With Details
-    [Documentation]    Opens URL in new tab, runs detailed validation, returns results with error details
+    [Documentation]    Opens URL in new tab (or navigates directly in headless), runs detailed validation, returns results with error details
     [Arguments]    ${url}
+
+    # In headless mode, navigate directly to avoid Chrome crashes with many tabs
+    IF    '${HEADLESS}' == 'true'
+        TRY
+            Go To    ${url}
+            Sleep    3s
+
+            # Wait for page to be ready
+            Wait Until Page Contains Element    xpath=//body    timeout=10s
+            Execute Javascript    return document.readyState === 'complete'
+
+            ${result}=    Validate Contact Links With Details
+            RETURN    ${result}
+        EXCEPT    AS    ${error}
+            Log To Console    ⚠️ Failed to load/validate ${url}: ${error}
+            # Return FAIL result
+            &{result}=    Create Dictionary
+            ...    status=FAIL
+            ...    error_count=1
+            ...    errors=Failed to load page
+            ...    description=Page load failed: ${error}
+            ...    details=${error}
+            ...    parent_span=${EMPTY}
+            RETURN    ${result}
+        END
+    END
+
+    # In headed mode, use tabs as normal
     ${main_handle}=    Get Window Handles
     ${main_handle}=    Get From List    ${main_handle}    0
 
@@ -401,19 +452,57 @@ Test Sitemap URLs In Real Time With Details
     [Documentation]    Tests sampled URLs from sitemap sections with detailed error tracking and counter-based checkpoint support
     [Arguments]    ${checkpoint}    ${url}    ${name}    ${validation_keyword}    ${pages_samples}=None    ${used_vehicle_samples}=1    ${new_vehicle_samples}=1    ${showroom_samples}=1    ${models_samples}=1    ${model_trims_samples}=1    ${skip_pages_if_sampled}=false    ${skip_used_vehicles_if_sampled}=false    ${skip_new_vehicles_if_sampled}=false    ${skip_showroom_if_sampled}=false    ${skip_models_if_sampled}=false    ${skip_model_trims_if_sampled}=false
     ${sitemap_url}=    Build Sitemap URL    ${url}
-    Go To    ${sitemap_url}
-    Sleep    2s
+    Log To Console    Loading sitemap: ${sitemap_url}
+
+    TRY
+        Go To    ${sitemap_url}
+        Sleep    2s
+        Log To Console    ✓ Sitemap loaded successfully
+    EXCEPT    AS    ${error}
+        Log To Console    ✗ Failed to load sitemap: ${error}
+        Fail    Could not load sitemap for ${name}: ${error}
+    END
 
     ${sitemap_source}=    Get Source
     &{sections}=    Extract Sitemap Sections    ${sitemap_source}
+
+    # IMPORTANT: Get pages list and immediately set the pages counter with total count
+    @{pages_list}=    Get From Dictionary    ${sections}    pages
+    ${total_pages}=    Get Length    ${pages_list}
+
+    # Set pages counter immediately after fetching sitemap (before testing)
+    ${site}=    Get In Progress Site    ${checkpoint}
+    ${section_counters}=    Get From Dictionary    ${site}    section_counters
+    ${pages_tracking}=    Get From Dictionary    ${site}    pages_link_tracking
+    ${tested_links}=    Get From Dictionary    ${pages_tracking}    tested_links
+    ${tested_count}=    Get Length    ${tested_links}
+
+    # Initialize pages counter with actual sitemap count
+    ${has_pages}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${section_counters}    pages
+    IF    not ${has_pages}
+        Set To Dictionary    ${section_counters}    pages=${tested_count}/${total_pages}
+        Save Checkpoint Data    ${checkpoint}
+        Log To Console    [Sitemap] Initialized pages counter: ${tested_count}/${total_pages}
+    ELSE
+        ${pages_counter}=    Get From Dictionary    ${section_counters}    pages
+        @{parts}=    Split String    ${pages_counter}    /
+        ${current_total}=    Get From List    ${parts}    1
+        ${current_total_int}=    Convert To Integer    ${current_total}
+
+        # Update if total doesn't match sitemap
+        IF    ${current_total_int} != ${total_pages}
+            Set To Dictionary    ${section_counters}    pages=${tested_count}/${total_pages}
+            Save Checkpoint Data    ${checkpoint}
+            Log To Console    [Sitemap] Updated pages counter: ${tested_count}/${total_pages} (was ${pages_counter})
+        END
+    END
 
     ${passed}=    Set Variable    0
     ${failed}=    Set Variable    0
     @{failed_data}=    Create List
 
-    # Test pages (using link tracking instead of counter)
-    @{pages_list}=    Get From Dictionary    ${sections}    pages
-    ${passed}    ${failed}=    Test Pages Section With Link Tracking    ${checkpoint}    ${pages_list}    ${pages_samples}    ${skip_pages_if_sampled}    Pages    ${validation_keyword}    ${passed}    ${failed}    ${failed_data}
+    # Test pages (using link tracking)
+    ${passed}    ${failed}=    Test Pages Section With Link Tracking    ${checkpoint}    ${pages_list}    ${pages_samples}    ${skip_pages_if_sampled}    Pages    ${validation_keyword}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     # Test used vehicles
     @{used_vehicles_list}=    Get From Dictionary    ${sections}    used_vehicles
@@ -488,6 +577,9 @@ Test Section With Counter
                 @{random_urls}=    Evaluate    random.sample(${urls_without_issues}, ${actual_samples})    random
                 Log To Console    [${section_name}] Sampling ${actual_samples} URLs (counter: ${counter})...
                 FOR    ${test_url}    IN    @{random_urls}
+                    # Check for interrupt before testing each URL
+                    Check For Interrupt
+
                     Log To Console    [${category_label}] ${test_url}
                     ${result}=    Test URL In New Tab With Details    ${test_url}
                     ${status}=    Get From Dictionary    ${result}    status
@@ -525,11 +617,22 @@ Test Section With Counter
 Test Pages Section With Link Tracking
     [Documentation]    Tests pages section using link tracking instead of counters, skipping pages already tested with this specific test
     ...    Also skips pages that have logged issues in issues.json
-    [Arguments]    ${checkpoint}    ${url_list}    ${samples_param}    ${skip_if_sampled}    ${category_label}    ${test_name}    ${passed}    ${failed}    ${failed_data}
+    [Arguments]    ${checkpoint}    ${url_list}    ${samples_param}    ${skip_if_sampled}    ${category_label}    ${test_name}    ${passed}    ${failed}    ${failed_data}    ${site_name}
     ${url_count}=    Get Length    ${url_list}
 
+    # Pages counter should already be set when sitemap was opened
+    # Just verify it exists (shouldn't need this, but safety check)
+    ${site}=    Get In Progress Site    ${checkpoint}
+    ${section_counters}=    Get From Dictionary    ${site}    section_counters
+    ${has_pages}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${section_counters}    pages
+    IF    not ${has_pages}
+        # This shouldn't happen, but add as fallback
+        Set To Dictionary    ${section_counters}    pages=0/${url_count}
+        Log To Console    [Pages] WARNING: Counter was not initialized, setting to 0/${url_count}
+    END
+
     # Check if we should skip based on all_pages_covered flag for this test
-    ${all_covered}=    Are All Pages Covered    ${checkpoint}    ${test_name}
+    ${all_covered}=    Are All Pages Covered    ${checkpoint}    ${test_name}    ${site_name}
     IF    ${all_covered}
         Log To Console    [Pages] All pages already covered for test: ${test_name}, skipping
         RETURN    ${passed}    ${failed}
@@ -537,7 +640,7 @@ Test Pages Section With Link Tracking
 
     # Check if skip_if_sampled is true and at least one page was tested with this test
     IF    '${skip_if_sampled}' == 'true'
-        ${tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}
+        ${tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}    ${site_name}
         IF    ${tested_count} > 0
             Log To Console    [Pages] At least one page sampled for test: ${test_name} (${tested_count} tested), skipping
             RETURN    ${passed}    ${failed}
@@ -550,7 +653,7 @@ Test Pages Section With Link Tracking
     # Filter out pages already tested with this specific test OR that have logged issues
     @{untested_pages}=    Create List
     FOR    ${page_url}    IN    @{url_list}
-        ${is_tested}=    Is Link Already Tested    ${checkpoint}    ${page_url}    ${test_name}
+        ${is_tested}=    Is Link Already Tested    ${checkpoint}    ${page_url}    ${test_name}    ${site_name}
         ${has_issue}=    Has Issue For URL    ${issues_data}    ${page_url}
         IF    not ${is_tested} and not ${has_issue}
             Append To List    ${untested_pages}    ${page_url}
@@ -558,33 +661,66 @@ Test Pages Section With Link Tracking
     END
 
     ${untested_count}=    Get Length    ${untested_pages}
-    ${tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}
+    ${tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}    ${site_name}
 
     IF    ${untested_count} == 0
         Log To Console    [Pages] All ${url_count} pages already tested for: ${test_name}
-        Mark All Pages Covered    ${checkpoint}    ${test_name}
+        Mark All Pages Covered    ${checkpoint}    ${test_name}    ${site_name}
         RETURN    ${passed}    ${failed}
     END
 
-    # Determine how many samples to test
+    # Determine how many samples to test and select pages
     IF    '${samples_param}' == 'None'
+        # Test all pages in alphabetical order (no sampling)
         ${samples_to_test}=    Set Variable    ${untested_count}
+        @{pages_to_test}=    Evaluate    sorted(${untested_pages})    # Sort alphabetically
+        Log To Console    [Pages] Testing all ${samples_to_test} untested pages in alphabetical order (${tested_count} already tested, ${url_count} total)...
     ELSE
+        # Random sampling
         ${samples_int}=    Convert To Integer    ${samples_param}
         ${samples_to_test}=    Evaluate    min(${samples_int}, ${untested_count})
+        @{pages_to_test}=    Evaluate    random.sample(${untested_pages}, ${samples_to_test})    random
+        Log To Console    [Pages] Testing ${samples_to_test} random samples from ${untested_count} untested pages for ${test_name} (${tested_count} already tested, ${url_count} total)...
     END
 
-    # Randomly sample from untested pages
-    @{random_pages}=    Evaluate    random.sample(${untested_pages}, ${samples_to_test})    random
-    Log To Console    [Pages] Testing ${samples_to_test} from ${untested_count} untested pages for ${test_name} (${tested_count} already tested, ${url_count} total)...
+    FOR    ${test_url}    IN    @{pages_to_test}
+        # Check for interrupt before testing each page
+        Check For Interrupt
 
-    FOR    ${test_url}    IN    @{random_pages}
         Log To Console    [${category_label}] ${test_url}
-        ${result}=    Test URL In New Tab With Details    ${test_url}
+
+        # Try to test the URL, catch any browser errors
+        TRY
+            ${result}=    Test URL In New Tab With Details    ${test_url}
+        EXCEPT    AS    ${error}
+            Log To Console    ⚠️ Error testing page: ${error}
+
+            # Check if it's a browser crash (will trigger site-level retry)
+            ${is_browser_error}=    Run Keyword And Return Status
+            ...    Should Contain Any    ${error}    Connection refused    Broken pipe    Session not found
+
+            IF    ${is_browser_error}
+                # Re-raise error to trigger site-level browser restart
+                Fail    ${error}
+            END
+
+            # Not a browser error, just mark this page as failed
+            &{result}=    Create Dictionary
+            ...    status=FAIL
+            ...    error_count=1
+            ...    errors=${error}
+            ...    description=Test failed: ${error}
+            ...    details=${error}
+            ...    parent_span=${EMPTY}
+        END
+
         ${status}=    Get From Dictionary    ${result}    status
 
         # Add to tested links with test name, regardless of pass/fail
-        Add Tested Link    ${checkpoint}    ${test_url}    ${test_name}
+        Add Tested Link    ${checkpoint}    ${test_url}    ${test_name}    ${site_name}
+
+        # Update pages counter
+        Update Section Counter    ${checkpoint}    pages
 
         IF    '${status}' == 'PASS'
             ${passed}=    Evaluate    ${passed} + 1
@@ -604,13 +740,19 @@ Test Pages Section With Link Tracking
 
             Append To List    ${failed_data}    ${fail_info}
         END
-        Sleep    0.5s
+
+        # Longer sleep in headless mode for stability
+        IF    '${HEADLESS}' == 'true'
+            Sleep    1s
+        ELSE
+            Sleep    0.5s
+        END
     END
 
     # Check if all pages are now covered for this test
-    ${new_tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}
+    ${new_tested_count}=    Get Tested Links Count    ${checkpoint}    ${test_name}    ${site_name}
     IF    ${new_tested_count} >= ${url_count}
-        Mark All Pages Covered    ${checkpoint}    ${test_name}
+        Mark All Pages Covered    ${checkpoint}    ${test_name}    ${site_name}
         Log To Console    [Pages] All pages now covered for: ${test_name}
     END
 

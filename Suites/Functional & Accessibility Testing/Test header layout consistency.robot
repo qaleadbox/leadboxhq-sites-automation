@@ -19,7 +19,7 @@ Test header layout from sitemap URLs
     # It checks that headers maintain the same structure, navigation items, and styling
     Parse Sitemap URLs
     ...    validation_keyword=Validate Header Layout Consistency
-    ...    pages_samples=2
+    #...    pages_samples=2
     ...    used_vehicle_samples=1
     ...    new_vehicle_samples=1
     ...    showroom_samples=1

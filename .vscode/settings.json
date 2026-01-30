@@ -1,0 +1,9 @@
+{
+    "robotcode.analysis.ignore": [
+        "**/commands/templates/**"
+    ],
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true
+    }
+}

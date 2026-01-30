@@ -1,7 +1,7 @@
 *** Variables ***
 
 ${SPREADSHEET_LINK}    https://docs.google.com/spreadsheets/d/1PwGF8nXgqCV9gVY0Ewj4ZrEmvBP-ATBp5ddtzcvZMRU/edit?gid=0#gid=0
-${HEADLESS}    false    # true, to run without interface (to future CI/CD runnings) | false, to run with interface
+${HEADLESS}    true    # true, to run without interface (to future CI/CD runnings) | false, to run with interface
 
 # Checkpoint/Resume Configuration
 ${CHECKPOINT_DIR}    ${CURDIR}${/}..${/}checkpoints
