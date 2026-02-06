@@ -1,179 +1,16 @@
 {
   "checkpoint": {
-    "timestamp": "2026-01-30T14:06:33Z",
-    "test_run_id": "test_contact_links_20260112T184903Z",
+    "timestamp": "2026-02-05T13:49:14Z",
+    "test_run_id": "test_contact_links_20260205T132207Z",
     "total_sites": 106,
-    "sites_processed": 2,
+    "sites_processed": "0",
     "sites_completed": [
       {
         "name": "Addison Chevrolet Eglinton",
         "url": "https://addisononeglinton.com",
         "status": "completed",
-        "results": {
-          "passed": 27,
-          "failed": 0
-        },
-        "total_tests": 27,
-        "total_passed": 27,
-        "total_failed": 0,
         "section_counters": {
-          "pages": "53/53",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {
-            "https://addisononeglinton.com/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/24-hour-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/about-us/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/accessories/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/addison-express-service/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/aoda/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/blog/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/book-a-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/book-service-appointment/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/business-elite/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/can-i-get-financing/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/certified-service/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/contact-us/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/demo-vehicles/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/discover-the-addison-difference-2/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/discover-the-addison-difference/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/explore-your-drive-new-pre-owned-choices/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/fleet/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/instant-cash-offer/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/jaw-droppers/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/meet-the-team/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/motocommerce/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/my-garage/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/new-vehicles/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/order-parts/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/parts-accessories-request/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/parts-pick-up/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/parts/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/popular-accessories/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/portuguese-sales/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/precision-performance-expert-service-authentic-parts/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/prequalify-for-financing/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/privacy-policy/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/reserve-bolt-euv/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/schedule-service-appointment/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/search/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/service-menu/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/service/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/sitemap/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/smartcoverage/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/special/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/specials/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/tariff-faqs/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/terms-and-conditions/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/thank-you/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/tire-finder/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/touchless-experience/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/touchless-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/trade-in-appraisal/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/used-vehicles/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/value-your-trade/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/vehicles-under-15k/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononeglinton.com/warranties-protection/": ["Validate Contact Links Matches It HREF"]
-          },
-          "all_pages_covered": {}
-        }
-      },
-      {
-        "name": "Addison Chevrolet Erin Mills",
-        "url": "https://addisononerinmills.com",
-        "status": "completed",
-        "results": {
-          "passed": 6,
-          "failed": "0"
-        },
-        "total_tests": 6,
-        "total_passed": 6,
-        "total_failed": "0",
-        "section_counters": {
-          "used_vehicles": "1/1",
-          "new_vehicles": "1/1",
-          "showroom": "1/1",
-          "models": "1/1",
-          "model_trims": "1/1",
-          "pages": "58/58"
-        },
-        "pages_link_tracking": {
-          "tested_links": {
-            "https://addisononerinmills.com/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/24-hour-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/about-us/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/accessories/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/addison-express-service/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/aoda/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/blog/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/book-a-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/book-service-appointment/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/business-elite/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/can-i-get-financing/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/certified-service/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/contact-us/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/customer-testimonials/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/discover-the-addison-difference-2/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/discover-the-addison-difference/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/explore-your-drive-new-pre-owned-choices/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/fleet/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/guaranteed-car-loans/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/instant-cash-offer/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/jaw-droppers/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/meet-the-team/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/motocommerce/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/my-garage/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/new-vehicles/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/order-parts/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/parts-accessories-request/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/parts-pick-up/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/parts/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/payment-estimator/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/popular-accessories/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/special/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/thank-you/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/touchless-experience/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/touchless-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/precision-performance-expert-service-authentic-parts/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/preffered-pricing/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/prequalify-for-financing/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/privacy-policy/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/request-appraisal/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/request-brochure/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/reserve-bolt-euv/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/reserve-the-2024-chevrolet-trax/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/schedule-service-appointment/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/search/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/service-menu/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/service/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/sitemap/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/smartcoverage/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/specials/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/tariff-faqs/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/terms-and-conditions/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/tire-finder/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/used-vehicles/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/value-your-trade/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/vehicles-under-15k/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/warranties-protection/": ["Validate Contact Links Matches It HREF"],
-            "https://addisononerinmills.com/wish-and-win/": ["Validate Contact Links Matches It HREF"]
-          },
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
-          }
-        }
-      },
-      {
-        "name": "Addison GM Group",
-        "url": "https://addisongm.com",
-        "status": "completed",
-        "section_counters": {
-          "pages": "38/30",
+          "pages": "1/53",
           "used_vehicles": "1/1",
           "new_vehicles": "1/1",
           "showroom": "1/1",
@@ -182,12 +19,10 @@
         },
         "pages_link_tracking": {
           "tested_links": {
-            "https://addisongm.com/": ["Validate Contact Links Matches It HREF"],
-            "https://addisongm.com/about-us/": ["Validate Contact Links Matches It HREF"],
-            "https://addisongm.com/apply-for-financing/": ["Validate Contact Links Matches It HREF"]
+            "https://addisononeglinton.com/": ["Validate Header Layout Consistency"]
           },
           "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
+            "Validate Favicon Exists And Matches Brand": true
           }
         },
         "results": {
@@ -199,211 +34,37 @@
         "total_failed": "0"
       },
       {
-        "name": "Bluestar Lincoln",
-        "url": "https://migrationbluestarlincoln.kinsta.cloud/",
-        "status": "completed",
+        "name": "Addison Chevrolet Erin Mills",
+        "url": "https://addisononerinmills.com",
+        "status": "in_progress",
         "section_counters": {
-          "pages": "35/35",
-          "used_vehicles": "1/1",
-          "new_vehicles": "1/1",
-          "showroom": "1/1",
-          "models": "1/1",
-          "model_trims": "1/1"
+          "pages": "0/58",
+          "used_vehicles": "0/1",
+          "new_vehicles": "0/0",
+          "showroom": "0/0",
+          "models": "0/0",
+          "model_trims": "0/0"
         },
         "pages_link_tracking": {
-          "tested_links": {
-            "https://migrationbluestarlincoln.kinsta.cloud/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/about-us/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/accessories/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/build-and-price/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/careers-2/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/certified-pre-owned-inventory/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/concierge/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/contact-us/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/customer-reviews/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/ford-disclosures/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/help-me-find-a-vehicle/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/hours/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/lease-return/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/lincoln-showroom/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/meet-our-staff/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/new-inventory/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/new-vehicle-specials/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/order-parts/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/parts-offers/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/pickup-delivery/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/privacy-policy/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/quick-quote/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/schedule-a-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/schedule-service/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/search/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/service-specials/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/sitemap/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/terms-and-conditions/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/thank-you/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/tires/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/trade-in-value/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/under-15000/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/used-inventory/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/used-vehicle-specials/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarlincoln.kinsta.cloud/warranty-maintenance/": ["Validate Contact Links Matches It HREF"]
-          },
+          "tested_links": {},
           "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
+            "Validate Favicon Exists And Matches Brand": true
           }
         },
         "results": {
-          "passed": 5,
+          "passed": "0",
           "failed": "0"
         },
-        "total_tests": 5,
-        "total_passed": 5,
+        "total_tests": 0,
+        "total_passed": "0",
         "total_failed": "0"
       },
       {
-        "name": "Bluestar Ford",
-        "url": "https://migrationbluestarford.kinsta.cloud/",
+        "name": "Addison GM Group",
+        "url": "https://addisongm.com",
         "status": "completed",
         "section_counters": {
-          "pages": "40/40",
-          "used_vehicles": "1/1",
-          "new_vehicles": "1/1",
-          "showroom": "1/1",
-          "models": "1/1",
-          "model_trims": "1/1"
-        },
-        "pages_link_tracking": {
-          "tested_links": {
-            "https://migrationbluestarford.kinsta.cloud/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/about-us/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/accessories/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/all-season-tires/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/blue-star-customs/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/certified-pre-owned-inventory/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/contact-form/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/contact-us/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/customer-reviews/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/ford-disclosures/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/ford-showroom/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/ford-tire-finder/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/get-my-deal/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/help-me-find-a-vehicle/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/history/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/hours/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/inquire-about-a-vehicle/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/meet-our-staff/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/new-inventory/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/new-vehicle-specials/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/off-road-tires/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/order-parts/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/order-snow-tires/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/parts-offers/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/privacy-policy/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/quick-quote/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/schedule-a-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/schedule-service/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/search/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/service-specials/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/simcoe-service-centre/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/sitemap/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/terms-and-conditions/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/thank-you/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/trade-in-value/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/under-15000/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/used-inventory/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/used-vehicle-specials/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/warranty-maintenance/": ["Validate Contact Links Matches It HREF"],
-            "https://migrationbluestarford.kinsta.cloud/webuy-submit-your-vehicle-information/": ["Validate Contact Links Matches It HREF"]
-          },
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
-          }
-        },
-        "results": {
-          "passed": 45,
-          "failed": "0"
-        },
-        "total_tests": 45,
-        "total_passed": 45,
-        "total_failed": "0"
-      },
-      {
-        "name": "Ken Knapp Ford",
-        "url": "https://kenknappford.kinsta.cloud/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "44/44",
-          "used_vehicles": "1/1",
-          "new_vehicles": "1/1",
-          "showroom": "1/1",
-          "models": "1/1",
-          "model_trims": "1/1"
-        },
-        "pages_link_tracking": {
-          "tested_links": {
-            "https://kenknappford.kinsta.cloud/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/about-us/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/accessibility-policy/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/blog/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/book-a-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/careers/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/contact-us/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/customer-reviews/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/demo-inventory/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/financing/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/financing/lease-or-buy/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/financing/second-chance-financing/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/ford-showroom/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/fordpass-rewards/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/my-garage/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/new-inventory/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/offers-incentives/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/our-team/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/parts/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/parts/order-parts/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/pre-qualify-for-financing/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/privacy-policy/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/search/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/service-financing/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/service/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/service/book-service-appointment/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/sitemap/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/2025-ford-bronco-sport-offers-in-essex-county/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/2025-ford-escape-offers-in-essex-county/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/2025-ford-f-150-offers-in-essex-county/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/exclusive-pre-owned-financing-deal-save-more-today/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/ford-event/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/manufacturers-programs/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/owner-advantage-rewards/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/sales/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/save-big-by-driving-a-demo-vehicle/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/warranty-on-ford-parts-and-accessories/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/special-offers/we-have-the-program-for-you/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/terms-and-conditions/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/thank-you/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/trade-in-appraisal/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/used-inventory/": ["Validate Contact Links Matches It HREF"],
-            "https://kenknappford.kinsta.cloud/why-buy/": ["Validate Contact Links Matches It HREF"]
-          },
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
-          }
-        },
-        "results": {
-          "passed": 49,
-          "failed": "0"
-        },
-        "total_tests": 49,
-        "total_passed": 49,
-        "total_failed": "0"
-      },
-      {
-        "name": "AM Ford",
-        "url": "https://amford.com/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "45/0",
+          "pages": "0/0",
           "used_vehicles": "0/0",
           "new_vehicles": "0/0",
           "showroom": "0/0",
@@ -411,56 +72,35 @@
           "model_trims": "0/0"
         },
         "pages_link_tracking": {
-          "tested_links": {
-            "https://amford.com/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/2022-ford-f-150-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/about-us/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/affordable-choices-great-financing-options-at-am-ford-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/am-ford-financial-service-managers/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/am-ford-glenmerry/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/am-ford-waneta/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/best-2020-ford-vehicles-for-camping-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/best-ford-models-to-buy-on-a-budget-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/best-vehicles-for-hunting-and-fishing-in-trail/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/blog/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/book-a-test-drive/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/book-service-appointment/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/brakes-brake-repair-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/car-battery-service-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/car-maintenance-101-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/careers/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/community-events/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/contact-us/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/credit-pre-qualification/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/current-specials/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/dans-radio-deals/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/dare-to-compare-2020-ford-escape-vs-chevrolet-equinox-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/dare-to-compare-2020-ford-f-150-vs-2020-chevrolet-silverado-1500-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/deals-under-20000/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/electrified/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/f-150-saves-retiree-from-moose/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/family-friendly-ford-suvs-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/finance-department/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/financing-a-non-ford-vehicle-at-am-ford-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/ford-service-department/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/ford-showroom/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/ford-suv-technology-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/ford-x-plan-pricing-program-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/hours/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/information-directions/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/meet-the-team/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/multipoint-vehicle-inspection-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/my-garage/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/my-specials/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/new-ford-order/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/new-vehicles/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/oil-changes-in-trail-bc/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/order-parts/": ["Validate Contact Links Matches It HREF"],
-            "https://amford.com/owner-advantage-rewards/": ["Validate Contact Links Matches It HREF"]
-          },
+          "tested_links": {},
           "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true,
-            "Validate Header Layout Consistency": true
+            "Validate Favicon Exists And Matches Brand": true
+          }
+        },
+        "results": {
+          "passed": "0",
+          "failed": "0"
+        },
+        "total_tests": 0,
+        "total_passed": "0",
+        "total_failed": "0"
+      },
+      {
+        "name": "AM Ford",
+        "url": "https://amford.com/",
+        "status": "completed",
+        "section_counters": {
+          "pages": "0/0",
+          "used_vehicles": "0/0",
+          "new_vehicles": "0/0",
+          "showroom": "0/0",
+          "models": "0/0",
+          "model_trims": "0/0"
+        },
+        "pages_link_tracking": {
+          "tested_links": {},
+          "all_pages_covered": {
+            "Validate Favicon Exists And Matches Brand": true
           }
         },
         "results": {
@@ -474,458 +114,6 @@
       {
         "name": "Barrhaven Ford",
         "url": "https://barrhavenford.com/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true,
-            "Validate Header Layout Consistency": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Brennen Ford",
-        "url": "https://brennenford.com/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true,
-            "Validate Header Layout Consistency": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Bridges GM",
-        "url": "https://www.bridgesgm.com/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true,
-            "Validate Header Layout Consistency": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Capital Cadillac Regina",
-        "url": "https://www.capitalcadillac.ca/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true,
-            "Validate Header Layout Consistency": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Capital Chevrolet Buick GMC",
-        "url": "https://www.capitalchev.ca/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true,
-            "Validate Header Layout Consistency": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Capital Ford Regina",
-        "url": "https://capitalfordlincoln.com/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true,
-            "Validate Header Layout Consistency": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Capital Ford Winnipeg",
-        "url": "https://www.capitalfordwinnipeg.ca/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true,
-            "Validate Header Layout Consistency": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Capital GMC Buick (Edmonton)",
-        "url": "https://www.capitalgmcbuick.ca/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true,
-            "Validate Header Layout Consistency": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Capital GMC Buick Regina",
-        "url": "https://www.capitalgmc.ca/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true,
-            "Validate Header Layout Consistency": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Capital Lincoln Regina",
-        "url": "https://capitallincoln.ca/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true,
-            "Validate Header Layout Consistency": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Capital Lincoln Winnipeg",
-        "url": "https://www.capitallincolnwinnipeg.ca/",
-        "status": "in_progress",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Chilliwack Ford",
-        "url": "https://chilliwackford.com/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Cochrane Nissan",
-        "url": "https://cochranenissan.com/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "County Chevrolet Essex",
-        "url": "https://countychevroletessex.com/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Coventry North Jaguar",
-        "url": "https://coventrynorthjaguar.com/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Coventry North Land Rover",
-        "url": "https://coventrynorthlandrover.com/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Crestview Chrysler",
-        "url": "https://crestviewchrysler.kinsta.cloud/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Contact Links Matches It HREF": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Crowfoot Dodge",
-        "url": "https://crowfootdodge.kinsta.cloud/",
         "status": "in_progress",
         "section_counters": {
           "pages": "0/0",
@@ -943,10 +131,10 @@
     ]
   },
   "summary": {
-    "sites_pending": 104,
-    "total_urls_tested": 237,
-    "total_passed": 228,
-    "total_failed": 9,
-    "failed_sites": ["Barrhaven Ford", "Barrhaven Ford"]
+    "sites_pending": 106,
+    "total_urls_tested": 0,
+    "total_passed": 0,
+    "total_failed": 0,
+    "failed_sites": []
   }
 }

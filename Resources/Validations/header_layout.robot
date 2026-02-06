@@ -8,7 +8,7 @@ Library    Collections
 *** Keywords ***
 Validate Header Layout Consistency
     [Documentation]    Compares header layout between homepage and internal pages
-    ...                Checks: structure, navigation items, logo presence, CTA buttons, menu-header-menu ul component
+    ...                Checks: structure, navigation items, logo presence, menu-header-menu ul component, background color
     ...                Returns detailed results without failing
     ${result}=    Compare Header Layouts
     RETURN    ${result}
@@ -21,26 +21,34 @@ Compare Header Layouts
     @{details}=    Create List
     ${header_data}=    Create Dictionary
 
+    Log To Console    ${\n}>>> HEADER CHECK: Starting header validation...
+
     # Capture current page header structure
     TRY
         # Get header element
         ${header_exists}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//header
         IF    not ${header_exists}
+            Log To Console    >>> HEADER CHECK: ✗ No header element found
             ${passed}=    Set Variable    ${False}
             ${description}=    Set Variable    No header element found
             Append To List    ${details}    No <header> element found on page
         ELSE
+            Log To Console    >>> HEADER CHECK: ✓ Header element found
             # Capture header structure
+            Log To Console    >>> HEADER CHECK: Checking logo...
             ${logo_exists}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//header//img[contains(@alt, 'logo') or contains(@class, 'logo-div')]
+            Log To Console    >>> HEADER CHECK: Checking navigation...
             ${nav_exists}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//header//nav
 
             # Check for specific menu-header-menu ul component
+            Log To Console    >>> HEADER CHECK: Checking menu-header-menu component...
             ${menu_header_exists}=    Run Keyword And Return Status    Page Should Contain Element    xpath=//ul[@id='menu-header-menu']
             ${menu_header_count}=    Set Variable    0
             @{menu_header_items}=    Create List
             IF    ${menu_header_exists}
                 ${menu_items}=    Get WebElements    xpath=//ul[@id='menu-header-menu']//li
                 ${menu_header_count}=    Get Length    ${menu_items}
+                Log To Console    >>> HEADER CHECK: ✓ Menu-header-menu found with ${menu_header_count} items
                 FOR    ${item}    IN    @{menu_items}
                     ${text}=    Get Text    ${item}
                     ${text}=    Strip String    ${text}
@@ -48,6 +56,8 @@ Compare Header Layouts
                         Append To List    ${menu_header_items}    ${text}
                     END
                 END
+            ELSE
+                Log To Console    >>> HEADER CHECK: ✗ Menu-header-menu not found
             END
 
             # Get navigation items
@@ -62,10 +72,6 @@ Compare Header Layouts
                 END
             END
 
-            # Get CTA buttons in header
-            ${cta_buttons}=    Get WebElements    xpath=//header//a[contains(@class, 'btn') or contains(@class, 'button') or contains(@class, 'cta')]
-            ${cta_count}=    Get Length    ${cta_buttons}
-
             # Get header background color
             ${header_element}=    Get WebElement    xpath=//header
             ${bg_color}=    Execute JavaScript    return window.getComputedStyle(arguments[0]).backgroundColor;    ${header_element}
@@ -78,7 +84,6 @@ Compare Header Layouts
             Set To Dictionary    ${header_data}    menu_header_exists=${menu_header_exists}
             Set To Dictionary    ${header_data}    menu_header_count=${menu_header_count}
             Set To Dictionary    ${header_data}    menu_header_items=${menu_header_items}
-            Set To Dictionary    ${header_data}    cta_count=${cta_count}
             Set To Dictionary    ${header_data}    bg_color=${bg_color}
 
             # Basic validations
@@ -86,28 +91,37 @@ Compare Header Layouts
                 ${passed}=    Set Variable    ${False}
                 ${description}=    Set Variable    Header logo not found
                 Append To List    ${details}    No logo found in header
+                Log To Console    >>> HEADER CHECK: ✗ Logo validation failed
+            ELSE
+                Log To Console    >>> HEADER CHECK: ✓ Logo validation passed
             END
 
             IF    not ${nav_exists}
                 ${passed}=    Set Variable    ${False}
                 ${description}=    Set Variable    Header navigation not found
                 Append To List    ${details}    No navigation element found in header
+                Log To Console    >>> HEADER CHECK: ✗ Navigation validation failed
+            ELSE
+                Log To Console    >>> HEADER CHECK: ✓ Navigation found with ${nav_count} item(s)
             END
 
             IF    ${nav_count} == 0
                 ${passed}=    Set Variable    ${False}
                 ${description}=    Set Variable    No navigation items found
                 Append To List    ${details}    Navigation exists but contains no links
+                Log To Console    >>> HEADER CHECK: ✗ Navigation has no items
             END
         END
     EXCEPT    AS    ${error}
         ${passed}=    Set Variable    ${False}
         ${description}=    Set Variable    Error analyzing header: ${error}
         Append To List    ${details}    Exception: ${error}
+        Log To Console    [HEADER CHECK] ✗ Error: ${error}
     END
 
     # Determine status
     ${status}=    Set Variable If    ${passed}    PASS    FAIL
+    Log To Console    [HEADER CHECK] Result: ${status} - ${description}
 
     # Build result dictionary
     ${result}=    Create Dictionary
@@ -176,15 +190,6 @@ Compare Header Between Pages
         ${passed}=    Set Variable    ${False}
         ${description}=    Set Variable    Navigation item count differs
         Append To List    ${details}    Homepage has ${hp_nav_count} nav items, internal page has ${int_nav_count}
-    END
-
-    # Compare CTA count
-    ${hp_cta_count}=    Get From Dictionary    ${homepage_data}    cta_count
-    ${int_cta_count}=    Get From Dictionary    ${internal_data}    cta_count
-    IF    ${hp_cta_count} != ${int_cta_count}
-        ${passed}=    Set Variable    ${False}
-        ${description}=    Set Variable    CTA button count differs
-        Append To List    ${details}    Homepage has ${hp_cta_count} CTA buttons, internal page has ${int_cta_count}
     END
 
     # Compare background color

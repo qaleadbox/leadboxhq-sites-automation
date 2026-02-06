@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Header Layout Consistency Testing
 ...              Validates that header layout remains consistent between homepage and internal pages
-...              Checks: logo presence, navigation structure, CTA buttons, styling
+...              Checks: logo presence, navigation structure, menu-header-menu component, background color
 Resource    ../../Resources/variables.robot
 Resource    ../../Resources/Validations/header_layout.robot
 Resource    ../../Resources/Integrated Tests/multi_site_testing.robot
@@ -16,10 +16,10 @@ Test header layout from sitemap URLs
     # To disable checkpoint, add: use_checkpoint=false
     #
     # This test validates header layout consistency across different page types
-    # It checks that headers maintain the same structure, navigation items, and styling
+    # It checks that headers maintain the same structure, logo, navigation items, menu components, and styling
     Parse Sitemap URLs
-    ...    validation_keyword=Validate Header Layout Consistency
-    #...    pages_samples=2
+    ...    Validate Header Layout Consistency
+    # ...    pages_samples=2
     ...    used_vehicle_samples=1
     ...    new_vehicle_samples=1
     ...    showroom_samples=1
