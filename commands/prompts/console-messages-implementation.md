@@ -101,7 +101,7 @@ Sleep    2s
 
 ### 4. Test Structure Alignment
 
-**File Modified**: `Suites/Functional & Accessibility Testing/Test favicon.robot`
+**File Modified**: `Suites/Functional & Accessibility Testing/Test check if the site has a Favicon and confirm it matches the correct brand.robot`
 
 **Changes**: Aligned favicon test structure with header test format
 - Commented out `pages_samples=2` to test all pages by default
@@ -133,7 +133,7 @@ Parse Sitemap URLs
 **Favicon Test**:
 ```bash
 # Non-headless mode (recommended for Cloudflare-protected sites)
-robot "Suites/Functional & Accessibility Testing/Test favicon.robot"
+robot "Suites/Functional & Accessibility Testing/Test check if the site has a Favicon and confirm it matches the correct brand.robot"
 
 # Headless mode
 robot --variable HEADLESS:true "Suites/Functional & Accessibility Testing/Test favicon.robot"
@@ -225,7 +225,7 @@ robot --variable HEADLESS:true "Suites/Functional & Accessibility Testing/Test h
    - Increased sitemap load wait time
    - Added debug logging for sitemap extraction
 
-4. **Suites/Functional & Accessibility Testing/Test favicon.robot**
+4. **Suites/Functional & Accessibility Testing/Test check if the site has a Favicon and confirm it matches the correct brand.robot**
    - Aligned structure with header test
    - Updated comments and configuration options
 
@@ -388,7 +388,7 @@ Open Favicon URL In New Tab
    - Replaced `Verify Image Loads` with `Open Favicon URL In New Tab`
    - Updated keyword documentation
 
-2. `Suites/Functional & Accessibility Testing/Test favicon.robot`
+2. `Suites/Functional & Accessibility Testing/Test check if the site has a Favicon and confirm it matches the correct brand.robot`
    - Updated test documentation to reflect manual verification approach
 
 ### Usage Example
@@ -396,7 +396,7 @@ Open Favicon URL In New Tab
 When running the favicon test:
 
 ```bash
-robot "Suites/Functional & Accessibility Testing/Test favicon.robot"
+robot "Suites/Functional & Accessibility Testing/Test check if the site has a Favicon and confirm it matches the correct brand.robot"
 ```
 
 **Expected Behavior**:

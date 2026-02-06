@@ -30,7 +30,7 @@ Check if the site has a Favicon and confirm it matches the correct brand
    - Keyword: `Validate Favicon Exists And Matches Brand`
    - Keyword: `Check Favicon`
 
-2. **Suites/Functional & Accessibility Testing/Test favicon.robot** - Test suite file
+2. **Suites/Functional & Accessibility Testing/Test check if the site has a Favicon and confirm it matches the correct brand.robot** - Test suite file
    - Test Case: `Test favicon from sitemap URLs`
    - Uses multi-site testing framework with checkpoint/resume
    - Tests multiple page types (pages, vehicles, showroom, models)
@@ -38,7 +38,7 @@ Check if the site has a Favicon and confirm it matches the correct brand
 ### Usage
 Run the test using Robot Framework:
 ```bash
-robot "Suites/Functional & Accessibility Testing/Test favicon.robot"
+robot "Suites/Functional & Accessibility Testing/Test check if the site has a Favicon and confirm it matches the correct brand.robot"
 ```
 
 ### Expected Results
