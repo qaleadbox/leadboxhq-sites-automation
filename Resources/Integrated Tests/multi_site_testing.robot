@@ -91,8 +91,17 @@ Open Unitary Page
             ${failed}=    Evaluate    ${failed} + 1
             Append To List    ${failed_validations}    ${validation_keyword}: ${error}
 
-            # Log issue to issues.json
-            Log Issue    ${issues_data}    Unitary Test    ${UNITARY_PAGE_URL}    ${validation_keyword} failed    ${validation_keyword}    validation_failure    ${error}
+            # Create unique key to prevent duplicates (URL + validation)
+            ${parent_span}=    Catenate    SEPARATOR=::    ${UNITARY_PAGE_URL}    ${validation_keyword}
+            ${raw_description}=    Set Variable    ${validation_keyword} failed
+
+            # Only log if not already logged (prevents duplicates)
+            ${already_logged}=    Has Issue With Parent Span    ${issues_data}    Unitary Test    ${parent_span}    ${raw_description}
+            IF    not ${already_logged}
+                Log Issue    ${issues_data}    Unitary Test    ${UNITARY_PAGE_URL}    ${raw_description}    ${validation_keyword}    validation_failure    ${error}    ${parent_span}
+            ELSE
+                Log To Console    (Issue already logged, skipping duplicate)
+            END
         END
     END
 
@@ -715,8 +724,13 @@ Test Section With Counter
             Set Section Counter    ${checkpoint}    ${section_key}    0    ${url_count}
         ELSE
             ${samples_int}=    Convert To Integer    ${samples_param}
-            ${target_samples}=    Evaluate    min(${samples_int}, ${url_count})
-            Set Section Counter    ${checkpoint}    ${section_key}    0    ${target_samples}
+            # If 0, test all URLs
+            IF    ${samples_int} == 0
+                Set Section Counter    ${checkpoint}    ${section_key}    0    ${url_count}
+            ELSE
+                ${target_samples}=    Evaluate    min(${samples_int}, ${url_count})
+                Set Section Counter    ${checkpoint}    ${section_key}    0    ${target_samples}
+            END
         END
     END
 
@@ -862,9 +876,16 @@ Test Pages Section With Link Tracking
         Log To Console    [Pages] Testing all ${samples_to_test} pages (${url_count} total) with ${validations_count} validation(s)...
     ELSE
         ${samples_int}=    Convert To Integer    ${samples_param}
-        ${samples_to_test}=    Evaluate    min(${samples_int}, ${pages_to_test_count})
-        @{pages_to_test}=    Evaluate    random.sample(${pages_needing_tests}, ${samples_to_test})    random
-        Log To Console    [Pages] Testing ${samples_to_test} page(s) with ${validations_count} validation(s)...
+        # If 0, test all pages
+        IF    ${samples_int} == 0
+            ${samples_to_test}=    Set Variable    ${pages_to_test_count}
+            @{pages_to_test}=    Evaluate    sorted(${pages_needing_tests})
+            Log To Console    [Pages] Testing all ${samples_to_test} pages (samples=0 means all) with ${validations_count} validation(s)...
+        ELSE
+            ${samples_to_test}=    Evaluate    min(${samples_int}, ${pages_to_test_count})
+            @{pages_to_test}=    Evaluate    random.sample(${pages_needing_tests}, ${samples_to_test})    random
+            Log To Console    [Pages] Testing ${samples_to_test} page(s) with ${validations_count} validation(s)...
+        END
     END
 
     FOR    ${test_url}    IN    @{pages_to_test}

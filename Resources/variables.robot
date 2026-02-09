@@ -11,8 +11,8 @@ ${SPREADSHEET_CSV_CACHE}           ${EXECDIR}${/}sites.csv    # Use existing sit
 ${TEST_MODE}             unitary    # sitemap = test multiple sites from spreadsheet | unitary = test single page (faster to debug)
 ${UNITARY_PAGE_URL}      https://inspector.appiumpro.com/    # URL to test when TEST_MODE=unitary
 
-# Sampling Configuration
-${PAGES_SAMPLES}             1
+# Sampling Configuration (0 = test all links, None = test all, N = test N samples)
+${PAGES_SAMPLES}             0
 ${USED_VEHICLE_SAMPLES}      1
 ${NEW_VEHICLE_SAMPLES}       1
 ${SHOWROOM_SAMPLES}          1
