@@ -77,26 +77,39 @@ Parse Sitemap URLs
     "test_run_id": "test_contact_links_20260109_153045",
     "total_sites": 106,
     "sites_processed": 45,
-    "current_site": {
-      "name": "Addison Chevrolet Eglinton",
-      "url": "https://addisononeglinton.com",
-      "status": "in_progress",
-      "sections_processed": ["pages"],
-      "pages_tested": 3,
-      "pages_total": 8
-    },
+    "expected_validations": [
+      "Validate Contact Links Matches It HREF",
+      "Validate URL Links Matches It HREF",
+      "Validate Page URL Is Secure HTTPS"
+    ],
     "sites_completed": [
       {
         "name": "Site Name",
         "url": "https://example.com",
-        "status": "completed",
+        "runned_validations": "3/3",
         "results": {
           "passed": 8,
           "failed": 0
         },
         "total_tests": 8,
         "total_passed": 8,
-        "total_failed": 0
+        "total_failed": 0,
+        "section_counters": {
+          "pages": "68/68",
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "1/1",
+          "model_trims": "1/1"
+        },
+        "pages_link_tracking": {
+          "tested_links": {},
+          "all_pages_covered": {
+            "Validate Contact Links Matches It HREF": true,
+            "Validate URL Links Matches It HREF": true,
+            "Validate Page URL Is Secure HTTPS": true
+          }
+        }
       }
     ]
   },
@@ -268,7 +281,7 @@ jq -r '.issues[] | [.site_name, .url, .raw_description, .category] | @csv' check
 A: Minimal impact. Checkpoint saves take <100ms per site.
 
 **Q: Can I use checkpoint with different validation keywords?**
-A: Currently optimized for "Validate Contact Links Matches It HREF". Other keywords may need modification.
+A: Yes! The system now tracks validations dynamically. Pass any validation keywords to `Parse Sitemap URLs` and the checkpoint will track them independently. The `runned_validations` field shows progress (e.g., "2/3" means 2 out of 3 validations completed).
 
 **Q: What happens if I change sampling parameters?**
 A: Checkpoint tracks at site level, not URL level. Changing samples will re-test with new samples.

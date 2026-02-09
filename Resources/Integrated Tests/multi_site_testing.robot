@@ -19,7 +19,7 @@ Parse Sitemap URLs
     ...                Automatically saves progress and can resume from last checkpoint
     ...                Flexible framework: Pass validation keywords as a list to test different functionality
     ...                skip_*_if_sampled: Set to 'true' to skip section if at least one sample was already tested
-    [Arguments]    @{validation_keywords}    ${pages_samples}=None    ${used_vehicle_samples}=1    ${new_vehicle_samples}=1    ${showroom_samples}=1    ${models_samples}=1    ${model_trims_samples}=1    ${use_checkpoint}=true    ${skip_pages_if_sampled}=false    ${skip_used_vehicles_if_sampled}=false    ${skip_new_vehicles_if_sampled}=false    ${skip_showroom_if_sampled}=false    ${skip_models_if_sampled}=false    ${skip_model_trims_if_sampled}=false
+    [Arguments]    @{validation_keywords}    ${pages_samples}=${PAGES_SAMPLES}    ${used_vehicle_samples}=${USED_VEHICLE_SAMPLES}    ${new_vehicle_samples}=${NEW_VEHICLE_SAMPLES}    ${showroom_samples}=${SHOWROOM_SAMPLES}    ${models_samples}=${MODELS_SAMPLES}    ${model_trims_samples}=${MODEL_TRIMS_SAMPLES}    ${use_checkpoint}=${USE_CHECKPOINT}    ${skip_pages_if_sampled}=${SKIP_PAGES_IF_SAMPLED}    ${skip_used_vehicles_if_sampled}=${SKIP_USED_VEHICLES_IF_SAMPLED}    ${skip_new_vehicles_if_sampled}=${SKIP_NEW_VEHICLES_IF_SAMPLED}    ${skip_showroom_if_sampled}=${SKIP_SHOWROOM_IF_SAMPLED}    ${skip_models_if_sampled}=${SKIP_MODELS_IF_SAMPLED}    ${skip_model_trims_if_sampled}=${SKIP_MODEL_TRIMS_IF_SAMPLED}
 
     # Install signal handler for graceful interrupts
     Install Signal Handler
@@ -33,6 +33,9 @@ Parse Sitemap URLs
     # Initialize checkpoint and issue logger
     ${checkpoint}=    Initialize Checkpoint    ${sites_count}
     ${issues_data}=    Initialize Issue Log
+
+    # Set expected validations for this test run
+    Set Expected Validations    ${checkpoint}    @{validation_list}
 
     # DISABLED: This was incorrectly "fixing" counters with total=0 back to tested/tested
     # Update Completed Sites Pages Counters    ${checkpoint}
@@ -514,7 +517,7 @@ Test URL In New Tab With Details
 
 Test Sitemap URLs In Real Time With Details
     [Documentation]    Tests sampled URLs from sitemap sections with detailed error tracking and counter-based checkpoint support
-    [Arguments]    ${checkpoint}    ${url}    ${name}    ${validation_keywords}    ${pages_samples}=None    ${used_vehicle_samples}=1    ${new_vehicle_samples}=1    ${showroom_samples}=1    ${models_samples}=1    ${model_trims_samples}=1    ${skip_pages_if_sampled}=false    ${skip_used_vehicles_if_sampled}=false    ${skip_new_vehicles_if_sampled}=false    ${skip_showroom_if_sampled}=false    ${skip_models_if_sampled}=false    ${skip_model_trims_if_sampled}=false
+    [Arguments]    ${checkpoint}    ${url}    ${name}    ${validation_keywords}    ${pages_samples}=${PAGES_SAMPLES}    ${used_vehicle_samples}=${USED_VEHICLE_SAMPLES}    ${new_vehicle_samples}=${NEW_VEHICLE_SAMPLES}    ${showroom_samples}=${SHOWROOM_SAMPLES}    ${models_samples}=${MODELS_SAMPLES}    ${model_trims_samples}=${MODEL_TRIMS_SAMPLES}    ${skip_pages_if_sampled}=${SKIP_PAGES_IF_SAMPLED}    ${skip_used_vehicles_if_sampled}=${SKIP_USED_VEHICLES_IF_SAMPLED}    ${skip_new_vehicles_if_sampled}=${SKIP_NEW_VEHICLES_IF_SAMPLED}    ${skip_showroom_if_sampled}=${SKIP_SHOWROOM_IF_SAMPLED}    ${skip_models_if_sampled}=${SKIP_MODELS_IF_SAMPLED}    ${skip_model_trims_if_sampled}=${SKIP_MODEL_TRIMS_IF_SAMPLED}
     ${sitemap_url}=    Build Sitemap URL    ${url}
     Log To Console    Loading sitemap: ${sitemap_url}
 
@@ -570,23 +573,23 @@ Test Sitemap URLs In Real Time With Details
 
     # Test used vehicles
     @{used_vehicles_list}=    Get From Dictionary    ${sections}    used_vehicles
-    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Used Vehicles    used_vehicles    ${used_vehicles_list}    ${used_vehicle_samples}    ${skip_used_vehicles_if_sampled}    Used Vehicle    ${passed}    ${failed}    ${failed_data}
+    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Used Vehicles    used_vehicles    ${used_vehicles_list}    ${used_vehicle_samples}    ${skip_used_vehicles_if_sampled}    Used Vehicle    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     # Test new vehicles
     @{new_vehicles_list}=    Get From Dictionary    ${sections}    new_vehicles
-    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    New Vehicles    new_vehicles    ${new_vehicles_list}    ${new_vehicle_samples}    ${skip_new_vehicles_if_sampled}    New Vehicle    ${passed}    ${failed}    ${failed_data}
+    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    New Vehicles    new_vehicles    ${new_vehicles_list}    ${new_vehicle_samples}    ${skip_new_vehicles_if_sampled}    New Vehicle    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     # Test showroom
     @{showroom_list}=    Get From Dictionary    ${sections}    showroom
-    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Showroom    showroom    ${showroom_list}    ${showroom_samples}    ${skip_showroom_if_sampled}    Showroom    ${passed}    ${failed}    ${failed_data}
+    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Showroom    showroom    ${showroom_list}    ${showroom_samples}    ${skip_showroom_if_sampled}    Showroom    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     # Test models
     @{models_list}=    Get From Dictionary    ${sections}    models
-    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Models    models    ${models_list}    ${models_samples}    ${skip_models_if_sampled}    Model    ${passed}    ${failed}    ${failed_data}
+    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Models    models    ${models_list}    ${models_samples}    ${skip_models_if_sampled}    Model    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     # Test model trims
     @{model_trims_list}=    Get From Dictionary    ${sections}    model_trims
-    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Model Trims    model_trims    ${model_trims_list}    ${model_trims_samples}    ${skip_model_trims_if_sampled}    Model Trim    ${passed}    ${failed}    ${failed_data}
+    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Model Trims    model_trims    ${model_trims_list}    ${model_trims_samples}    ${skip_model_trims_if_sampled}    Model Trim    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     ${total_tests}=    Evaluate    ${passed} + ${failed}
     Log To Console    Site summary: ${passed}/${total_tests} passed, ${failed}/${total_tests} failed
@@ -595,8 +598,19 @@ Test Sitemap URLs In Real Time With Details
 
 Test Section With Counter
     [Documentation]    Tests a section with counter-based checkpoint tracking
-    ...    Also skips URLs that have logged issues in issues.json
-    [Arguments]    ${checkpoint}    ${section_name}    ${section_key}    ${url_list}    ${samples_param}    ${skip_if_sampled}    ${category_label}    ${passed}    ${failed}    ${failed_data}
+    ...    Also tracks which validations have been completed per URL
+    ...    Skips URLs that have logged issues in issues.json
+    [Arguments]    ${checkpoint}    ${section_name}    ${section_key}    ${url_list}    ${samples_param}    ${skip_if_sampled}    ${category_label}    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${site_name}
+
+    # Map section keys to tested_links keys
+    &{section_key_map}=    Create Dictionary
+    ...    used_vehicles=used
+    ...    new_vehicles=new
+    ...    showroom=showroom
+    ...    models=model
+    ...    model_trims=model_trim
+    ${link_key}=    Get From Dictionary    ${section_key_map}    ${section_key}
+
     ${url_count}=    Get Length    ${url_list}
 
     # Initialize counter if not set
@@ -633,27 +647,39 @@ Test Section With Counter
                     Check For Interrupt
 
                     Log To Console    [${category_label}] ${test_url}
-                    ${result}=    Test URL In New Tab With Details    ${test_url}
-                    ${status}=    Get From Dictionary    ${result}    status
-                    Update Section Counter    ${checkpoint}    ${section_key}
-                    IF    '${status}' == 'PASS'
-                        ${passed}=    Evaluate    ${passed} + 1
-                    ELSE
-                        ${failed}=    Evaluate    ${failed} + 1
-                        ${description}=    Get From Dictionary    ${result}    description
-                        ${details}=    Get From Dictionary    ${result}    details
 
-                        # Extract parent_span if available
-                        ${has_parent_span}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    parent_span
-                        IF    ${has_parent_span}
-                            ${parent_span}=    Get From Dictionary    ${result}    parent_span
-                            &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}    parent_span=${parent_span}
+                    # Test URL with all validations once
+                    ${all_results}=    Test URL With Multiple Validations    ${test_url}    ${validation_keywords}
+
+                    # Process results for each validation
+                    FOR    ${validation_keyword}    IN    @{validation_keywords}
+                        ${result}=    Get From Dictionary    ${all_results}    ${validation_keyword}
+                        ${status}=    Get From Dictionary    ${result}    status
+
+                        # Mark this validation as complete (use link_key for sections, not URL)
+                        Mark Section Validation Complete    ${checkpoint}    ${site_name}    ${section_key}    ${link_key}    ${validation_keyword}
+
+                        IF    '${status}' == 'PASS'
+                            ${passed}=    Evaluate    ${passed} + 1
                         ELSE
-                            &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}
-                        END
+                            ${failed}=    Evaluate    ${failed} + 1
+                            ${description}=    Get From Dictionary    ${result}    description
+                            ${details}=    Get From Dictionary    ${result}    details
 
-                        Append To List    ${failed_data}    ${fail_info}
+                            # Extract parent_span if available
+                            ${has_parent_span}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    parent_span
+                            IF    ${has_parent_span}
+                                ${parent_span}=    Get From Dictionary    ${result}    parent_span
+                                &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}    parent_span=${parent_span}
+                            ELSE
+                                &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}
+                            END
+
+                            Append To List    ${failed_data}    ${fail_info}
+                        END
                     END
+
+                    Update Section Counter    ${checkpoint}    ${section_key}
                     Sleep    0.5s
                 END
                 Log To Console    ${section_name} section complete. Cleaning up...

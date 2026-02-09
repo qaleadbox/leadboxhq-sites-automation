@@ -3,6 +3,7 @@ Library    OperatingSystem
 Library    Collections
 Library    DateTime
 Library    String
+Resource    checkpoint_template.robot
 Library    ${CURDIR}${/}compact_json.py
 
 
@@ -25,6 +26,10 @@ Initialize Checkpoint
         IF    ${checkpoint} is ${None}
             Log    Checkpoint corrupted, creating new one    console=True
         ELSE
+            # Migrate to new format if needed
+            Migrate Checkpoint To New Format    ${checkpoint}
+            # Validate and repair checkpoint structure
+            Validate And Repair Checkpoint    ${checkpoint}
             Log    Checkpoint loaded. Sites processed: ${checkpoint['checkpoint']['sites_processed']}    console=True
             RETURN    ${checkpoint}
         END
@@ -37,12 +42,14 @@ Initialize Checkpoint
     ${test_run_id}=    Replace String    ${test_run_id}    -    ${EMPTY}
 
     # No current_site needed - sites go directly in sites_completed with status=in_progress
+    @{empty_validations}=    Create List
     &{checkpoint_data}=    Create Dictionary
     ...    timestamp=${timestamp}
     ...    test_run_id=${test_run_id}
     ...    total_sites=${total_sites}
     ...    sites_processed=0
     ...    sites_completed=@{EMPTY}
+    ...    expected_validations=${empty_validations}
 
     &{summary}=    Create Dictionary
     ...    sites_pending=${total_sites}
@@ -56,6 +63,96 @@ Initialize Checkpoint
     Save Checkpoint Data    ${checkpoint}
     Log    New checkpoint initialized (no current_site field)    console=True
     RETURN    ${checkpoint}
+
+Get Short Validation Name
+    [Documentation]    Convert full validation keyword name to short format (horizontal display)
+    ...    Examples:
+    ...    - "Validate Contact Links Matches It HREF" → "Contact Links"
+    ...    - "Validate URL Links Matches It HREF" → "URL Links"
+    ...    - "Validate Page URL Is Secure HTTPS" → "HTTPS"
+    ...    - "Validate Favicons" → "Favicons"
+    [Arguments]    ${validation_keyword}
+
+    # Remove "Validate " prefix
+    ${short_name}=    Replace String    ${validation_keyword}    Validate ${EMPTY}    ${EMPTY}
+
+    # Remove common suffixes
+    ${short_name}=    Replace String    ${short_name}    Matches It HREF    ${EMPTY}
+    ${short_name}=    Replace String    ${short_name}    Is Secure    ${EMPTY}
+
+    # Trim whitespace
+    ${short_name}=    Strip String    ${short_name}
+
+    RETURN    ${short_name}
+
+Set Expected Validations
+    [Documentation]    Set the expected validations for this test run (uses short names)
+    [Arguments]    ${checkpoint}    @{validation_keywords}
+
+    # Convert to short names
+    @{short_names}=    Create List
+    FOR    ${validation_keyword}    IN    @{validation_keywords}
+        ${short_name}=    Get Short Validation Name    ${validation_keyword}
+        Append To List    ${short_names}    ${short_name}
+    END
+
+    Set To Dictionary    ${checkpoint['checkpoint']}    expected_validations=${short_names}
+    Save Checkpoint Data    ${checkpoint}
+    Log To Console    Expected validations set: ${short_names}
+
+Migrate Checkpoint To New Format
+    [Documentation]    Migrate old checkpoint format to new format (single tested_links with section keys)
+    [Arguments]    ${checkpoint}
+    ${sites_completed}=    Get From Dictionary    ${checkpoint['checkpoint']}    sites_completed
+
+    FOR    ${site}    IN    @{sites_completed}
+        ${site_name}=    Get From Dictionary    ${site}    name
+
+        # Get or create pages_link_tracking
+        ${has_tracking}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${site}    pages_link_tracking
+        IF    not ${has_tracking}
+            &{tested_links}=    Create Dictionary
+            &{all_pages_covered}=    Create Dictionary
+            &{tracking}=    Create Dictionary    tested_links=${tested_links}    all_pages_covered=${all_pages_covered}
+            Set To Dictionary    ${site}    pages_link_tracking=${tracking}
+        END
+
+        ${tracking}=    Get From Dictionary    ${site}    pages_link_tracking
+        ${tested_links}=    Get From Dictionary    ${tracking}    tested_links
+
+        # Migrate old section structures to new format
+        &{section_map}=    Create Dictionary
+        ...    used_vehicles=used
+        ...    new_vehicles=new
+        ...    showroom=showroom
+        ...    models=model
+        ...    model_trims=model_trim
+
+        FOR    ${old_key}    ${new_key}    IN    &{section_map}
+            ${has_old_section}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${site}    ${old_key}
+            IF    ${has_old_section}
+                ${old_section}=    Get From Dictionary    ${site}    ${old_key}
+                ${has_old_tested_links}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${old_section}    tested_links
+                IF    ${has_old_tested_links}
+                    ${old_tested_links}=    Get From Dictionary    ${old_section}    tested_links
+                    ${old_links_count}=    Get Length    ${old_tested_links}
+                    IF    ${old_links_count} > 0
+                        # Get first URL's validations from old structure
+                        ${first_url}=    Evaluate    list($old_tested_links.keys())[0]
+                        ${validations}=    Get From Dictionary    ${old_tested_links}    ${first_url}
+                        # Store in new format using section key
+                        Set To Dictionary    ${tested_links}    ${new_key}=${validations}
+                        Log To Console    Migrated ${site_name}: ${old_key} → ${new_key} (${validations})
+                    END
+                END
+                # Remove old section structure
+                Remove From Dictionary    ${site}    ${old_key}
+            END
+        END
+    END
+
+    Save Checkpoint Data    ${checkpoint}
+    Log To Console    ✓ Checkpoint migrated to new format
 
 Load Checkpoint
     [Documentation]    Load existing checkpoint from JSON file
@@ -137,40 +234,85 @@ Should Skip Site
                 RETURN    ${False}
             END
 
-            # Check pages counter (MOST IMPORTANT CHECK)
-            ${pages_counter}=    Get From Dictionary    ${section_counters}    pages
-            @{parts}=    Split String    ${pages_counter}    /
-            ${tested}=    Get From List    ${parts}    0
-            ${total}=    Get From List    ${parts}    1
-            ${tested_int}=    Convert To Integer    ${tested}
-            ${total_int}=    Convert To Integer    ${total}
+            # Check pages section validation tracking
+            ${has_pages_tracking}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${completed_site}    pages_link_tracking
+            IF    ${has_pages_tracking}
+                ${pages_tracking}=    Get From Dictionary    ${completed_site}    pages_link_tracking
+                ${has_all_pages_covered}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${pages_tracking}    all_pages_covered
+                IF    ${has_all_pages_covered}
+                    ${all_pages_covered}=    Get From Dictionary    ${pages_tracking}    all_pages_covered
 
-            # If pages counter is 0/0, definitely needs testing
-            IF    ${total_int} == 0
-                Log To Console    ⚠️  ${site_name}: Pages counter is 0/0 - WILL TEST
-                RETURN    ${False}
-            END
+                    # Get expected validations (with backward compatibility)
+                    ${has_expected_validations}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${checkpoint['checkpoint']}    expected_validations
+                    IF    not ${has_expected_validations}
+                        Log To Console    ⚠️  ${site_name}: Missing expected_validations - WILL TEST
+                        RETURN    ${False}
+                    END
+                    ${expected_validations}=    Get From Dictionary    ${checkpoint['checkpoint']}    expected_validations
 
-            # If pages incomplete, needs testing
-            IF    ${tested_int} < ${total_int}
-                Log To Console    ⚠️  ${site_name}: Incomplete pages ${pages_counter} - WILL TEST
-                RETURN    ${False}
-            END
-
-            # Check other sections
-            FOR    ${section}    ${counter}    IN    &{section_counters}
-                IF    '${section}' == 'pages'
-                    CONTINUE
-                END
-                @{sec_parts}=    Split String    ${counter}    /
-                ${sec_tested}=    Get From List    ${sec_parts}    0
-                ${sec_total}=    Get From List    ${sec_parts}    1
-                ${sec_tested_int}=    Convert To Integer    ${sec_tested}
-                ${sec_total_int}=    Convert To Integer    ${sec_total}
-
-                IF    ${sec_total_int} > 0 and ${sec_tested_int} < ${sec_total_int}
-                    Log To Console    ⚠️  ${site_name}: Incomplete ${section} ${counter} - WILL TEST
+                    # Check if all expected validations are complete for pages
+                    FOR    ${validation}    IN    @{expected_validations}
+                        ${is_covered}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${all_pages_covered}    ${validation}
+                        IF    not ${is_covered}
+                            Log To Console    ⚠️  ${site_name}: Pages missing validation "${validation}" - WILL TEST
+                            RETURN    ${False}
+                        END
+                        ${covered_status}=    Get From Dictionary    ${all_pages_covered}    ${validation}
+                        IF    not ${covered_status}
+                            Log To Console    ⚠️  ${site_name}: Pages validation "${validation}" incomplete - WILL TEST
+                            RETURN    ${False}
+                        END
+                    END
+                ELSE
+                    Log To Console    ⚠️  ${site_name}: Missing all_pages_covered - WILL TEST
                     RETURN    ${False}
+                END
+            ELSE
+                Log To Console    ⚠️  ${site_name}: Missing pages_link_tracking - WILL TEST
+                RETURN    ${False}
+            END
+
+            # Check other sections validation tracking (stored in tested_links with section keys)
+            ${tested_links}=    Get From Dictionary    ${pages_tracking}    tested_links
+
+            # Get expected validations (with backward compatibility)
+            ${has_expected_validations}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${checkpoint['checkpoint']}    expected_validations
+            IF    not ${has_expected_validations}
+                Log To Console    ⚠️  ${site_name}: Missing expected_validations - WILL TEST
+                RETURN    ${False}
+            END
+            ${expected_validations}=    Get From Dictionary    ${checkpoint['checkpoint']}    expected_validations
+
+            # Check each non-page section (stored as "new", "used", "showroom", "model", "model_trim")
+            @{section_key_names}=    Create List    new    used    showroom    model    model_trim
+            @{section_counter_keys}=    Create List    new_vehicles    used_vehicles    showroom    models    model_trims
+            ${index}=    Set Variable    0
+            FOR    ${section_key_name}    IN    @{section_key_names}
+                ${section_counter_key}=    Get From List    ${section_counter_keys}    ${index}
+                ${index}=    Evaluate    ${index} + 1
+
+                # Check if section key exists in tested_links
+                ${has_section_key}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${tested_links}    ${section_key_name}
+                IF    ${has_section_key}
+                    # Section has been tested - check if all validations are complete
+                    ${section_validations}=    Get From Dictionary    ${tested_links}    ${section_key_name}
+                    FOR    ${validation}    IN    @{expected_validations}
+                        ${has_validation}=    Evaluate    $validation in $section_validations
+                        IF    not ${has_validation}
+                            Log To Console    ⚠️  ${site_name}: ${section_key_name} missing validation "${validation}" - WILL TEST
+                            RETURN    ${False}
+                        END
+                    END
+                ELSE
+                    # Section not tested yet - check if section counter shows work needed
+                    ${section_counter}=    Get From Dictionary    ${section_counters}    ${section_counter_key}
+                    @{sec_parts}=    Split String    ${section_counter}    /
+                    ${sec_total}=    Get From List    ${sec_parts}    1
+                    ${sec_total_int}=    Convert To Integer    ${sec_total}
+                    IF    ${sec_total_int} > 0
+                        Log To Console    ⚠️  ${site_name}: ${section_key_name} has URLs but none tested - WILL TEST
+                        RETURN    ${False}
+                    END
                 END
             END
 
@@ -206,6 +348,7 @@ Start Site Processing
         ...    models=0/0
         ...    model_trims=0/0
 
+        # Single tested_links dict for ALL sections (pages use URLs, others use section keys)
         &{tested_links_dict}=    Create Dictionary
         &{all_pages_covered_dict}=    Create Dictionary
         &{pages_link_tracking}=    Create Dictionary
@@ -477,8 +620,12 @@ Is Link Already Tested
     RETURN    ${False}
 
 Add Tested Link
-    [Documentation]    Add a link with test name to tested links dictionary in specified site (or in_progress site if not specified)
+    [Documentation]    Add a link with test name to tested links dictionary (stores short validation names)
     [Arguments]    ${checkpoint}    ${link}    ${test_name}    ${site_name}=${None}
+
+    # Convert to short name
+    ${short_name}=    Get Short Validation Name    ${test_name}
+
     # Get site by name if provided, otherwise fall back to in_progress site
     IF    '${site_name}' != '${None}'
         ${site}=    Get Site By Name    ${checkpoint}    ${site_name}
@@ -499,15 +646,15 @@ Add Tested Link
     # Check if link already exists in dictionary
     ${link_exists}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${tested_links}    ${link}
     IF    ${link_exists}
-        # Get existing list and append test_name if not already present
+        # Get existing list and append short_name if not already present
         ${tests_list}=    Get From Dictionary    ${tested_links}    ${link}
-        ${test_in_list}=    Run Keyword And Return Status    List Should Contain Value    ${tests_list}    ${test_name}
+        ${test_in_list}=    Run Keyword And Return Status    List Should Contain Value    ${tests_list}    ${short_name}
         IF    not ${test_in_list}
-            Append To List    ${tests_list}    ${test_name}
+            Append To List    ${tests_list}    ${short_name}
         END
     ELSE
-        # Create new list with test_name
-        @{new_tests_list}=    Create List    ${test_name}
+        # Create new list with short_name
+        @{new_tests_list}=    Create List    ${short_name}
         Set To Dictionary    ${tested_links}    ${link}=${new_tests_list}
     END
 
@@ -566,8 +713,12 @@ Are All Pages Covered
     RETURN    ${is_covered}
 
 Mark All Pages Covered
-    [Documentation]    Mark that all pages have been covered for a specific test
+    [Documentation]    Mark that all pages have been covered for a specific test (uses short name)
     [Arguments]    ${checkpoint}    ${test_name}    ${site_name}=${None}
+
+    # Convert to short name
+    ${short_name}=    Get Short Validation Name    ${test_name}
+
     # Get site by name if provided, otherwise fall back to in_progress site
     IF    '${site_name}' != '${None}'
         ${site}=    Get Site By Name    ${checkpoint}    ${site_name}
@@ -580,5 +731,46 @@ Mark All Pages Covered
     END
     ${pages_tracking}=    Get From Dictionary    ${site}    pages_link_tracking
     ${all_covered_dict}=    Get From Dictionary    ${pages_tracking}    all_pages_covered
-    Set To Dictionary    ${all_covered_dict}    ${test_name}=${True}
+    Set To Dictionary    ${all_covered_dict}    ${short_name}=${True}
+    Save Checkpoint Data    ${checkpoint}
+
+Mark Section Validation Complete
+    [Documentation]    Mark a validation as complete in tested_links (uses section_key for non-pages, URL for pages)
+    ...    Stores validations using short names (horizontal format)
+    [Arguments]    ${checkpoint}    ${site_name}    ${section_key}    ${link_key}    ${validation_keyword}
+    ${site}=    Get Site By Name    ${checkpoint}    ${site_name}
+    IF    ${site} == ${None}
+        Log To Console    WARNING: Site ${site_name} not found, cannot mark validation
+        RETURN
+    END
+
+    # Convert to short name
+    ${short_name}=    Get Short Validation Name    ${validation_keyword}
+
+    # Get pages_link_tracking (contains tested_links for ALL sections)
+    ${has_tracking}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${site}    pages_link_tracking
+    IF    not ${has_tracking}
+        # Create tracking structure
+        &{tested_links}=    Create Dictionary
+        &{all_pages_covered}=    Create Dictionary
+        &{tracking}=    Create Dictionary    tested_links=${tested_links}    all_pages_covered=${all_pages_covered}
+        Set To Dictionary    ${site}    pages_link_tracking=${tracking}
+    END
+
+    ${tracking}=    Get From Dictionary    ${site}    pages_link_tracking
+    ${tested_links}=    Get From Dictionary    ${tracking}    tested_links
+
+    # Check if link_key already exists in tested_links
+    ${has_key}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${tested_links}    ${link_key}
+    IF    ${has_key}
+        ${validations_list}=    Get From Dictionary    ${tested_links}    ${link_key}
+        ${already_has}=    Run Keyword And Return Status    List Should Contain Value    ${validations_list}    ${short_name}
+        IF    not ${already_has}
+            Append To List    ${validations_list}    ${short_name}
+        END
+    ELSE
+        @{new_validations_list}=    Create List    ${short_name}
+        Set To Dictionary    ${tested_links}    ${link_key}=${new_validations_list}
+    END
+
     Save Checkpoint Data    ${checkpoint}
