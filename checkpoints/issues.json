@@ -21,7 +21,18 @@
       "timestamp": "2026-01-13T12:20:40Z",
       "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)",
       "parent_span": "class:pb-2 sales_phone"
+    },
+    {
+      "site_name": "Unitary Test",
+      "url": "https://inspector.appiumpro.com/",
+      "issue_type": "validation_failure",
+      "description": "Unitary Test after the Validate Favicons failed",
+      "raw_description": "Validate Favicons failed",
+      "category": "Validate Favicons",
+      "timestamp": "2026-02-09T20:27:08Z",
+      "details": "No favicon found in head tag",
+      "parent_span": "https://inspector.appiumpro.com/::Validate Favicons"
     }
   ],
-  "total_issues": 2
+  "total_issues": 3
 }
