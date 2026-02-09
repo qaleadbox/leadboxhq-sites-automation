@@ -1,6 +1,6 @@
 {
   "checkpoint": {
-    "timestamp": "2026-02-09T19:56:21Z",
+    "timestamp": "2026-02-09T20:11:12Z",
     "test_run_id": "test_contact_links_20260209T193045Z",
     "total_sites": 106,
     "sites_processed": "0",
@@ -10,7 +10,7 @@
         "url": "https://addisononeglinton.com",
         "status": "completed",
         "section_counters": {
-          "pages": "3/53",
+          "pages": "4/53",
           "used_vehicles": "2/2",
           "new_vehicles": "2/2",
           "showroom": "2/2",
@@ -26,7 +26,8 @@
             "model": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
             "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
             "https://addisononeglinton.com/service-menu/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "https://addisononeglinton.com/jaw-droppers/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
+            "https://addisononeglinton.com/jaw-droppers/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "https://addisononeglinton.com/parts-pick-up/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
           },
           "all_pages_covered": {}
         },
@@ -43,7 +44,7 @@
         "url": "https://addisononerinmills.com",
         "status": "completed",
         "section_counters": {
-          "pages": "2/58",
+          "pages": "3/58",
           "used_vehicles": "1/1",
           "new_vehicles": "1/1",
           "showroom": "1/1",
@@ -58,34 +59,83 @@
             "showroom": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
             "https://addisononerinmills.com/business-elite/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
             "model": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
+            "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "https://addisononerinmills.com/wish-and-win/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
           },
           "all_pages_covered": {}
         },
         "results": {
-          "passed": 12,
+          "passed": 4,
           "failed": "0"
         },
-        "total_tests": 12,
-        "total_passed": 12,
+        "total_tests": 4,
+        "total_passed": 4,
         "total_failed": "0"
       },
       {
         "name": "Addison GM Group",
         "url": "https://addisongm.com",
+        "status": "completed",
+        "section_counters": {
+          "pages": "2/30",
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "1/1",
+          "model_trims": "1/1"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://addisongm.com/transmissions/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "used": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "https://addisongm.com/about-us/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "new": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "showroom": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "model": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
+          },
+          "all_pages_covered": {}
+        },
+        "results": {
+          "passed": 20,
+          "failed": "0"
+        },
+        "total_tests": 20,
+        "total_passed": 20,
+        "total_failed": "0"
+      },
+      {
+        "name": "Bluestar Lincoln",
+        "url": "https://migrationbluestarlincoln.kinsta.cloud/",
         "status": "in_progress",
         "section_counters": {
-          "pages": "1/30",
-          "used_vehicles": "1/1",
-          "new_vehicles": "0/1",
+          "pages": "1/68",
+          "used_vehicles": "0/1",
+          "new_vehicles": "0/0",
+          "showroom": "0/0",
+          "models": "0/0",
+          "model_trims": "0/0"
+        },
+        "pages_link_tracking": {
+          "tested_links": {},
+          "all_pages_covered": {}
+        }
+      },
+      {
+        "name": "AM Ford",
+        "url": "https://amford.com/",
+        "status": "in_progress",
+        "section_counters": {
+          "pages": "0/0",
+          "used_vehicles": "0/0",
+          "new_vehicles": "0/0",
           "showroom": "0/0",
           "models": "0/0",
           "model_trims": "0/0"
         },
         "pages_link_tracking": {
           "tested_links": {
-            "https://addisongm.com/transmissions/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "used": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
+            "https://amford.com/am-ford-glenmerry/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
           },
           "all_pages_covered": {}
         }
@@ -95,8 +145,8 @@
   },
   "summary": {
     "sites_pending": 106,
-    "total_urls_tested": 64,
-    "total_passed": 64,
+    "total_urls_tested": 92,
+    "total_passed": 92,
     "total_failed": 0,
     "failed_sites": []
   }

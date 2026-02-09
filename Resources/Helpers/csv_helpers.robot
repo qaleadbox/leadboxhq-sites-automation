@@ -78,30 +78,49 @@ Read URLs From CSV
     RETURN    @{urls}
 
 Download CSV From Google Sheets
-    [Documentation]    Downloads CSV from Google Sheets if sites.csv doesn't exist
-    ${file_exists}=    Run Keyword And Return Status    File Should Exist    sites.csv
+    [Documentation]    Downloads CSV from Google Sheets based on FORCE_SPREADSHEET_DATA_FETCH setting
+    ...    - true: Always download fresh data from Google Sheets
+    ...    - false: Use cached CSV if available (much faster)
 
-    IF    not ${file_exists}
-        Log To Console    \nsites.csv not found. Downloading from Google Sheets...
+    ${cache_exists}=    Run Keyword And Return Status    File Should Exist    ${SPREADSHEET_CSV_CACHE}
 
+    # Determine if we should download
+    ${should_download}=    Set Variable    ${False}
+
+    IF    '${FORCE_SPREADSHEET_DATA_FETCH}' == 'true'
+        Log To Console    \n🔄 FORCE_SPREADSHEET_DATA_FETCH=true: Fetching fresh data from Google Sheets...
+        ${should_download}=    Set Variable    ${True}
+        # Delete old cache if it exists
+        IF    ${cache_exists}
+            Remove File    ${SPREADSHEET_CSV_CACHE}
+        END
+    ELSE IF    not ${cache_exists}
+        Log To Console    \n📥 No cache found. Downloading from Google Sheets...
+        ${should_download}=    Set Variable    ${True}
+    ELSE
+        Log To Console    \n⚡ Using cached data from ${SPREADSHEET_CSV_CACHE} (fast mode)
+        Log To Console    💡 Set FORCE_SPREADSHEET_DATA_FETCH=true to fetch fresh data
+    END
+
+    IF    ${should_download}
         # Convert Google Sheets URL to CSV export URL
         ${export_url}=    Replace String    ${SPREADSHEET_LINK}    /edit?gid=0#gid=0    /export?format=csv&gid=0
         ${export_url}=    Replace String    ${export_url}    /edit#gid=0    /export?format=csv&gid=0
 
-        Log To Console    Downloading from: ${export_url}
+        Log To Console    📡 Downloading from: ${export_url}
 
-        # Download the CSV file
-        ${result}=    Run Process    curl    -L    ${export_url}    -o    sites.csv
+        # Download the CSV file to cache location
+        ${result}=    Run Process    curl    -L    ${export_url}    -o    ${SPREADSHEET_CSV_CACHE}
 
         IF    ${result.rc} != 0
             Fail    Failed to download CSV from Google Sheets: ${result.stderr}
         END
 
-        Log To Console    Successfully downloaded sites.csv
+        Log To Console    ✓ Successfully downloaded and cached sites data
     END
 
 Load Sites From Spreadsheet
-    [Documentation]    Loads sites from Google Sheets (downloads if needed)
+    [Documentation]    Loads sites from Google Sheets (downloads if needed) or uses cache
     Download CSV From Google Sheets
-    @{sites}=    Parse Sites From CSV    sites.csv
+    @{sites}=    Parse Sites From CSV    ${SPREADSHEET_CSV_CACHE}
     RETURN    @{sites}

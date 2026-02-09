@@ -36,6 +36,9 @@ Open Unitary Page
     # Install signal handler
     Install Signal Handler
 
+    # Initialize issue logger
+    ${issues_data}=    Initialize Issue Log
+
     Log To Console    🔍 Testing: ${UNITARY_PAGE_URL}
     Log To Console    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -87,6 +90,9 @@ Open Unitary Page
             Log To Console    ✗ FAILED: ${error}\n
             ${failed}=    Evaluate    ${failed} + 1
             Append To List    ${failed_validations}    ${validation_keyword}: ${error}
+
+            # Log issue to issues.json
+            Log Issue    ${issues_data}    Unitary Test    ${UNITARY_PAGE_URL}    ${validation_keyword} failed    ${validation_keyword}    validation_failure    ${error}
         END
     END
 
