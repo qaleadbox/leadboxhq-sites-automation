@@ -13,6 +13,95 @@ Library    Collections
 Library    ${CURDIR}${/}..${/}Helpers${/}signal_checker.py
 
 *** Keywords ***
+Run Test Environment
+    [Documentation]    Runs tests based on TEST_MODE variable
+    ...    - sitemap: Tests all sites from spreadsheet (with checkpoint/resume)
+    ...    - unitary: Tests single page from UNITARY_PAGE_URL
+    [Arguments]    @{validation_keywords}
+
+    IF    '${TEST_MODE}' == 'unitary'
+        Log To Console    \n🧪 TEST MODE: UNITARY PAGE
+        Open Unitary Page    @{validation_keywords}
+    ELSE IF    '${TEST_MODE}' == 'sitemap'
+        Log To Console    \n🧪 TEST MODE: SITEMAP (Multiple Sites)
+        Parse Sitemap URLs    @{validation_keywords}
+    ELSE
+        Fail    Invalid TEST_MODE: ${TEST_MODE}. Must be 'sitemap' or 'unitary'
+    END
+
+Open Unitary Page
+    [Documentation]    Tests a single page with specified validations
+    [Arguments]    @{validation_keywords}
+
+    # Install signal handler
+    Install Signal Handler
+
+    Log To Console    🔍 Testing: ${UNITARY_PAGE_URL}
+    Log To Console    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+
+    # Stability options
+    Call Method    ${chrome_options}    add_argument    --no-sandbox
+    Call Method    ${chrome_options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${chrome_options}    add_argument    --disable-gpu
+
+    # Headless mode if enabled
+    IF    '${HEADLESS}' == 'true'
+        Call Method    ${chrome_options}    add_argument    headless
+        ${window_size_arg}=    Set Variable    --window-size=1920,1080
+        Call Method    ${chrome_options}    add_argument    ${window_size_arg}
+    END
+
+    Open Browser    about:blank    chrome    options=${chrome_options}
+    Set Selenium Timeout    30 seconds
+    Set Selenium Implicit Wait    10 seconds
+    Set Selenium Page Load Timeout    30 seconds
+
+    ${passed}=    Set Variable    0
+    ${failed}=    Set Variable    0
+
+    # Navigate to page
+    TRY
+        Go To    ${UNITARY_PAGE_URL}
+        Sleep    3s
+        Log To Console    ✓ Page loaded
+    EXCEPT    AS    ${error}
+        Log To Console    ✗ Failed to load page: ${error}
+        Close Browser Safely
+        Fail    Could not load page: ${UNITARY_PAGE_URL}
+    END
+
+    # Run all validations
+    Log To Console    \n📋 Running ${validation_keywords.__len__()} validation(s)...\n
+
+    @{failed_validations}=    Create List
+
+    FOR    ${validation_keyword}    IN    @{validation_keywords}
+        Log To Console    ▶ ${validation_keyword}
+        TRY
+            Run Keyword    ${validation_keyword}
+            Log To Console    ✓ PASSED\n
+            ${passed}=    Evaluate    ${passed} + 1
+        EXCEPT    AS    ${error}
+            Log To Console    ✗ FAILED: ${error}\n
+            ${failed}=    Evaluate    ${failed} + 1
+            Append To List    ${failed_validations}    ${validation_keyword}: ${error}
+        END
+    END
+
+    # Summary
+    ${total}=    Evaluate    ${passed} + ${failed}
+    Log To Console    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    Log To Console    📊 Results: ${passed}/${total} PASSED, ${failed}/${total} FAILED
+    Log To Console    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    # Fail the test if any validations failed
+    IF    ${failed} > 0
+        ${failed_list}=    Catenate    SEPARATOR=\n    @{failed_validations}
+        Fail    ${failed} validation(s) failed:\n${failed_list}
+    END
+
 Parse Sitemap URLs
     [Documentation]    Multi-site validation using sitemap URL sampling with checkpoint/resume support
     ...                Loads sites from spreadsheet and tests sampled URLs with specified validation keywords

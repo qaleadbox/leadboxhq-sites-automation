@@ -1,6 +1,6 @@
 {
   "checkpoint": {
-    "timestamp": "2026-02-09T19:36:07Z",
+    "timestamp": "2026-02-09T19:56:21Z",
     "test_run_id": "test_contact_links_20260209T193045Z",
     "total_sites": 106,
     "sites_processed": "0",
@@ -10,7 +10,7 @@
         "url": "https://addisononeglinton.com",
         "status": "completed",
         "section_counters": {
-          "pages": "2/53",
+          "pages": "3/53",
           "used_vehicles": "2/2",
           "new_vehicles": "2/2",
           "showroom": "2/2",
@@ -25,7 +25,8 @@
             "showroom": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
             "model": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
             "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "https://addisononeglinton.com/service-menu/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
+            "https://addisononeglinton.com/service-menu/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "https://addisononeglinton.com/jaw-droppers/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
           },
           "all_pages_covered": {}
         },
@@ -40,21 +41,51 @@
       {
         "name": "Addison Chevrolet Erin Mills",
         "url": "https://addisononerinmills.com",
-        "status": "in_progress",
+        "status": "completed",
         "section_counters": {
-          "pages": "1/58",
+          "pages": "2/58",
           "used_vehicles": "1/1",
           "new_vehicles": "1/1",
           "showroom": "1/1",
-          "models": "0/0",
-          "model_trims": "0/0"
+          "models": "1/1",
+          "model_trims": "1/1"
         },
         "pages_link_tracking": {
           "tested_links": {
             "https://addisononerinmills.com/request-brochure/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
             "used": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
             "new": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "showroom": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
+            "showroom": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "https://addisononerinmills.com/business-elite/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "model": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
+          },
+          "all_pages_covered": {}
+        },
+        "results": {
+          "passed": 12,
+          "failed": "0"
+        },
+        "total_tests": 12,
+        "total_passed": 12,
+        "total_failed": "0"
+      },
+      {
+        "name": "Addison GM Group",
+        "url": "https://addisongm.com",
+        "status": "in_progress",
+        "section_counters": {
+          "pages": "1/30",
+          "used_vehicles": "1/1",
+          "new_vehicles": "0/1",
+          "showroom": "0/0",
+          "models": "0/0",
+          "model_trims": "0/0"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://addisongm.com/transmissions/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "used": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
           },
           "all_pages_covered": {}
         }
@@ -64,8 +95,8 @@
   },
   "summary": {
     "sites_pending": 106,
-    "total_urls_tested": 48,
-    "total_passed": 48,
+    "total_urls_tested": 64,
+    "total_passed": 64,
     "total_failed": 0,
     "failed_sites": []
   }
