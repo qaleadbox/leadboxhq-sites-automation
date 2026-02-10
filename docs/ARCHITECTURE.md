@@ -67,28 +67,40 @@ ${results}=    Test URL With Multiple Validations    ${url}    ${validation_list
     "test_run_id": "test_contact_links_...",
     "total_sites": 106,
     "sites_processed": 2,
+    "expected_validations": [  // List of validation keywords being tested
+      "Validate Contact Links Matches It HREF",
+      "Validate URL Links Matches It HREF",
+      "Validate Page URL Is Secure HTTPS"
+    ],
     "sites_completed": [
       {
         "name": "Site Name",
         "url": "https://example.com",
-        "status": "completed|in_progress",
+        "runned_validations": "2/3",  // X/Y where X=completed validations, Y=total validations
         "section_counters": {
-          "pages": "45/68",         // tested/total
+          "pages": "0/0",           // Placeholder - NOT USED (we use tested_links instead)
           "used_vehicles": "1/1",
           "new_vehicles": "1/1",
           "showroom": "1/1",
           "models": "1/1",
           "model_trims": "1/1"
         },
-        "pages_link_tracking": {
-          "tested_links": {
-            "https://example.com/about": ["Validation1", "Validation2"],
-            "https://example.com/contact": ["Validation1"]
+        "validation_tracking": {
+          "pages": {
+            "tested_links": {
+              "https://example.com/about": ["Validation1", "Validation2"],
+              "https://example.com/contact": ["Validation1"]
+            },
+            "all_covered": {
+              "Validation1": true,      // All pages tested with this validation
+              "Validation2": false
+            }
           },
-          "all_pages_covered": {
-            "Validation1": true,      // All pages tested with this validation
-            "Validation2": false
-          }
+          "used_vehicles": {"tested_links": {}, "all_covered": {}},
+          "new_vehicles": {"tested_links": {}, "all_covered": {}},
+          "showroom": {"tested_links": {}, "all_covered": {}},
+          "models": {"tested_links": {}, "all_covered": {}},
+          "model_trims": {"tested_links": {}, "all_covered": {}}
         }
       }
     ]
@@ -104,16 +116,18 @@ ${results}=    Test URL With Multiple Validations    ${url}    ${validation_list
 - Pages section uses link tracking (detailed)
 - Other sections use simple sampling counters
 
-**Link Tracking (Pages only):**
+**Validation Tracking (All sections):**
+- Each section (pages, used_vehicles, etc.) has its own tracking
 - Tracks which URLs were tested with which validations
 - Prevents duplicate testing
 - Each URL can be tested with multiple validations independently
-- `all_pages_covered` flag set when all URLs tested with specific validation
+- `all_covered` flag set when all URLs tested with specific validation
+- Pages section fully uses this tracking; other sections being migrated
 
 **Resume Logic:**
-- Sites with `status: "in_progress"` are resumed
-- Sites with `status: "completed"` and incomplete counters are re-tested
-- System checks both counters AND `all_pages_covered` flags
+- Sites with incomplete `runned_validations` (e.g., "1/3" meaning 1 out of 3 validations completed) are resumed
+- System checks both counters AND `all_pages_covered` flags to determine which validations need to run
+- Validations are tracked independently per site
 
 ### 4. Validation Keywords
 

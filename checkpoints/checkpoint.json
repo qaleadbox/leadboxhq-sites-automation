@@ -1,7 +1,7 @@
 {
   "checkpoint": {
-    "timestamp": "2026-02-05T13:49:14Z",
-    "test_run_id": "test_contact_links_20260205T132207Z",
+    "timestamp": "2026-02-09T20:11:12Z",
+    "test_run_id": "test_contact_links_20260209T193045Z",
     "total_sites": 106,
     "sites_processed": "0",
     "sites_completed": [
@@ -10,7 +10,41 @@
         "url": "https://addisononeglinton.com",
         "status": "completed",
         "section_counters": {
-          "pages": "1/53",
+          "pages": "4/53",
+          "used_vehicles": "2/2",
+          "new_vehicles": "2/2",
+          "showroom": "2/2",
+          "models": "2/2",
+          "model_trims": "2/2"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://addisononeglinton.com/popular-accessories/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "used": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "new": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "showroom": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "model": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "https://addisononeglinton.com/service-menu/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "https://addisononeglinton.com/jaw-droppers/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "https://addisononeglinton.com/parts-pick-up/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
+          },
+          "all_pages_covered": {}
+        },
+        "results": {
+          "passed": 4,
+          "failed": "0"
+        },
+        "total_tests": 4,
+        "total_passed": 4,
+        "total_failed": "0"
+      },
+      {
+        "name": "Addison Chevrolet Erin Mills",
+        "url": "https://addisononerinmills.com",
+        "status": "completed",
+        "section_counters": {
+          "pages": "3/58",
           "used_vehicles": "1/1",
           "new_vehicles": "1/1",
           "showroom": "1/1",
@@ -19,44 +53,23 @@
         },
         "pages_link_tracking": {
           "tested_links": {
-            "https://addisononeglinton.com/": ["Validate Header Layout Consistency"]
+            "https://addisononerinmills.com/request-brochure/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "used": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "new": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "showroom": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "https://addisononerinmills.com/business-elite/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "model": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "https://addisononerinmills.com/wish-and-win/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
           },
-          "all_pages_covered": {
-            "Validate Favicon Exists And Matches Brand": true
-          }
+          "all_pages_covered": {}
         },
         "results": {
-          "passed": "0",
+          "passed": 4,
           "failed": "0"
         },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Addison Chevrolet Erin Mills",
-        "url": "https://addisononerinmills.com",
-        "status": "in_progress",
-        "section_counters": {
-          "pages": "0/58",
-          "used_vehicles": "0/1",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Favicon Exists And Matches Brand": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
+        "total_tests": 4,
+        "total_passed": 4,
         "total_failed": "0"
       },
       {
@@ -64,60 +77,40 @@
         "url": "https://addisongm.com",
         "status": "completed",
         "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
+          "pages": "2/30",
+          "used_vehicles": "1/1",
+          "new_vehicles": "1/1",
+          "showroom": "1/1",
+          "models": "1/1",
+          "model_trims": "1/1"
         },
         "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Favicon Exists And Matches Brand": true
-          }
+          "tested_links": {
+            "https://addisongm.com/transmissions/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "used": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "https://addisongm.com/about-us/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "new": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "showroom": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "model": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
+            "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
+          },
+          "all_pages_covered": {}
         },
         "results": {
-          "passed": "0",
+          "passed": 20,
           "failed": "0"
         },
-        "total_tests": 0,
-        "total_passed": "0",
+        "total_tests": 20,
+        "total_passed": 20,
         "total_failed": "0"
       },
       {
-        "name": "AM Ford",
-        "url": "https://amford.com/",
-        "status": "completed",
-        "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {
-            "Validate Favicon Exists And Matches Brand": true
-          }
-        },
-        "results": {
-          "passed": "0",
-          "failed": "0"
-        },
-        "total_tests": 0,
-        "total_passed": "0",
-        "total_failed": "0"
-      },
-      {
-        "name": "Barrhaven Ford",
-        "url": "https://barrhavenford.com/",
+        "name": "Bluestar Lincoln",
+        "url": "https://migrationbluestarlincoln.kinsta.cloud/",
         "status": "in_progress",
         "section_counters": {
-          "pages": "0/0",
-          "used_vehicles": "0/0",
+          "pages": "1/68",
+          "used_vehicles": "0/1",
           "new_vehicles": "0/0",
           "showroom": "0/0",
           "models": "0/0",
@@ -127,13 +120,33 @@
           "tested_links": {},
           "all_pages_covered": {}
         }
+      },
+      {
+        "name": "AM Ford",
+        "url": "https://amford.com/",
+        "status": "in_progress",
+        "section_counters": {
+          "pages": "0/0",
+          "used_vehicles": "0/0",
+          "new_vehicles": "0/0",
+          "showroom": "0/0",
+          "models": "0/0",
+          "model_trims": "0/0"
+        },
+        "pages_link_tracking": {
+          "tested_links": {
+            "https://amford.com/am-ford-glenmerry/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
+          },
+          "all_pages_covered": {}
+        }
       }
-    ]
+    ],
+    "expected_validations": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
   },
   "summary": {
     "sites_pending": 106,
-    "total_urls_tested": 0,
-    "total_passed": 0,
+    "total_urls_tested": 92,
+    "total_passed": 92,
     "total_failed": 0,
     "failed_sites": []
   }

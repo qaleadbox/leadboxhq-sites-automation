@@ -6,6 +6,17 @@ Library    SeleniumLibrary    run_on_failure=Nothing
 Library    Collections
 
 *** Keywords ***
+Validate Header Layout
+    [Documentation]    Validates header layout for multi-validation pattern
+    ...                Fails if header layout issues found, passes silently on success
+    ...                Use this keyword in Parse Sitemap URLs for multi-site testing
+    ${result}=    Compare Header Layouts
+    ${status}=    Get From Dictionary    ${result}    status
+    IF    '${status}' == 'FAIL'
+        ${description}=    Get From Dictionary    ${result}    description
+        Fail    ${description}
+    END
+
 Validate Header Layout Consistency
     [Documentation]    Compares header layout between homepage and internal pages
     ...                Checks: structure, navigation items, logo presence, menu-header-menu ul component, background color
@@ -114,9 +125,10 @@ Compare Header Layouts
         END
     EXCEPT    AS    ${error}
         ${passed}=    Set Variable    ${False}
-        ${description}=    Set Variable    Error analyzing header: ${error}
-        Append To List    ${details}    Exception: ${error}
-        Log To Console    [HEADER CHECK] ✗ Error: ${error}
+        ${error_str}=    Convert To String    ${error}
+        ${description}=    Set Variable    Error analyzing header: ${error_str}
+        Append To List    ${details}    Exception: ${error_str}
+        Log To Console    [HEADER CHECK] ✗ Error: ${error_str}
     END
 
     # Determine status

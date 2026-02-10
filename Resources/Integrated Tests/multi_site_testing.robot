@@ -6,6 +6,7 @@ Resource    ../Helpers/csv_helpers.robot
 Resource    ../Helpers/checkpoint_helpers.robot
 Resource    ../Helpers/issue_logger.robot
 Resource    ../Validations/contact_links.robot
+Resource    ../Validations/favicon.robot
 Resource    ../../Parser/sitemap_parser.robot
 Library    SeleniumLibrary    run_on_failure=Nothing
 Library    String
@@ -13,13 +14,117 @@ Library    Collections
 Library    ${CURDIR}${/}..${/}Helpers${/}signal_checker.py
 
 *** Keywords ***
+Run Test Environment
+    [Documentation]    Runs tests based on TEST_MODE variable
+    ...    - sitemap: Tests all sites from spreadsheet (with checkpoint/resume)
+    ...    - unitary: Tests single page from UNITARY_PAGE_URL
+    [Arguments]    @{validation_keywords}
+
+    IF    '${TEST_MODE}' == 'unitary'
+        Log To Console    \n🧪 TEST MODE: UNITARY PAGE
+        Open Unitary Page    @{validation_keywords}
+    ELSE IF    '${TEST_MODE}' == 'sitemap'
+        Log To Console    \n🧪 TEST MODE: SITEMAP (Multiple Sites)
+        Parse Sitemap URLs    @{validation_keywords}
+    ELSE
+        Fail    Invalid TEST_MODE: ${TEST_MODE}. Must be 'sitemap' or 'unitary'
+    END
+
+Open Unitary Page
+    [Documentation]    Tests a single page with specified validations
+    [Arguments]    @{validation_keywords}
+
+    # Install signal handler
+    Install Signal Handler
+
+    # Initialize issue logger
+    ${issues_data}=    Initialize Issue Log
+
+    Log To Console    🔍 Testing: ${UNITARY_PAGE_URL}
+    Log To Console    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+
+    # Stability options
+    Call Method    ${chrome_options}    add_argument    --no-sandbox
+    Call Method    ${chrome_options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${chrome_options}    add_argument    --disable-gpu
+
+    # Headless mode if enabled
+    IF    '${HEADLESS}' == 'true'
+        Call Method    ${chrome_options}    add_argument    headless
+        ${window_size_arg}=    Set Variable    --window-size=1920,1080
+        Call Method    ${chrome_options}    add_argument    ${window_size_arg}
+    END
+
+    Open Browser    about:blank    chrome    options=${chrome_options}
+    Set Selenium Timeout    30 seconds
+    Set Selenium Implicit Wait    10 seconds
+    Set Selenium Page Load Timeout    30 seconds
+
+    ${passed}=    Set Variable    0
+    ${failed}=    Set Variable    0
+
+    # Navigate to page
+    TRY
+        Go To    ${UNITARY_PAGE_URL}
+        Sleep    3s
+        Log To Console    ✓ Page loaded
+    EXCEPT    AS    ${error}
+        Log To Console    ✗ Failed to load page: ${error}
+        Close Browser Safely
+        Fail    Could not load page: ${UNITARY_PAGE_URL}
+    END
+
+    # Run all validations
+    Log To Console    \n📋 Running ${validation_keywords.__len__()} validation(s)...\n
+
+    @{failed_validations}=    Create List
+
+    FOR    ${validation_keyword}    IN    @{validation_keywords}
+        Log To Console    ▶ ${validation_keyword}
+        TRY
+            Run Keyword    ${validation_keyword}
+            Log To Console    ✓ PASSED\n
+            ${passed}=    Evaluate    ${passed} + 1
+        EXCEPT    AS    ${error}
+            Log To Console    ✗ FAILED: ${error}\n
+            ${failed}=    Evaluate    ${failed} + 1
+            Append To List    ${failed_validations}    ${validation_keyword}: ${error}
+
+            # Create unique key to prevent duplicates (URL + validation)
+            ${parent_span}=    Catenate    SEPARATOR=::    ${UNITARY_PAGE_URL}    ${validation_keyword}
+            ${raw_description}=    Set Variable    ${validation_keyword} failed
+
+            # Only log if not already logged (prevents duplicates)
+            ${already_logged}=    Has Issue With Parent Span    ${issues_data}    Unitary Test    ${parent_span}    ${raw_description}
+            IF    not ${already_logged}
+                Log Issue    ${issues_data}    Unitary Test    ${UNITARY_PAGE_URL}    ${raw_description}    ${validation_keyword}    validation_failure    ${error}    ${parent_span}
+            ELSE
+                Log To Console    (Issue already logged, skipping duplicate)
+            END
+        END
+    END
+
+    # Summary
+    ${total}=    Evaluate    ${passed} + ${failed}
+    Log To Console    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    Log To Console    📊 Results: ${passed}/${total} PASSED, ${failed}/${total} FAILED
+    Log To Console    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    # Fail the test if any validations failed
+    IF    ${failed} > 0
+        ${failed_list}=    Catenate    SEPARATOR=\n    @{failed_validations}
+        Fail    ${failed} validation(s) failed:\n${failed_list}
+    END
+
 Parse Sitemap URLs
     [Documentation]    Multi-site validation using sitemap URL sampling with checkpoint/resume support
     ...                Loads sites from spreadsheet and tests sampled URLs with specified validation keywords
     ...                Automatically saves progress and can resume from last checkpoint
     ...                Flexible framework: Pass validation keywords as a list to test different functionality
     ...                skip_*_if_sampled: Set to 'true' to skip section if at least one sample was already tested
-    [Arguments]    @{validation_keywords}    ${pages_samples}=None    ${used_vehicle_samples}=1    ${new_vehicle_samples}=1    ${showroom_samples}=1    ${models_samples}=1    ${model_trims_samples}=1    ${use_checkpoint}=true    ${skip_pages_if_sampled}=false    ${skip_used_vehicles_if_sampled}=false    ${skip_new_vehicles_if_sampled}=false    ${skip_showroom_if_sampled}=false    ${skip_models_if_sampled}=false    ${skip_model_trims_if_sampled}=false
+    [Arguments]    @{validation_keywords}    ${pages_samples}=${PAGES_SAMPLES}    ${used_vehicle_samples}=${USED_VEHICLE_SAMPLES}    ${new_vehicle_samples}=${NEW_VEHICLE_SAMPLES}    ${showroom_samples}=${SHOWROOM_SAMPLES}    ${models_samples}=${MODELS_SAMPLES}    ${model_trims_samples}=${MODEL_TRIMS_SAMPLES}    ${use_checkpoint}=${USE_CHECKPOINT}    ${skip_pages_if_sampled}=${SKIP_PAGES_IF_SAMPLED}    ${skip_used_vehicles_if_sampled}=${SKIP_USED_VEHICLES_IF_SAMPLED}    ${skip_new_vehicles_if_sampled}=${SKIP_NEW_VEHICLES_IF_SAMPLED}    ${skip_showroom_if_sampled}=${SKIP_SHOWROOM_IF_SAMPLED}    ${skip_models_if_sampled}=${SKIP_MODELS_IF_SAMPLED}    ${skip_model_trims_if_sampled}=${SKIP_MODEL_TRIMS_IF_SAMPLED}
 
     # Install signal handler for graceful interrupts
     Install Signal Handler
@@ -33,6 +138,9 @@ Parse Sitemap URLs
     # Initialize checkpoint and issue logger
     ${checkpoint}=    Initialize Checkpoint    ${sites_count}
     ${issues_data}=    Initialize Issue Log
+
+    # Set expected validations for this test run
+    Set Expected Validations    ${checkpoint}    @{validation_list}
 
     # DISABLED: This was incorrectly "fixing" counters with total=0 back to tested/tested
     # Update Completed Sites Pages Counters    ${checkpoint}
@@ -415,21 +523,12 @@ Test URL With Multiple Validations
             # Run each validation
             FOR    ${validation_keyword}    IN    @{validation_keywords}
                 TRY
-                    ${result}=    Run Keyword    ${validation_keyword}
-                    # Check if result is a dictionary with status key
-                    ${is_dict}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    status
-                    IF    ${is_dict}
-                        # Validation returned a result dictionary, use it
-                        Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
-                    ELSE
-                        # Validation didn't return a dictionary, assume pass
-                        &{result_dict}=    Create Dictionary    status=PASS    description=${EMPTY}    details=${EMPTY}    parent_span=${EMPTY}
-                        Set To Dictionary    ${all_results}    ${validation_keyword}=${result_dict}
-                    END
+                    Run Keyword    ${validation_keyword}
+                    &{result}=    Create Dictionary    status=PASS    description=${EMPTY}    details=${EMPTY}    parent_span=${EMPTY}
                 EXCEPT    AS    ${error}
                     &{result}=    Create Dictionary    status=FAIL    description=${validation_keyword} failed: ${error}    details=${error}    parent_span=${EMPTY}
-                    Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
                 END
+                Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
             END
         EXCEPT    AS    ${error}
             Log To Console    ⚠️ Failed to load ${url}: ${error}
@@ -455,21 +554,12 @@ Test URL With Multiple Validations
     # Run each validation in the same tab
     FOR    ${validation_keyword}    IN    @{validation_keywords}
         TRY
-            ${result}=    Run Keyword    ${validation_keyword}
-            # Check if result is a dictionary with status key
-            ${is_dict}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    status
-            IF    ${is_dict}
-                # Validation returned a result dictionary, use it
-                Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
-            ELSE
-                # Validation didn't return a dictionary, assume pass
-                &{result_dict}=    Create Dictionary    status=PASS    description=${EMPTY}    details=${EMPTY}    parent_span=${EMPTY}
-                Set To Dictionary    ${all_results}    ${validation_keyword}=${result_dict}
-            END
+            Run Keyword    ${validation_keyword}
+            &{result}=    Create Dictionary    status=PASS    description=${EMPTY}    details=${EMPTY}    parent_span=${EMPTY}
         EXCEPT    AS    ${error}
             &{result}=    Create Dictionary    status=FAIL    description=${validation_keyword} failed: ${error}    details=${error}    parent_span=${EMPTY}
-            Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
         END
+        Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
     END
 
     Close Window
@@ -532,15 +622,12 @@ Test URL In New Tab With Details
 
 Test Sitemap URLs In Real Time With Details
     [Documentation]    Tests sampled URLs from sitemap sections with detailed error tracking and counter-based checkpoint support
-    [Arguments]    ${checkpoint}    ${url}    ${name}    ${validation_keywords}    ${pages_samples}=None    ${used_vehicle_samples}=1    ${new_vehicle_samples}=1    ${showroom_samples}=1    ${models_samples}=1    ${model_trims_samples}=1    ${skip_pages_if_sampled}=false    ${skip_used_vehicles_if_sampled}=false    ${skip_new_vehicles_if_sampled}=false    ${skip_showroom_if_sampled}=false    ${skip_models_if_sampled}=false    ${skip_model_trims_if_sampled}=false
+    [Arguments]    ${checkpoint}    ${url}    ${name}    ${validation_keywords}    ${pages_samples}=${PAGES_SAMPLES}    ${used_vehicle_samples}=${USED_VEHICLE_SAMPLES}    ${new_vehicle_samples}=${NEW_VEHICLE_SAMPLES}    ${showroom_samples}=${SHOWROOM_SAMPLES}    ${models_samples}=${MODELS_SAMPLES}    ${model_trims_samples}=${MODEL_TRIMS_SAMPLES}    ${skip_pages_if_sampled}=${SKIP_PAGES_IF_SAMPLED}    ${skip_used_vehicles_if_sampled}=${SKIP_USED_VEHICLES_IF_SAMPLED}    ${skip_new_vehicles_if_sampled}=${SKIP_NEW_VEHICLES_IF_SAMPLED}    ${skip_showroom_if_sampled}=${SKIP_SHOWROOM_IF_SAMPLED}    ${skip_models_if_sampled}=${SKIP_MODELS_IF_SAMPLED}    ${skip_model_trims_if_sampled}=${SKIP_MODEL_TRIMS_IF_SAMPLED}
     ${sitemap_url}=    Build Sitemap URL    ${url}
     Log To Console    Loading sitemap: ${sitemap_url}
 
     TRY
         Go To    ${sitemap_url}
-        Sleep    5s
-        # Wait for page to fully load (handle Cloudflare challenges, etc.)
-        Wait Until Page Contains Element    xpath=//body    timeout=15s
         Sleep    2s
         Log To Console    ✓ Sitemap loaded successfully
     EXCEPT    AS    ${error}
@@ -554,7 +641,6 @@ Test Sitemap URLs In Real Time With Details
     # IMPORTANT: Get pages list and immediately set the pages counter with total count
     @{pages_list}=    Get From Dictionary    ${sections}    pages
     ${total_pages}=    Get Length    ${pages_list}
-    Log To Console    [Sitemap] Extracted ${total_pages} pages from sitemap
 
     # Set pages counter immediately after fetching sitemap (before testing)
     ${site}=    Get In Progress Site    ${checkpoint}
@@ -563,13 +649,24 @@ Test Sitemap URLs In Real Time With Details
     ${tested_links}=    Get From Dictionary    ${pages_tracking}    tested_links
     ${tested_count}=    Get Length    ${tested_links}
 
-    # Always update pages counter with actual sitemap count (even if it was set before)
-    IF    ${total_pages} > 0
+    # Initialize pages counter with actual sitemap count
+    ${has_pages}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${section_counters}    pages
+    IF    not ${has_pages}
         Set To Dictionary    ${section_counters}    pages=${tested_count}/${total_pages}
         Save Checkpoint Data    ${checkpoint}
-        Log To Console    [Sitemap] Set pages counter: ${tested_count}/${total_pages}
+        Log To Console    [Sitemap] Initialized pages counter: ${tested_count}/${total_pages}
     ELSE
-        Log To Console    [Sitemap] WARNING: No pages found in sitemap
+        ${pages_counter}=    Get From Dictionary    ${section_counters}    pages
+        @{parts}=    Split String    ${pages_counter}    /
+        ${current_total}=    Get From List    ${parts}    1
+        ${current_total_int}=    Convert To Integer    ${current_total}
+
+        # Update if total doesn't match sitemap
+        IF    ${current_total_int} != ${total_pages}
+            Set To Dictionary    ${section_counters}    pages=${tested_count}/${total_pages}
+            Save Checkpoint Data    ${checkpoint}
+            Log To Console    [Sitemap] Updated pages counter: ${tested_count}/${total_pages} (was ${pages_counter})
+        END
     END
 
     ${passed}=    Set Variable    0
@@ -581,23 +678,23 @@ Test Sitemap URLs In Real Time With Details
 
     # Test used vehicles
     @{used_vehicles_list}=    Get From Dictionary    ${sections}    used_vehicles
-    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Used Vehicles    used_vehicles    ${used_vehicles_list}    ${used_vehicle_samples}    ${skip_used_vehicles_if_sampled}    Used Vehicle    ${passed}    ${failed}    ${failed_data}    ${validation_keywords}
+    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Used Vehicles    used_vehicles    ${used_vehicles_list}    ${used_vehicle_samples}    ${skip_used_vehicles_if_sampled}    Used Vehicle    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     # Test new vehicles
     @{new_vehicles_list}=    Get From Dictionary    ${sections}    new_vehicles
-    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    New Vehicles    new_vehicles    ${new_vehicles_list}    ${new_vehicle_samples}    ${skip_new_vehicles_if_sampled}    New Vehicle    ${passed}    ${failed}    ${failed_data}    ${validation_keywords}
+    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    New Vehicles    new_vehicles    ${new_vehicles_list}    ${new_vehicle_samples}    ${skip_new_vehicles_if_sampled}    New Vehicle    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     # Test showroom
     @{showroom_list}=    Get From Dictionary    ${sections}    showroom
-    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Showroom    showroom    ${showroom_list}    ${showroom_samples}    ${skip_showroom_if_sampled}    Showroom    ${passed}    ${failed}    ${failed_data}    ${validation_keywords}
+    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Showroom    showroom    ${showroom_list}    ${showroom_samples}    ${skip_showroom_if_sampled}    Showroom    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     # Test models
     @{models_list}=    Get From Dictionary    ${sections}    models
-    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Models    models    ${models_list}    ${models_samples}    ${skip_models_if_sampled}    Model    ${passed}    ${failed}    ${failed_data}    ${validation_keywords}
+    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Models    models    ${models_list}    ${models_samples}    ${skip_models_if_sampled}    Model    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     # Test model trims
     @{model_trims_list}=    Get From Dictionary    ${sections}    model_trims
-    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Model Trims    model_trims    ${model_trims_list}    ${model_trims_samples}    ${skip_model_trims_if_sampled}    Model Trim    ${passed}    ${failed}    ${failed_data}    ${validation_keywords}
+    ${passed}    ${failed}=    Test Section With Counter    ${checkpoint}    Model Trims    model_trims    ${model_trims_list}    ${model_trims_samples}    ${skip_model_trims_if_sampled}    Model Trim    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${name}
 
     ${total_tests}=    Evaluate    ${passed} + ${failed}
     Log To Console    Site summary: ${passed}/${total_tests} passed, ${failed}/${total_tests} failed
@@ -606,8 +703,19 @@ Test Sitemap URLs In Real Time With Details
 
 Test Section With Counter
     [Documentation]    Tests a section with counter-based checkpoint tracking
-    ...    Also skips URLs that have logged issues in issues.json
-    [Arguments]    ${checkpoint}    ${section_name}    ${section_key}    ${url_list}    ${samples_param}    ${skip_if_sampled}    ${category_label}    ${passed}    ${failed}    ${failed_data}    ${validation_keywords}
+    ...    Also tracks which validations have been completed per URL
+    ...    Skips URLs that have logged issues in issues.json
+    [Arguments]    ${checkpoint}    ${section_name}    ${section_key}    ${url_list}    ${samples_param}    ${skip_if_sampled}    ${category_label}    ${validation_keywords}    ${passed}    ${failed}    ${failed_data}    ${site_name}
+
+    # Map section keys to tested_links keys
+    &{section_key_map}=    Create Dictionary
+    ...    used_vehicles=used
+    ...    new_vehicles=new
+    ...    showroom=showroom
+    ...    models=model
+    ...    model_trims=model_trim
+    ${link_key}=    Get From Dictionary    ${section_key_map}    ${section_key}
+
     ${url_count}=    Get Length    ${url_list}
 
     # Initialize counter if not set
@@ -617,8 +725,13 @@ Test Section With Counter
             Set Section Counter    ${checkpoint}    ${section_key}    0    ${url_count}
         ELSE
             ${samples_int}=    Convert To Integer    ${samples_param}
-            ${target_samples}=    Evaluate    min(${samples_int}, ${url_count})
-            Set Section Counter    ${checkpoint}    ${section_key}    0    ${target_samples}
+            # If 0, test all URLs
+            IF    ${samples_int} == 0
+                Set Section Counter    ${checkpoint}    ${section_key}    0    ${url_count}
+            ELSE
+                ${target_samples}=    Evaluate    min(${samples_int}, ${url_count})
+                Set Section Counter    ${checkpoint}    ${section_key}    0    ${target_samples}
+            END
         END
     END
 
@@ -644,30 +757,39 @@ Test Section With Counter
                     Check For Interrupt
 
                     Log To Console    [${category_label}] ${test_url}
+
+                    # Test URL with all validations once
                     ${all_results}=    Test URL With Multiple Validations    ${test_url}    ${validation_keywords}
-                    # Get the first validation result (assuming single validation for now)
-                    ${first_validation}=    Get From List    ${validation_keywords}    0
-                    ${result}=    Get From Dictionary    ${all_results}    ${first_validation}
-                    ${status}=    Get From Dictionary    ${result}    status
-                    Update Section Counter    ${checkpoint}    ${section_key}
-                    IF    '${status}' == 'PASS'
-                        ${passed}=    Evaluate    ${passed} + 1
-                    ELSE
-                        ${failed}=    Evaluate    ${failed} + 1
-                        ${description}=    Get From Dictionary    ${result}    description
-                        ${details}=    Get From Dictionary    ${result}    details
 
-                        # Extract parent_span if available
-                        ${has_parent_span}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    parent_span
-                        IF    ${has_parent_span}
-                            ${parent_span}=    Get From Dictionary    ${result}    parent_span
-                            &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}    parent_span=${parent_span}
+                    # Process results for each validation
+                    FOR    ${validation_keyword}    IN    @{validation_keywords}
+                        ${result}=    Get From Dictionary    ${all_results}    ${validation_keyword}
+                        ${status}=    Get From Dictionary    ${result}    status
+
+                        # Mark this validation as complete (use link_key for sections, not URL)
+                        Mark Section Validation Complete    ${checkpoint}    ${site_name}    ${section_key}    ${link_key}    ${validation_keyword}
+
+                        IF    '${status}' == 'PASS'
+                            ${passed}=    Evaluate    ${passed} + 1
                         ELSE
-                            &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}
-                        END
+                            ${failed}=    Evaluate    ${failed} + 1
+                            ${description}=    Get From Dictionary    ${result}    description
+                            ${details}=    Get From Dictionary    ${result}    details
 
-                        Append To List    ${failed_data}    ${fail_info}
+                            # Extract parent_span if available
+                            ${has_parent_span}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    parent_span
+                            IF    ${has_parent_span}
+                                ${parent_span}=    Get From Dictionary    ${result}    parent_span
+                                &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}    parent_span=${parent_span}
+                            ELSE
+                                &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}
+                            END
+
+                            Append To List    ${failed_data}    ${fail_info}
+                        END
                     END
+
+                    Update Section Counter    ${checkpoint}    ${section_key}
                     Sleep    0.5s
                 END
                 Log To Console    ${section_name} section complete. Cleaning up...
@@ -755,9 +877,16 @@ Test Pages Section With Link Tracking
         Log To Console    [Pages] Testing all ${samples_to_test} pages (${url_count} total) with ${validations_count} validation(s)...
     ELSE
         ${samples_int}=    Convert To Integer    ${samples_param}
-        ${samples_to_test}=    Evaluate    min(${samples_int}, ${pages_to_test_count})
-        @{pages_to_test}=    Evaluate    random.sample(${pages_needing_tests}, ${samples_to_test})    random
-        Log To Console    [Pages] Testing ${samples_to_test} page(s) with ${validations_count} validation(s)...
+        # If 0, test all pages
+        IF    ${samples_int} == 0
+            ${samples_to_test}=    Set Variable    ${pages_to_test_count}
+            @{pages_to_test}=    Evaluate    sorted(${pages_needing_tests})
+            Log To Console    [Pages] Testing all ${samples_to_test} pages (samples=0 means all) with ${validations_count} validation(s)...
+        ELSE
+            ${samples_to_test}=    Evaluate    min(${samples_int}, ${pages_to_test_count})
+            @{pages_to_test}=    Evaluate    random.sample(${pages_needing_tests}, ${samples_to_test})    random
+            Log To Console    [Pages] Testing ${samples_to_test} page(s) with ${validations_count} validation(s)...
+        END
     END
 
     FOR    ${test_url}    IN    @{pages_to_test}

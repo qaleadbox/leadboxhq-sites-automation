@@ -8,18 +8,30 @@ Library    Collections
 Library    String
 
 *** Keywords ***
+Validate Favicons
+    [Documentation]    Validates favicon presence and format for multi-validation pattern
+    ...                Fails if no valid favicon found, passes silently on success
+    ...                Use this keyword in Parse Sitemap URLs for multi-site testing
+    ${result}=    Check Favicon    skip_manual_verification=${True}
+    ${status}=    Get From Dictionary    ${result}    status
+    IF    '${status}' == 'FAIL'
+        ${description}=    Get From Dictionary    ${result}    description
+        Fail    ${description}
+    END
+
 Validate Favicon Exists And Matches Brand
     [Documentation]    Checks if the site has a favicon and confirms it matches the correct brand
     ...                Searches for shortcut icon rel inside the head tag
     ...                Validates the link has a valid image extension (.ico, .gif, .png, .jpg, .svg)
     ...                Opens the favicon URL in a new tab for manual verification
     ...                Returns detailed results without failing
-    ${result}=    Check Favicon
+    ${result}=    Check Favicon    skip_manual_verification=${False}
     RETURN    ${result}
 
 Check Favicon
     [Documentation]    Validates favicon presence and format
     ...                Returns: Dictionary with validation results and details
+    [Arguments]    ${skip_manual_verification}=${False}
     ${passed}=    Set Variable    ${True}
     ${description}=    Set Variable    Favicon exists and matches expected format
     @{details}=    Create List
@@ -100,20 +112,26 @@ Check Favicon
                         Append To List    ${details}    Found favicon but unrecognized format: ${favicon_url}
                     END
 
-                    # If we found a valid extension, try to open URL in new tab for manual verification
+                    # If we found a valid extension, optionally open URL in new tab for manual verification
                     IF    ${has_valid_extension}
-                        Log To Console    >>> FAVICON CHECK: Opening favicon URL in new tab for manual verification...
-                        ${url_opened}=    Open Favicon URL In New Tab    ${favicon_url}
-                        IF    ${url_opened}
-                            Log To Console    >>> FAVICON CHECK: ✓ Favicon URL opened successfully - Please verify manually
-                            Log To Console    >>> FAVICON CHECK: URL: ${favicon_url}
-                            Append To List    ${details}    Favicon URL accessible: ${favicon_url}
+                        IF    not ${skip_manual_verification}
+                            Log To Console    >>> FAVICON CHECK: Opening favicon URL in new tab for manual verification...
+                            ${url_opened}=    Open Favicon URL In New Tab    ${favicon_url}
+                            IF    ${url_opened}
+                                Log To Console    >>> FAVICON CHECK: ✓ Favicon URL opened successfully - Please verify manually
+                                Log To Console    >>> FAVICON CHECK: URL: ${favicon_url}
+                                Append To List    ${details}    Favicon URL accessible: ${favicon_url}
+                            ELSE
+                                Log To Console    >>> FAVICON CHECK: ⚠ Could not open URL in new tab (but URL exists)
+                                Log To Console    >>> FAVICON CHECK: URL: ${favicon_url}
+                                Append To List    ${details}    Favicon URL found: ${favicon_url}
+                            END
+                            ${image_loads}=    Set Variable    ${url_opened}
                         ELSE
-                            Log To Console    >>> FAVICON CHECK: ⚠ Could not open URL in new tab (but URL exists)
-                            Log To Console    >>> FAVICON CHECK: URL: ${favicon_url}
+                            Log To Console    >>> FAVICON CHECK: ✓ Valid favicon found: ${favicon_url}
                             Append To List    ${details}    Favicon URL found: ${favicon_url}
+                            ${image_loads}=    Set Variable    ${True}
                         END
-                        ${image_loads}=    Set Variable    ${url_opened}
                         BREAK
                     END
                 END
@@ -202,80 +220,3 @@ Open Favicon URL In New Tab
         RETURN    ${False}
     END
 
-Test All Homepages For Favicon
-    [Documentation]    Tests favicon on homepage of all websites in CSV file
-    ...                No checkpoint files used - simple homepage-only validation
-
-    # Load sites from spreadsheet
-    @{sites_data}=    Load Sites From Spreadsheet
-    ${total_sites}=    Get Length    ${sites_data}
-    Log To Console    \n========================================
-    Log To Console    Starting Favicon Test for ${total_sites} websites
-    Log To Console    Testing: Homepage only (no checkpoint)
-    Log To Console    ========================================\n
-
-    # Open browser
-    Open LeadBox Portal    about:blank
-
-    ${passed_count}=    Set Variable    0
-    ${failed_count}=    Set Variable    0
-    @{failed_sites}=    Create List
-
-    # Loop through each site
-    FOR    ${site_data}    IN    @{sites_data}
-        ${name}=    Get From Dictionary    ${site_data}    name
-        ${url}=    Get From Dictionary    ${site_data}    url
-
-        Log To Console    \n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        Log To Console    Site: ${name}
-        Log To Console    Homepage: ${url}
-
-        TRY
-            # Go to homepage
-            Go To    ${url}
-            Sleep    5s
-            Wait Until Page Contains Element    xpath=//body    timeout=20s
-            Sleep    2s
-
-            # Run favicon validation
-            ${result}=    Validate Favicon Exists And Matches Brand
-            ${status}=    Get From Dictionary    ${result}    status
-            ${description}=    Get From Dictionary    ${result}    description
-
-            IF    '${status}' == 'PASS'
-                ${passed_count}=    Evaluate    ${passed_count} + 1
-                Log To Console    ✓ ${name}: PASS
-            ELSE
-                ${failed_count}=    Evaluate    ${failed_count} + 1
-                Append To List    ${failed_sites}    ${name}: ${description}
-                Log To Console    ✗ ${name}: FAIL - ${description}
-            END
-
-        EXCEPT    AS    ${error}
-            ${failed_count}=    Evaluate    ${failed_count} + 1
-            Append To List    ${failed_sites}    ${name}: Error loading page - ${error}
-            Log To Console    ✗ ${name}: ERROR - ${error}
-        END
-    END
-
-    # Summary
-    Log To Console    \n========================================
-    Log To Console    TEST SUMMARY
-    Log To Console    ========================================
-    Log To Console    Total Sites: ${total_sites}
-    Log To Console    Passed: ${passed_count}
-    Log To Console    Failed: ${failed_count}
-
-    ${failed_count_int}=    Convert To Integer    ${failed_count}
-    IF    ${failed_count_int} > 0
-        Log To Console    \nFailed Sites:
-        FOR    ${failure}    IN    @{failed_sites}
-            Log To Console    - ${failure}
-        END
-    END
-    Log To Console    ========================================\n
-
-    # Fail test if any site failed
-    IF    ${failed_count_int} > 0
-        Fail    ${failed_count} site(s) failed favicon validation
-    END
