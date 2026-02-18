@@ -1,16 +1,21 @@
 *** Settings ***
-Documentation    Header Layout Consistency Testing
-...              Validates that header layout remains consistent between homepage and internal pages
-...              Checks: logo presence, navigation structure, menu-header-menu component, background color
+Documentation    Interface & Content Testing
+...              Validates interface consistency and content quality across pages
+...              Checks: header layout, favicons, SEO metadata (title, meta tags, og:site_name)
+...              SEO validation includes: capitalization, template variables (%%), og:site_name consistency, sitemap site name consistency
 Resource    ../Resources/variables.robot
 Resource    ../Resources/Validations/header_layout.robot
+Resource    ../Resources/Validations/seo_metadata.robot
 Resource    ../Resources/Integrated Tests/multi_site_testing.robot
 Suite Teardown    Close Browser Safely
 
 *** Test Cases ***
-Test header layout from sitemap URLs
+Test Interface And Content From Sitemap URLs
+    [Documentation]    Validates interface elements and content quality
+    ...                Includes: Favicons, SEO metadata validation
     Run Test Environment
     ...    Validate Favicons
-    # ...    Validate Header Layout Consistency
+    ...    Validate SEO Metadata
+    # ...    Validate Header Layout
 
 # Settings can be found on ./Resources/variables.robot

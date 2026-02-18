@@ -1,38 +1,65 @@
 {
   "issues": [
     {
-      "site_name": "Addison Chevrolet Erin Mills",
-      "url": "https://addisononerinmills.com/contact-us/",
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/",
       "issue_type": "validation_failure",
-      "description": "Addison Chevrolet Erin Mills after the 1 phone link(s) text does not match href attribute",
-      "raw_description": "1 phone link(s) text does not match href attribute",
+      "description": "Addison Chevrolet Eglinton after the Site name does not match sitemap reference",
+      "raw_description": "Site name does not match sitemap reference",
       "category": "Pages",
-      "timestamp": "2026-01-13T13:17:33Z",
-      "details": "Phone \"8833-226-7914\" (188332267914) != href \"tel:+18332267914\" (18332267914)",
-      "parent_span": "class:stk-block-text__text has-text-align-left"
+      "timestamp": "2026-02-18T12:40:46Z",
+      "details": [
+        "Title tag - Expected: Processed text, Found: Template variable (%%) in \"Chevrolet, GMC, and Buick Dealership %%sep%% %%sitename%%\"",
+        "Expected: Title format \"Page Name - Site Name\" | Found: \"Chevrolet, GMC, and Buick Dealership %%sep%% %%sitename%%\" (no separator)",
+        "Expected (from sitemap): \"Addison on Eglinton\" | Found (on page): \"Chevrolet, GMC, and Buick Dealership %%sep%% %%sitename%%\""
+      ],
+      "unique_id": "https://addisononeglinton.com/::Validate SEO Metadata"
     },
     {
-      "site_name": "Barrhaven Ford",
-      "url": "https://barrhavenford.com/service-parts-specials/",
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/accessories/",
       "issue_type": "validation_failure",
-      "description": "Barrhaven Ford after the 1 phone link(s) text does not match href attribute",
-      "raw_description": "1 phone link(s) text does not match href attribute",
+      "description": "Addison Chevrolet Eglinton after the Site name does not match sitemap reference",
+      "raw_description": "Site name does not match sitemap reference",
       "category": "Pages",
-      "timestamp": "2026-01-13T12:20:40Z",
-      "details": "Phone \" 613-823-1555\" (16138231555) != href \"tel:+18448711588\" (18448711588)",
-      "parent_span": "class:pb-2 sales_phone"
+      "timestamp": "2026-02-18T12:40:46Z",
+      "details": [
+        "Title tag - Expected: Processed text, Found: Template variable (%%) in \"Genuine GM Accessories %%page%% %%sep%% %%sitename%%\"",
+        "Expected: Title format \"Page Name - Site Name\" | Found: \"Genuine GM Accessories %%page%% %%sep%% %%sitename%%\" (no separator)",
+        "Expected (from sitemap): \"Addison on Eglinton\" | Found (on page): \"Genuine GM Accessories %%page%% %%sep%% %%sitename%%\""
+      ],
+      "unique_id": "https://addisononeglinton.com/accessories/#/::Validate SEO Metadata"
     },
     {
-      "site_name": "Unitary Test",
-      "url": "https://inspector.appiumpro.com/",
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/fleet/",
       "issue_type": "validation_failure",
-      "description": "Unitary Test after the Validate Favicons failed",
-      "raw_description": "Validate Favicons failed",
-      "category": "Validate Favicons",
-      "timestamp": "2026-02-09T20:27:08Z",
-      "details": "No favicon found in head tag",
-      "parent_span": "https://inspector.appiumpro.com/::Validate Favicons"
+      "description": "Addison Chevrolet Eglinton after the Site name does not match sitemap reference",
+      "raw_description": "Site name does not match sitemap reference",
+      "category": "Pages",
+      "timestamp": "2026-02-18T12:40:46Z",
+      "details": [
+        "Title tag - Expected: Processed text, Found: Template variable (%%) in \"Chevrolet Business Fleet Dealer %%sep%% %%sitename%%\"",
+        "Expected: Title format \"Page Name - Site Name\" | Found: \"Chevrolet Business Fleet Dealer %%sep%% %%sitename%%\" (no separator)",
+        "Expected (from sitemap): \"Addison on Eglinton\" | Found (on page): \"Chevrolet Business Fleet Dealer %%sep%% %%sitename%%\""
+      ],
+      "unique_id": "https://addisononeglinton.com/fleet/::Validate SEO Metadata"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/new-vehicles/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Site name does not match sitemap reference",
+      "raw_description": "Site name does not match sitemap reference",
+      "category": "Pages",
+      "timestamp": "2026-02-18T12:40:46Z",
+      "details": [
+        "Title tag - Expected: Processed text, Found: Template variable (%%) in \"New Chevrolet, Buick, or GMC %%sep%% %%sitename%%\"",
+        "Expected: Title format \"Page Name - Site Name\" | Found: \"New Chevrolet, Buick, or GMC %%sep%% %%sitename%%\" (no separator)",
+        "Expected (from sitemap): \"Addison on Eglinton\" | Found (on page): \"New Chevrolet, Buick, or GMC %%sep%% %%sitename%%\""
+      ],
+      "unique_id": "https://addisononeglinton.com/new-vehicles/::Validate SEO Metadata"
     }
   ],
-  "total_issues": 3
+  "total_issues": 4
 }

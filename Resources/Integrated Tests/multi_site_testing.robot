@@ -7,6 +7,7 @@ Resource    ../Helpers/checkpoint_helpers.robot
 Resource    ../Helpers/issue_logger.robot
 Resource    ../Validations/contact_links.robot
 Resource    ../Validations/favicon.robot
+Resource    ../Validations/seo_metadata.robot
 Resource    ../../Parser/sitemap_parser.robot
 Library    SeleniumLibrary    run_on_failure=Nothing
 Library    String
@@ -93,13 +94,13 @@ Open Unitary Page
             Append To List    ${failed_validations}    ${validation_keyword}: ${error}
 
             # Create unique key to prevent duplicates (URL + validation)
-            ${parent_span}=    Catenate    SEPARATOR=::    ${UNITARY_PAGE_URL}    ${validation_keyword}
+            ${unique_id}=    Catenate    SEPARATOR=::    ${UNITARY_PAGE_URL}    ${validation_keyword}
             ${raw_description}=    Set Variable    ${validation_keyword} failed
 
             # Only log if not already logged (prevents duplicates)
-            ${already_logged}=    Has Issue With Parent Span    ${issues_data}    Unitary Test    ${parent_span}    ${raw_description}
+            ${already_logged}=    Has Issue With Unique ID    ${issues_data}    Unitary Test    ${unique_id}    ${raw_description}
             IF    not ${already_logged}
-                Log Issue    ${issues_data}    Unitary Test    ${UNITARY_PAGE_URL}    ${raw_description}    ${validation_keyword}    validation_failure    ${error}    ${parent_span}
+                Log Issue    ${issues_data}    Unitary Test    ${UNITARY_PAGE_URL}    ${raw_description}    ${validation_keyword}    validation_failure    ${error}    ${unique_id}
             ELSE
                 Log To Console    (Issue already logged, skipping duplicate)
             END
@@ -259,21 +260,21 @@ Parse Sitemap URLs
             ${description}=    Get From Dictionary    ${failed_data}    description
             ${details}=    Get From Dictionary    ${failed_data}    details
 
-            # Check if parent_span exists in failed_data
-            ${has_parent_span}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${failed_data}    parent_span
-            IF    ${has_parent_span}
-                ${parent_span}=    Get From Dictionary    ${failed_data}    parent_span
+            # Check if unique_id exists in failed_data
+            ${has_unique_id}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${failed_data}    unique_id
+            IF    ${has_unique_id}
+                ${unique_id}=    Get From Dictionary    ${failed_data}    unique_id
 
-                # Check if issue with same parent_span already exists
-                ${has_duplicate}=    Has Issue With Parent Span    ${issues_data}    ${name}    ${parent_span}    ${description}
+                # Check if issue with same unique_id already exists
+                ${has_duplicate}=    Has Issue With Unique ID    ${issues_data}    ${name}    ${unique_id}    ${description}
                 IF    not ${has_duplicate}
-                    Log Issue    ${issues_data}    ${name}    ${failed_url}    ${description}    ${category}    details=${details}    parent_span=${parent_span}
+                    Log Issue    ${issues_data}    ${name}    ${failed_url}    ${description}    ${category}    details=${details}    unique_id=${unique_id}
                     Append To List    ${failed_urls}    ${name}: ${failed_url}
                 ELSE
-                    Log To Console    Skipping duplicate issue with same parent_span: ${parent_span}
+                    Log To Console    Skipping duplicate issue with same unique_id: ${unique_id}
                 END
             ELSE
-                # No parent_span, log as usual
+                # No unique_id, log as usual
                 Log Issue    ${issues_data}    ${name}    ${failed_url}    ${description}    ${category}    details=${details}
                 Append To List    ${failed_urls}    ${name}: ${failed_url}
             END
@@ -522,13 +523,23 @@ Test URL With Multiple Validations
 
             # Run each validation
             FOR    ${validation_keyword}    IN    @{validation_keywords}
-                TRY
-                    Run Keyword    ${validation_keyword}
-                    &{result}=    Create Dictionary    status=PASS    description=${EMPTY}    details=${EMPTY}    parent_span=${EMPTY}
-                EXCEPT    AS    ${error}
-                    &{result}=    Create Dictionary    status=FAIL    description=${validation_keyword} failed: ${error}    details=${error}    parent_span=${EMPTY}
+                # Check if this is a validation that returns comprehensive results
+                ${is_seo_metadata}=    Run Keyword And Return Status    Should Be Equal    ${validation_keyword}    Validate SEO Metadata
+
+                IF    ${is_seo_metadata}
+                    # Call the comprehensive version directly to get detailed results including unique_id
+                    ${result}=    Validate SEO Metadata Comprehensive
+                    Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
+                ELSE
+                    # Use standard Try/Except for other validations
+                    TRY
+                        Run Keyword    ${validation_keyword}
+                        &{result}=    Create Dictionary    status=PASS    description=${EMPTY}    details=${EMPTY}    parent_span=${EMPTY}
+                    EXCEPT    AS    ${error}
+                        &{result}=    Create Dictionary    status=FAIL    description=${validation_keyword} failed: ${error}    details=${error}    parent_span=${EMPTY}
+                    END
+                    Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
                 END
-                Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
             END
         EXCEPT    AS    ${error}
             Log To Console    ⚠️ Failed to load ${url}: ${error}
@@ -553,13 +564,23 @@ Test URL With Multiple Validations
 
     # Run each validation in the same tab
     FOR    ${validation_keyword}    IN    @{validation_keywords}
-        TRY
-            Run Keyword    ${validation_keyword}
-            &{result}=    Create Dictionary    status=PASS    description=${EMPTY}    details=${EMPTY}    parent_span=${EMPTY}
-        EXCEPT    AS    ${error}
-            &{result}=    Create Dictionary    status=FAIL    description=${validation_keyword} failed: ${error}    details=${error}    parent_span=${EMPTY}
+        # Check if this is a validation that returns comprehensive results
+        ${is_seo_metadata}=    Run Keyword And Return Status    Should Be Equal    ${validation_keyword}    Validate SEO Metadata
+
+        IF    ${is_seo_metadata}
+            # Call the comprehensive version directly to get detailed results including parent_span
+            ${result}=    Validate SEO Metadata Comprehensive
+            Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
+        ELSE
+            # Use standard Try/Except for other validations
+            TRY
+                Run Keyword    ${validation_keyword}
+                &{result}=    Create Dictionary    status=PASS    description=${EMPTY}    details=${EMPTY}    parent_span=${EMPTY}
+            EXCEPT    AS    ${error}
+                &{result}=    Create Dictionary    status=FAIL    description=${validation_keyword} failed: ${error}    details=${error}    parent_span=${EMPTY}
+            END
+            Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
         END
-        Set To Dictionary    ${all_results}    ${validation_keyword}=${result}
     END
 
     Close Window
@@ -630,6 +651,12 @@ Test Sitemap URLs In Real Time With Details
         Go To    ${sitemap_url}
         Sleep    2s
         Log To Console    ✓ Sitemap loaded successfully
+
+        # Extract and store the site name from sitemap page for later validation
+        ${expected_site_name}=    Set Expected Site Name From Current Page
+        IF    $expected_site_name != ''
+            Log To Console    ✓ Reference site name captured: "${expected_site_name}"
+        END
     EXCEPT    AS    ${error}
         Log To Console    ✗ Failed to load sitemap: ${error}
         Fail    Could not load sitemap for ${name}: ${error}
@@ -776,11 +803,11 @@ Test Section With Counter
                             ${description}=    Get From Dictionary    ${result}    description
                             ${details}=    Get From Dictionary    ${result}    details
 
-                            # Extract parent_span if available
-                            ${has_parent_span}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    parent_span
-                            IF    ${has_parent_span}
-                                ${parent_span}=    Get From Dictionary    ${result}    parent_span
-                                &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}    parent_span=${parent_span}
+                            # Extract unique_id if available
+                            ${has_unique_id}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    unique_id
+                            IF    ${has_unique_id}
+                                ${unique_id}=    Get From Dictionary    ${result}    unique_id
+                                &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}    unique_id=${unique_id}
                             ELSE
                                 &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}
                             END
@@ -940,10 +967,10 @@ Test Pages Section With Link Tracking
                 ${failed}=    Evaluate    ${failed} + 1
                 ${description}=    Get From Dictionary    ${result}    description
                 ${details}=    Get From Dictionary    ${result}    details
-                ${has_parent_span}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    parent_span
-                IF    ${has_parent_span}
-                    ${parent_span}=    Get From Dictionary    ${result}    parent_span
-                    &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}    parent_span=${parent_span}
+                ${has_unique_id}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${result}    unique_id
+                IF    ${has_unique_id}
+                    ${unique_id}=    Get From Dictionary    ${result}    unique_id
+                    &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}    unique_id=${unique_id}
                 ELSE
                     &{fail_info}=    Create Dictionary    url=${test_url}    category=${category_label}    description=${description}    details=${details}
                 END

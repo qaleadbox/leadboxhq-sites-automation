@@ -204,7 +204,7 @@ Logs failures with details:
       "description": "Phone link mismatch",
       "category": "Page",
       "details": "Expected tel:+1234567890, got tel:1234567890",
-      "parent_span": "unique-span-id",  // Prevents duplicate logging
+      "unique_id": "unique-span-id",  // Prevents duplicate logging
       "timestamp": "2026-01-26T19:40:05Z"
     }
   ]
@@ -323,7 +323,7 @@ ${USE_CHECKPOINT}      true     # Enable checkpoint/resume
 ### Duplicate Issues Logged:
 **Cause:** Same element failing multiple times
 
-**Solution:** System uses `parent_span` to deduplicate issues automatically
+**Solution:** System uses `unique_id` to deduplicate issues automatically
 
 ## Future Enhancements
 

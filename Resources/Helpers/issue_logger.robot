@@ -47,8 +47,8 @@ Save Issues Data
 Log Issue
     [Documentation]    Log a new issue with format: "<site-name> after the <Description>"
     ...    This creates a structured issue entry in the JSON file
-    ...    parent_span: Optional identifier for the parent element containing the issue (to avoid duplicate reports)
-    [Arguments]    ${issues_data}    ${site_name}    ${url}    ${description}    ${category}    ${issue_type}=validation_failure    ${details}=${EMPTY}    ${parent_span}=${EMPTY}
+    ...    unique_id: Optional identifier for the parent element containing the issue (to avoid duplicate reports)
+    [Arguments]    ${issues_data}    ${site_name}    ${url}    ${description}    ${category}    ${issue_type}=validation_failure    ${details}=${EMPTY}    ${unique_id}=${EMPTY}
 
     ${timestamp}=    Get Current Date    result_format=%Y-%m-%dT%H:%M:%SZ
 
@@ -63,12 +63,12 @@ Log Issue
     ...    category=${category}
     ...    timestamp=${timestamp}
 
-    IF    '${details}' != '${EMPTY}'
+    IF    $details != ''
         Set To Dictionary    ${issue}    details=${details}
     END
 
-    IF    '${parent_span}' != '${EMPTY}'
-        Set To Dictionary    ${issue}    parent_span=${parent_span}
+    IF    $unique_id != ''
+        Set To Dictionary    ${issue}    unique_id=${unique_id}
     END
 
     Append To List    ${issues_data['issues']}    ${issue}
@@ -122,12 +122,12 @@ Has Issue For URL
 
     RETURN    ${False}
 
-Has Issue With Parent Span
-    [Documentation]    Check if an issue with the same parent_span already exists for this site
+Has Issue With Unique ID
+    [Documentation]    Check if an issue with the same unique_id already exists for this site
     ...    This helps avoid reporting the same issue multiple times from the same parent element
-    [Arguments]    ${issues_data}    ${site_name}    ${parent_span}    ${raw_description}
+    [Arguments]    ${issues_data}    ${site_name}    ${unique_id}    ${raw_description}
 
-    IF    '${parent_span}' == '${EMPTY}'
+    IF    $unique_id == ''
         RETURN    ${False}
     END
 
@@ -135,14 +135,14 @@ Has Issue With Parent Span
         ${issue_site}=    Get From Dictionary    ${issue}    site_name
         ${issue_raw_desc}=    Get From Dictionary    ${issue}    raw_description
 
-        # Check if parent_span field exists in the issue
-        ${has_parent_span}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${issue}    parent_span
+        # Check if unique_id field exists in the issue
+        ${has_unique_id}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${issue}    unique_id
 
-        IF    ${has_parent_span}
-            ${issue_parent_span}=    Get From Dictionary    ${issue}    parent_span
+        IF    ${has_unique_id}
+            ${issue_unique_id}=    Get From Dictionary    ${issue}    unique_id
 
-            # If site, parent_span, and description match, it's a duplicate
-            IF    '${issue_site}' == '${site_name}' and '${issue_parent_span}' == '${parent_span}' and '${issue_raw_desc}' == '${raw_description}'
+            # If site, unique_id, and description match, it's a duplicate
+            IF    '${issue_site}' == '${site_name}' and '${issue_unique_id}' == '${unique_id}' and '${issue_raw_desc}' == '${raw_description}'
                 RETURN    ${True}
             END
         END

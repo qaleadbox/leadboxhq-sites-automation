@@ -37,7 +37,7 @@ Check Favicon
     @{details}=    Create List
     ${favicon_data}=    Create Dictionary
 
-    Log To Console    ${\n}>>> FAVICON CHECK: Starting favicon validation...
+    Log To Console    ${\n}>>> FAVICON: Checking [presence, format]...
 
     # Check for favicon link elements
     TRY
@@ -47,8 +47,6 @@ Check Favicon
         ...    link[rel='icon']
         ...    link[rel='apple-touch-icon']
         ...    link[rel='apple-touch-icon-precomposed']
-
-        Log To Console    >>> FAVICON CHECK: Searching for favicon link elements...
 
         ${favicon_found}=    Set Variable    ${False}
         ${favicon_url}=    Set Variable    ${EMPTY}
@@ -63,7 +61,6 @@ Check Favicon
                 ${favicon_found}=    Set Variable    ${True}
                 ${favicon_url}=    Get Element Attribute    css=${selector}    href
                 ${rel_value}=    Get Element Attribute    css=${selector}    rel
-                Log To Console    >>> FAVICON CHECK: Found favicon link with rel='${rel_value}'
 
                 # Check if it's a shortcut icon or standard icon
                 ${is_shortcut}=    Run Keyword And Return Status    Should Contain    ${rel_value}    shortcut
@@ -72,7 +69,6 @@ Check Favicon
                 IF    ${is_shortcut} or ${is_icon}
                     Set To Dictionary    ${favicon_data}    rel=${rel_value}
                     Set To Dictionary    ${favicon_data}    href=${favicon_url}
-                    Log To Console    >>> FAVICON CHECK: Favicon URL: ${favicon_url}
 
                     # Check for .ico or .gif extension
                     ${has_ico}=    Run Keyword And Return Status    Should Match Regexp    ${favicon_url}    (?i)\.ico
@@ -84,51 +80,35 @@ Check Favicon
                     IF    ${has_ico}
                         ${has_valid_extension}=    Set Variable    ${True}
                         ${favicon_type}=    Set Variable    .ico
-                        Log To Console    >>> FAVICON CHECK: ✓ Found favicon with .ico extension
                         Append To List    ${details}    Found favicon with .ico extension: ${favicon_url}
                     ELSE IF    ${has_gif}
                         ${has_valid_extension}=    Set Variable    ${True}
                         ${favicon_type}=    Set Variable    .gif
-                        Log To Console    >>> FAVICON CHECK: ✓ Found favicon with .gif extension
                         Append To List    ${details}    Found favicon with .gif extension: ${favicon_url}
                     ELSE IF    ${has_png}
                         ${has_valid_extension}=    Set Variable    ${True}
                         ${favicon_type}=    Set Variable    .png
-                        Log To Console    >>> FAVICON CHECK: ✓ Found favicon with .png extension
                         Append To List    ${details}    Found favicon with .png extension: ${favicon_url}
                     ELSE IF    ${has_jpg}
                         ${has_valid_extension}=    Set Variable    ${True}
                         ${favicon_type}=    Set Variable    .jpg
-                        Log To Console    >>> FAVICON CHECK: ✓ Found favicon with .jpg extension
                         Append To List    ${details}    Found favicon with .jpg extension: ${favicon_url}
                     ELSE IF    ${has_svg}
                         ${has_valid_extension}=    Set Variable    ${True}
                         ${favicon_type}=    Set Variable    .svg
-                        Log To Console    >>> FAVICON CHECK: ✓ Found favicon with .svg extension
                         Append To List    ${details}    Found favicon with .svg extension: ${favicon_url}
                     ELSE
                         # Found favicon but not a common image format
-                        Log To Console    >>> FAVICON CHECK: ✗ Found favicon but unrecognized format: ${favicon_url}
                         Append To List    ${details}    Found favicon but unrecognized format: ${favicon_url}
                     END
 
                     # If we found a valid extension, optionally open URL in new tab for manual verification
                     IF    ${has_valid_extension}
                         IF    not ${skip_manual_verification}
-                            Log To Console    >>> FAVICON CHECK: Opening favicon URL in new tab for manual verification...
                             ${url_opened}=    Open Favicon URL In New Tab    ${favicon_url}
-                            IF    ${url_opened}
-                                Log To Console    >>> FAVICON CHECK: ✓ Favicon URL opened successfully - Please verify manually
-                                Log To Console    >>> FAVICON CHECK: URL: ${favicon_url}
-                                Append To List    ${details}    Favicon URL accessible: ${favicon_url}
-                            ELSE
-                                Log To Console    >>> FAVICON CHECK: ⚠ Could not open URL in new tab (but URL exists)
-                                Log To Console    >>> FAVICON CHECK: URL: ${favicon_url}
-                                Append To List    ${details}    Favicon URL found: ${favicon_url}
-                            END
+                            Append To List    ${details}    Favicon URL accessible: ${favicon_url}
                             ${image_loads}=    Set Variable    ${url_opened}
                         ELSE
-                            Log To Console    >>> FAVICON CHECK: ✓ Valid favicon found: ${favicon_url}
                             Append To List    ${details}    Favicon URL found: ${favicon_url}
                             ${image_loads}=    Set Variable    ${True}
                         END
@@ -150,27 +130,26 @@ Check Favicon
             ${passed}=    Set Variable    ${False}
             ${description}=    Set Variable    No favicon found in head tag
             Append To List    ${details}    No <link> element with rel='shortcut icon' or rel='icon' found
-            Log To Console    >>> FAVICON CHECK: ✗ No favicon link found
+            Log To Console    >>> FAVICON: ✗ FAIL - Presence check failed (no favicon link found)
         ELSE IF    not ${has_valid_extension}
             ${passed}=    Set Variable    ${False}
             ${description}=    Set Variable    Favicon found but does not use a valid image format
             Append To List    ${details}    Expected .ico, .gif, .png, .jpg, or .svg extension, found: ${favicon_url}
-            Log To Console    >>> FAVICON CHECK: ✗ Invalid favicon format
+            Log To Console    >>> FAVICON: ✗ FAIL - Format check failed (invalid extension: ${favicon_url})
         ELSE
             Append To List    ${details}    Favicon validation passed with ${favicon_type} format
-            Log To Console    >>> FAVICON CHECK: ✓ Favicon validation passed
+            Log To Console    >>> FAVICON: ✓ PASS - All checks passed [presence: found, format: ${favicon_type}]
         END
 
     EXCEPT    AS    ${error}
         ${passed}=    Set Variable    ${False}
         ${description}=    Set Variable    Error checking favicon: ${error}
         Append To List    ${details}    Exception: ${error}
-        Log To Console    >>> FAVICON CHECK: ✗ Error: ${error}
+        Log To Console    >>> FAVICON: ✗ FAIL - Error: ${error}
     END
 
     # Determine status
     ${status}=    Set Variable If    ${passed}    PASS    FAIL
-    Log To Console    >>> FAVICON CHECK: Result: ${status} - ${description}
 
     # Build result dictionary
     ${result}=    Create Dictionary
@@ -198,16 +177,13 @@ Open Favicon URL In New Tab
 
         # If we have more than one window, the new tab opened successfully
         IF    ${handle_count} > 1
-            Log To Console    >>> FAVICON CHECK: New tab opened with favicon URL
             # Switch to the new tab to confirm it loaded
             ${new_handle}=    Get From List    ${all_handles}    -1
             Switch Window    ${new_handle}
             # Wait 10 seconds for manual verification
-            Log To Console    >>> FAVICON CHECK: Waiting 10 seconds for verification...
             Sleep    10s
             # Close the tab
             Close Window
-            Log To Console    >>> FAVICON CHECK: Tab closed
             # Switch back to main window
             ${main_handle}=    Get From List    ${all_handles}    0
             Switch Window    ${main_handle}
@@ -216,7 +192,6 @@ Open Favicon URL In New Tab
             RETURN    ${False}
         END
     EXCEPT    AS    ${error}
-        Log To Console    >>> FAVICON CHECK: Error opening URL in new tab: ${error}
         RETURN    ${False}
     END
 

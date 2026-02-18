@@ -5,6 +5,7 @@ Resource    ../Resources/Validations/url_links.robot
 Resource    ../Resources/Validations/security.robot
 Resource    ../Resources/Validations/favicon.robot
 Resource    ../Resources/Validations/header_layout.robot
+Resource    ../Resources/Validations/seo_metadata.robot
 Resource    ../Resources/Integrated Tests/multi_site_testing.robot
 Suite Teardown    Close Browser Safely
 

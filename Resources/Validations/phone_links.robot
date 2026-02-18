@@ -63,14 +63,14 @@ Verify Phone Links On Current Page
 
 Verify Phone Links With Details
     [Documentation]    Verifies phone links and returns detailed results without failing
-    ...    Returns: Dictionary with status (PASS/FAIL), error_count, errors list, description, and parent_span
+    ...    Returns: Dictionary with status (PASS/FAIL), error_count, errors list, description, and unique_id
     ${tel_links}=    Get WebElements    xpath=//a[starts-with(@href, 'tel:')]
     ${count}=    Get Length    ${tel_links}
     Log To Console    Found ${count} tel: links
 
     ${failed_count}=    Set Variable    0
     @{errors}=    Create List
-    ${parent_span}=    Set Variable    ${EMPTY}
+    ${unique_id}=    Set Variable    ${EMPTY}
 
     FOR    ${link}    IN    @{tel_links}
         ${txt_raw}=    Get Element Attribute    ${link}    textContent
@@ -102,9 +102,9 @@ Verify Phone Links With Details
             Append To List    ${errors}    ${error_msg}
             Log To Console    ✗ ${error_msg}
 
-            # Extract parent span identifier (only for the first error to avoid duplicates)
-            IF    '${parent_span}' == '${EMPTY}'
-                ${parent_span}=    Get Parent Span Identifier    ${link}
+            # Extract unique identifier (only for the first error to avoid duplicates)
+            IF    '${unique_id}' == '${EMPTY}'
+                ${unique_id}=    Get Parent Span Identifier    ${link}
             END
         ELSE
             Log To Console    ✓ Phone "${phone_normalized}" matches href "${href_normalized}"
@@ -127,7 +127,7 @@ Verify Phone Links With Details
     ...    errors=${errors}
     ...    description=${description}
     ...    details=${details}
-    ...    parent_span=${parent_span}
+    ...    unique_id=${unique_id}
 
     RETURN    ${result}
 
