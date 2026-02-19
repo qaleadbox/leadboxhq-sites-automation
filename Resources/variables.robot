@@ -32,3 +32,9 @@ ${ISSUES_LOG_FILE}    ${CHECKPOINT_DIR}${/}issues.json
 # Spreadsheet Data Caching
 ${FORCE_SPREADSHEET_DATA_FETCH}    false    # true = fetch from Google Spreadsheet (slow) | false = use local CSV cache (fast)
 ${SPREADSHEET_CSV_CACHE}           ${EXECDIR}${/}sites.csv    # Use existing sites.csv in project root
+
+# Header Tab Wrapping Configuration
+${CHECK_TAB_WRAPPING}              true     # true = check for tab wrapping at specific breakpoints | false = skip wrapping check
+${TAB_WRAPPING_TEST_WIDTHS}        1366,1440,1520    # Comma-separated list of widths to test (common problematic breakpoints)
+${TAB_WRAPPING_HEIGHT}             1024     # Height to use when testing tab wrapping
+${TAB_WRAPPING_TOLERANCE}          5        # Y-position tolerance in pixels (default: 5px)

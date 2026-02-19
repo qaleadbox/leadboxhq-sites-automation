@@ -69,6 +69,14 @@ Close Browser Safely
 
     Log To Console    ✓ Cleanup complete
 
+Set Window Size For Testing
+    [Documentation]    Sets browser window to specific size for responsive testing
+    ...                Common breakpoints: 1920x1080 (desktop), 1280x1024 (small desktop), 768x1024 (tablet), 375x667 (mobile)
+    [Arguments]    ${width}=1920    ${height}=1080
+    Set Window Size    ${width}    ${height}
+    Sleep    0.5s    # Allow time for browser reflow and rendering
+    Log To Console    >>> BROWSER: Window size set to ${width}x${height}
+
 Navigate To Site Sitemap
     [Documentation]    Navigates to a site's sitemap
     [Arguments]    ${url}    ${name}

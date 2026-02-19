@@ -18,12 +18,34 @@ commands/                            # This folder - prompts & docs
 
 ## Core Testing Features
 
-### 1. Contact Link Validation
+### 1. Interface & Content Testing (NEW)
+**Suite**: `Suites/Interface & Content Testing.robot`
+
+**Validations:**
+- **Favicons** - Presence and format validation (.ico, .png, .jpg, .svg, .gif)
+- **SEO Metadata** - Capitalization, template variables (%%var%%), og:site_name consistency, sitemap consistency
+- **Header Layout** - Structure, navigation, tab wrapping detection at breakpoints
+
+**Features:**
+- Concise console output format (matches across all validations)
+- Checkpoint system for resumable multi-site testing
+- Configurable tab wrapping checks (`CHECK_TAB_WRAPPING`, `TAB_WRAPPING_TEST_WIDTHS` in variables.robot)
+- Window width reporting when tab wrapping detected
+
+**Output Format:**
+```
+>>> [VALIDATION NAME]: Checking [check1, check2, check3]...
+>>> [VALIDATION NAME]: ✓ PASS - All checks passed [list]
+>>> [VALIDATION NAME]: ✗ FAIL - Failed checks: [list]
+>>>    Detailed error message
+```
+
+### 2. Contact Link Validation
 - Phone numbers, email addresses, postal codes
 - Validates links are clickable and HREF matches text
 - Pattern detection using regex
 
-### 2. Sitemap URL Sampling
+### 3. Sitemap URL Sampling
 **Parameters (all end with `_samples`):**
 - `pages_samples` - Pages (None=all, or number)
 - `used_vehicle_samples` - Used vehicle pages
@@ -37,9 +59,11 @@ commands/                            # This folder - prompts & docs
 - New vehicles: `/vehicle/` + "new" keyword (or default)
 - Other sections: URL path patterns
 
-### 3. Multi-Site Batch Testing
+### 4. Multi-Site Batch Testing
 - Tests multiple dealership sites from CSV/spreadsheet
 - Opens each URL in new tab, validates, tracks results
+- Checkpoint system for resumable testing
+- Issues log for tracking failures across sites
 - Provides pass/fail summary
 
 ## Key Files
@@ -48,13 +72,18 @@ commands/                            # This folder - prompts & docs
 - `Parser/sitemap_parser.robot` - Sitemap parsing, URL extraction, section categorization
 - `Parser/csv_parser.robot` - CSV/spreadsheet parsing
 
-### Shared Resources
-- `Shared resources/keywords.robot` - Main test keywords
-- `Shared resources/helpers.robot` - Helper functions
-- `Shared resources/variables.robot` - Global variables
+### Resources
+- `Resources/variables.robot` - Global variables, test configuration
+- `Resources/Helpers/browser_helpers.robot` - Browser window management
+- `Resources/Helpers/csv_helpers.robot` - CSV operations
+- `Resources/Validations/favicon.robot` - Favicon validation keywords
+- `Resources/Validations/seo_metadata.robot` - SEO metadata validation keywords
+- `Resources/Validations/header_layout.robot` - Header layout validation keywords
+- `Resources/Integrated Tests/multi_site_testing.robot` - Multi-site testing framework
 
-### Main Test Suite
-- `Suites/Functional & Accessibility Testing/Multi-Site Contact Links From Sitemap URLs.robot`
+### Main Test Suites
+- `Suites/Interface & Content Testing.robot` - Interface & content validations
+- `Suites/Functional & Accessibility Testing/Multi-Site Contact Links From Sitemap URLs.robot` - Contact link testing
 
 ## Commands Folder Resources
 
@@ -66,6 +95,10 @@ commands/                            # This folder - prompts & docs
 - `site-analysis.md` - Analyze dealership sites
 - `batch-sitemap-testing.md` - Batch sitemap testing
 - `sitemap-url-sampling.md` - **IMPORTANT** - Full docs on URL sampling
+- `favicon-testing.md` - Favicon validation implementation
+- `header-layout-testing.md` - Header layout validation implementation
+- `seo-metadata-validation.md` - SEO metadata validation implementation
+- `HEADER_TAB_WRAPPING_CONFIG.md` - Tab wrapping configuration guide
 
 ### Templates (commands/templates/)
 - `test-suite-template.robot` - Test suite template
@@ -107,6 +140,16 @@ robot "Suites/path/to/test.robot"
 5. **All parameters end with `_samples`** - Remember this suffix for all sampling parameters
 
 ## Recent Changes
+- **[2026-02-19]** Enhanced header layout validation output
+  - Added window width reporting for tab wrapping failures
+  - Concise output format matching other validations
+  - Format: "overflow detected at window width 1350px (Y-diff: 80px)"
+- **[2026-02-18]** Implemented Interface & Content Testing Suite
+  - Added favicon validation (presence, format checking)
+  - Added SEO metadata validation (capitalization, template vars, og:site_name, sitemap consistency)
+  - Added header layout validation (structure, navigation, tab wrapping detection)
+  - Standardized console output format across all validations
+  - Checkpoint system for resumable multi-site testing
 - **[2026-01-06 Evening]** Improved sampling log clarity & fixed race conditions
   - Log messages now say "Sampling X from Y detected URLs..." (clearer)
   - Increased delays between tab operations to prevent race conditions
@@ -122,7 +165,19 @@ If you need deeper understanding of any component:
 3. Review `commands/config.json` for complete configuration
 4. Reference `commands/README.md` for available resources
 
+## Configuration Variables
+
+### Tab Wrapping Detection (variables.robot)
+- `CHECK_TAB_WRAPPING` - Enable/disable tab wrapping checks (true/false)
+- `TAB_WRAPPING_TEST_WIDTHS` - Comma-separated list of widths to test (e.g., "1366,1024,768")
+- `TAB_WRAPPING_HEIGHT` - Height for window during tests (default: 1024)
+
+### Multi-Site Testing
+- `FORCE_SPREADSHEET_DATA_FETCH` - Force fresh data fetch vs cached CSV (true/false)
+- Checkpoint file: `checkpoints/checkpoint.json`
+- Issues log: `checkpoints/issues.json`
+
 ---
 
-**Last Updated**: 2026-01-06
-**Version**: 1.0.0
+**Last Updated**: 2026-02-19
+**Version**: 2.0.0

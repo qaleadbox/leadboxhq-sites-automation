@@ -59,7 +59,29 @@
         "Expected (from sitemap): \"Addison on Eglinton\" | Found (on page): \"New Chevrolet, Buick, or GMC %%sep%% %%sitename%%\""
       ],
       "unique_id": "https://addisononeglinton.com/new-vehicles/::Validate SEO Metadata"
+    },
+    {
+      "site_name": "Unitary Test",
+      "url": "https://addisononeglinton.com/",
+      "issue_type": "validation_failure",
+      "description": "Unitary Test after the Validate SEO Metadata failed",
+      "raw_description": "Validate SEO Metadata failed",
+      "category": "Validate SEO Metadata",
+      "timestamp": "2026-02-18T17:56:08Z",
+      "details": "Title does not contain a separator to extract site name",
+      "unique_id": "https://addisononeglinton.com/::Validate SEO Metadata"
+    },
+    {
+      "site_name": "Unitary Test",
+      "url": "https://addisononeglinton.com/",
+      "issue_type": "validation_failure",
+      "description": "Unitary Test after the Validate Header Layout With Wrapping Check failed",
+      "raw_description": "Validate Header Layout With Wrapping Check failed",
+      "category": "Validate Header Layout With Wrapping Check",
+      "timestamp": "2026-02-18T17:56:22Z",
+      "details": "Header validation failed at 1366px: Header logo not found",
+      "unique_id": "https://addisononeglinton.com/::Validate Header Layout With Wrapping Check"
     }
   ],
-  "total_issues": 4
+  "total_issues": 6
 }
