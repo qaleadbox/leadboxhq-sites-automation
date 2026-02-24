@@ -81,7 +81,581 @@
       "timestamp": "2026-02-18T17:56:22Z",
       "details": "Header validation failed at 1366px: Header logo not found",
       "unique_id": "https://addisononeglinton.com/::Validate Header Layout With Wrapping Check"
+    },
+    {
+      "site_name": "Unitary Test",
+      "url": "https://addisononeglinton.com/new/",
+      "issue_type": "validation_failure",
+      "description": "Unitary Test after the Validate SEO Metadata failed",
+      "raw_description": "Validate SEO Metadata failed",
+      "category": "Validate SEO Metadata",
+      "timestamp": "2026-02-24T13:45:19Z",
+      "details": "Title does not contain a separator to extract site name",
+      "unique_id": "https://addisononeglinton.com/new/::Validate SEO Metadata"
+    },
+    {
+      "site_name": "Unitary Test",
+      "url": "https://addisononeglinton.com/new/",
+      "issue_type": "validation_failure",
+      "description": "Unitary Test after the Validate Header Layout With Wrapping Check failed",
+      "raw_description": "Validate Header Layout With Wrapping Check failed",
+      "category": "Validate Header Layout With Wrapping Check",
+      "timestamp": "2026-02-24T13:45:35Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "unique_id": "https://addisononeglinton.com/new/::Validate Header Layout With Wrapping Check"
+    },
+    {
+      "site_name": "Unitary Test",
+      "url": "https://addisononeglinton.com/new-vehicles",
+      "issue_type": "validation_failure",
+      "description": "Unitary Test after the Validate SEO Metadata failed",
+      "raw_description": "Validate SEO Metadata failed",
+      "category": "Validate SEO Metadata",
+      "timestamp": "2026-02-24T13:46:53Z",
+      "details": "Title does not contain a separator to extract site name",
+      "unique_id": "https://addisononeglinton.com/new-vehicles::Validate SEO Metadata"
+    },
+    {
+      "site_name": "Unitary Test",
+      "url": "https://addisononeglinton.com/new-vehicles",
+      "issue_type": "validation_failure",
+      "description": "Unitary Test after the Validate Header Layout With Wrapping Check failed",
+      "raw_description": "Validate Header Layout With Wrapping Check failed",
+      "category": "Validate Header Layout With Wrapping Check",
+      "timestamp": "2026-02-24T13:47:07Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "unique_id": "https://addisononeglinton.com/new-vehicles::Validate Header Layout With Wrapping Check"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:43Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/24-hour-test-drive/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:43Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/about-us/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:43Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/accessories/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:43Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/addison-express-service/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:43Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/aoda/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:43Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/blog/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:43Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/book-a-test-drive/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/book-service-appointment/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/business-elite/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/can-i-get-financing/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/certified-service/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/contact-us/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/demo-vehicles/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/discover-the-addison-difference-2/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/discover-the-addison-difference/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/explore-your-drive-new-pre-owned-choices/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/fleet/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/instant-cash-offer/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/jaw-droppers/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/meet-the-team/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:44Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/motocommerce/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/my-garage/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/new-vehicles/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/order-parts/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/parts-accessories-request/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/parts-pick-up/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/parts/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/popular-accessories/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/portuguese-sales/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/precision-performance-expert-service-authentic-parts/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/prequalify-for-financing/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/privacy-policy/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/reserve-bolt-euv/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/schedule-service-appointment/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:45Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/search/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:46Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/service-menu/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:46Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/service/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:46Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/sitemap/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:46Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/smartcoverage/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:46Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/special/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:46Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/specials/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:46Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/tariff-faqs/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:47Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/terms-and-conditions/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:47Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/thank-you/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:47Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/tire-finder/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:47Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/touchless-experience/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:47Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/touchless-test-drive/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:47Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/trade-in-appraisal/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:47Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/used-vehicles/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:47Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/value-your-trade/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:47Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/vehicles-under-15k/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:48Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "Addison Chevrolet Eglinton",
+      "url": "https://addisononeglinton.com/warranties-protection/",
+      "issue_type": "validation_failure",
+      "description": "Addison Chevrolet Eglinton after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-24T16:59:48Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
     }
   ],
-  "total_issues": 6
+  "total_issues": 63
 }

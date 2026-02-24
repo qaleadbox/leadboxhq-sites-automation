@@ -25,6 +25,7 @@ commands/                            # This folder - prompts & docs
 - **Favicons** - Presence and format validation (.ico, .png, .jpg, .svg, .gif)
 - **SEO Metadata** - Capitalization, template variables (%%var%%), og:site_name consistency, sitemap consistency
 - **Header Layout** - Structure, navigation, tab wrapping detection at breakpoints
+- **Compare Tool** - Validates presence and consistency of compare tool icons in header and vehicle cards
 
 **Features:**
 - Concise console output format (matches across all validations)
@@ -79,6 +80,7 @@ commands/                            # This folder - prompts & docs
 - `Resources/Validations/favicon.robot` - Favicon validation keywords
 - `Resources/Validations/seo_metadata.robot` - SEO metadata validation keywords
 - `Resources/Validations/header_layout.robot` - Header layout validation keywords
+- `Resources/Validations/compare_tool.robot` - Compare Tool validation keywords
 - `Resources/Integrated Tests/multi_site_testing.robot` - Multi-site testing framework
 
 ### Main Test Suites
@@ -140,6 +142,13 @@ robot "Suites/path/to/test.robot"
 5. **All parameters end with `_samples`** - Remember this suffix for all sampling parameters
 
 ## Recent Changes
+- **[2026-02-24]** Updated Compare Tool validation detection
+  - Changed page detection from URL-based to element-based (filter divs)
+  - Added three validation methods:
+    1. Filter div with class 'filter filter-4 pr-2'
+    2. Filter container div with id 'filter__container'
+    3. Vehicle cards div with class 'width-card height-card shadow-cards vehicle-car-1 vehicle-car__section' inside span.contents
+  - More reliable detection of pages with Compare Tool functionality
 - **[2026-02-19]** Enhanced header layout validation output
   - Added window width reporting for tab wrapping failures
   - Concise output format matching other validations
@@ -179,5 +188,5 @@ If you need deeper understanding of any component:
 
 ---
 
-**Last Updated**: 2026-02-19
-**Version**: 2.0.0
+**Last Updated**: 2026-02-24
+**Version**: 2.0.1
