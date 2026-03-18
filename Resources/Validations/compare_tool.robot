@@ -108,7 +108,7 @@ Check Compare Tool Presence
         # 1. CHECK HEADER ICON (my-garage icon with SVG)
         # Structure: <a href="/my-garage/"><svg>...</svg></a>
         # Use JavaScript to find it since XPath may have timing issues
-        Sleep    2s    # Wait for dynamic content to load
+        Sleep    0.5s    # Wait for dynamic content to load
 
         ${header_icon_exists}=    Execute JavaScript
         ...    const links = Array.from(document.querySelectorAll('a[href*="my-garage"], a[href*="garage"]'));

@@ -1,217 +1,16 @@
 {
   "checkpoint": {
-    "timestamp": "2026-02-24T16:59:48Z",
-    "test_run_id": "test_contact_links_20260209T193045Z",
-    "total_sites": 106,
+    "timestamp": "2026-03-18T14:08:37Z",
+    "test_run_id": "test_unitary_20260318T140739Z",
+    "total_sites": "1",
     "sites_processed": "0",
     "sites_completed": [
       {
-        "name": "Addison Chevrolet Eglinton",
-        "url": "https://addisononeglinton.com",
-        "status": "completed",
-        "section_counters": {
-          "pages": "712/53",
-          "used_vehicles": "2/2",
-          "new_vehicles": "2/2",
-          "showroom": "2/2",
-          "models": "2/2",
-          "model_trims": "2/2"
-        },
-        "pages_link_tracking": {
-          "tested_links": {
-            "https://addisononeglinton.com/popular-accessories/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "used": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "new": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "showroom": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "model": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "https://addisononeglinton.com/service-menu/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/jaw-droppers/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/parts-pick-up/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/24-hour-test-drive/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/about-us/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/accessories/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/addison-express-service/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/aoda/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/blog/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/book-a-test-drive/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/book-service-appointment/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/business-elite/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/can-i-get-financing/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/certified-service/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/contact-us/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/demo-vehicles/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/discover-the-addison-difference-2/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/discover-the-addison-difference/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/explore-your-drive-new-pre-owned-choices/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/fleet/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/instant-cash-offer/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/meet-the-team/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/motocommerce/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/my-garage/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/new-vehicles/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/order-parts/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/parts-accessories-request/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/parts/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/portuguese-sales/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/precision-performance-expert-service-authentic-parts/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/prequalify-for-financing/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/privacy-policy/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/reserve-bolt-euv/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/schedule-service-appointment/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/search/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/service/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/sitemap/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/smartcoverage/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/special/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/specials/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/tariff-faqs/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/terms-and-conditions/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/thank-you/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/tire-finder/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/touchless-experience/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/touchless-test-drive/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/trade-in-appraisal/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/used-vehicles/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/value-your-trade/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/vehicles-under-15k/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"],
-            "https://addisononeglinton.com/warranties-protection/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"]
-          },
-          "all_pages_covered": {}
-        },
-        "results": {
-          "passed": 155,
-          "failed": 57
-        },
-        "total_tests": 212,
-        "total_passed": 155,
-        "total_failed": 57
-      },
-      {
-        "name": "Addison Chevrolet Erin Mills",
-        "url": "https://addisononerinmills.com",
+        "name": "addisononeglinton.com",
+        "url": "https://addisononeglinton.com/",
         "status": "in_progress",
         "section_counters": {
-          "pages": "85/58",
-          "used_vehicles": "1/1",
-          "new_vehicles": "1/1",
-          "showroom": "1/1",
-          "models": "1/1",
-          "model_trims": "1/1"
-        },
-        "pages_link_tracking": {
-          "tested_links": {
-            "https://addisononerinmills.com/request-brochure/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons", "SEO Metadata"],
-            "used": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "new": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "showroom": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "https://addisononerinmills.com/business-elite/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons", "SEO Metadata"],
-            "model": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "https://addisononerinmills.com/wish-and-win/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "https://addisononerinmills.com/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/24-hour-test-drive/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/about-us/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/accessories/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/addison-express-service/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/aoda/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/blog/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/book-a-test-drive/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/book-service-appointment/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/can-i-get-financing/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/certified-service/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/contact-us/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/customer-testimonials/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/discover-the-addison-difference-2/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/discover-the-addison-difference/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/explore-your-drive-new-pre-owned-choices/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/fleet/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/guaranteed-car-loans/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/instant-cash-offer/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/jaw-droppers/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/meet-the-team/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/motocommerce/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/my-garage/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/new-vehicles/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/order-parts/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/parts-accessories-request/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/parts-pick-up/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/parts/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/payment-estimator/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/popular-accessories/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/precision-performance-expert-service-authentic-parts/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/preffered-pricing/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/prequalify-for-financing/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/privacy-policy/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/request-appraisal/": ["Favicons", "SEO Metadata"],
-            "https://addisononerinmills.com/reserve-bolt-euv/": ["Favicons", "SEO Metadata"]
-          },
-          "all_pages_covered": {}
-        },
-        "results": {
-          "passed": 4,
-          "failed": "0"
-        },
-        "total_tests": 4,
-        "total_passed": 4,
-        "total_failed": "0"
-      },
-      {
-        "name": "Addison GM Group",
-        "url": "https://addisongm.com",
-        "status": "completed",
-        "section_counters": {
-          "pages": "2/30",
-          "used_vehicles": "1/1",
-          "new_vehicles": "1/1",
-          "showroom": "1/1",
-          "models": "1/1",
-          "model_trims": "1/1"
-        },
-        "pages_link_tracking": {
-          "tested_links": {
-            "https://addisongm.com/transmissions/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "used": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "https://addisongm.com/about-us/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "new": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "showroom": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "model": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"],
-            "model_trim": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
-          },
-          "all_pages_covered": {}
-        },
-        "results": {
-          "passed": 20,
-          "failed": "0"
-        },
-        "total_tests": 20,
-        "total_passed": 20,
-        "total_failed": "0"
-      },
-      {
-        "name": "Bluestar Lincoln",
-        "url": "https://migrationbluestarlincoln.kinsta.cloud/",
-        "status": "in_progress",
-        "section_counters": {
-          "pages": "1/68",
-          "used_vehicles": "0/1",
-          "new_vehicles": "0/0",
-          "showroom": "0/0",
-          "models": "0/0",
-          "model_trims": "0/0"
-        },
-        "pages_link_tracking": {
-          "tested_links": {},
-          "all_pages_covered": {}
-        }
-      },
-      {
-        "name": "AM Ford",
-        "url": "https://amford.com/",
-        "status": "in_progress",
-        "section_counters": {
-          "pages": "0/0",
+          "pages": "2/53",
           "used_vehicles": "0/0",
           "new_vehicles": "0/0",
           "showroom": "0/0",
@@ -220,19 +19,20 @@
         },
         "pages_link_tracking": {
           "tested_links": {
-            "https://amford.com/am-ford-glenmerry/": ["Contact Links", "URL Links", "Page URL  HTTPS", "Favicons"]
+            "https://addisononeglinton.com/": ["Contact Links", "URL Links", "Page URL  HTTPS"],
+            "https://addisononeglinton.com/24-hour-test-drive/": ["Contact Links", "URL Links", "Page URL  HTTPS"]
           },
           "all_pages_covered": {}
         }
       }
     ],
-    "expected_validations": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool"]
+    "expected_validations": []
   },
   "summary": {
-    "sites_pending": 106,
-    "total_urls_tested": 1046,
-    "total_passed": 961,
-    "total_failed": 85,
-    "failed_sites": ["Addison Chevrolet Eglinton", "Addison Chevrolet Eglinton", "Addison Chevrolet Eglinton", "Addison Chevrolet Eglinton", "Addison Chevrolet Eglinton", "Addison Chevrolet Eglinton", "Addison Chevrolet Eglinton", "Addison Chevrolet Eglinton"]
+    "sites_pending": "1",
+    "total_urls_tested": "0",
+    "total_passed": "0",
+    "total_failed": "0",
+    "failed_sites": []
   }
 }

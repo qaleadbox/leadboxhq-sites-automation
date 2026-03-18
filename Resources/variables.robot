@@ -4,7 +4,7 @@ ${SPREADSHEET_LINK}    https://docs.google.com/spreadsheets/d/1PwGF8nXgqCV9gVY0E
 ${HEADLESS}    false    # true, to run without interface (to future CI/CD runnings) | false, to run with interface
 
 # Test Environment Mode
-${TEST_MODE}             sitemap    # sitemap = test multiple sites from spreadsheet | unitary = test single page (faster to debug)
+${TEST_MODE}             unitary    # sitemap = test multiple sites from spreadsheet | unitary = test single website via sitemap
 ${UNITARY_PAGE_URL}      https://addisononeglinton.com/   # URL to test when TEST_MODE=unitary
 
 # Sampling Configuration (0 = test all links, None = test all, N = test N samples)

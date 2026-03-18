@@ -655,7 +655,91 @@
       "category": "Pages",
       "timestamp": "2026-02-24T16:59:48Z",
       "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/business-elite/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-25T13:38:09Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/special/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-02-25T13:38:09Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/view/used-2021-gmc-acadia-1412832/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Used Vehicle",
+      "timestamp": "2026-02-25T13:38:09Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/view/new-2026-chevrolet-equinox-1650289/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "New Vehicle",
+      "timestamp": "2026-02-25T13:38:09Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/showroom/2025-chevrolet-trax_38947/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Site name does not match sitemap reference",
+      "raw_description": "Site name does not match sitemap reference",
+      "category": "Showroom",
+      "timestamp": "2026-02-25T13:38:10Z",
+      "details": [
+        "Expected (from title): \"Addison on Eglinton Showroom\" | Found (og:site_name): \"Addison on Eglinton\"",
+        "Expected (from sitemap): \"Addison on Eglinton\" | Found (on page): \"Addison on Eglinton Showroom\""
+      ],
+      "unique_id": "https://addisononeglinton.com/showroom/2025-chevrolet-trax_38947/::Validate SEO Metadata"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/showroom/2025-chevrolet-trax_38947/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Showroom",
+      "timestamp": "2026-02-25T13:38:10Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/new/2025-gmc-acadia/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Model",
+      "timestamp": "2026-02-25T13:38:10Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/new/2025-chevrolet-corvette-stingray-coupe-3lt/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Model Trim",
+      "timestamp": "2026-02-25T13:38:10Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
     }
   ],
-  "total_issues": 63
+  "total_issues": 71
 }

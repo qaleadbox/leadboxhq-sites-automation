@@ -12,13 +12,14 @@ Resource    ../../Parser/sitemap_parser.robot
 Library    SeleniumLibrary    run_on_failure=Nothing
 Library    String
 Library    Collections
+Library    DateTime
 Library    ${CURDIR}${/}..${/}Helpers${/}signal_checker.py
 
 *** Keywords ***
 Run Test Environment
     [Documentation]    Runs tests based on TEST_MODE variable
     ...    - sitemap: Tests all sites from spreadsheet (with checkpoint/resume)
-    ...    - unitary: Tests single page from UNITARY_PAGE_URL
+    ...    - unitary: Tests single website from UNITARY_PAGE_URL using sitemap sampling
     [Arguments]    @{validation_keywords}
 
     IF    '${TEST_MODE}' == 'unitary'
@@ -32,7 +33,9 @@ Run Test Environment
     END
 
 Open Unitary Page
-    [Documentation]    Tests a single page with specified validations
+    [Documentation]    Tests a single website from its sitemap with specified validations
+    ...                Takes UNITARY_PAGE_URL as the base website URL, opens the sitemap,
+    ...                and tests sampled URLs from sitemap sections using sampling parameters
     [Arguments]    @{validation_keywords}
 
     # Install signal handler
@@ -41,82 +44,196 @@ Open Unitary Page
     # Initialize issue logger
     ${issues_data}=    Initialize Issue Log
 
-    Log To Console    🔍 Testing: ${UNITARY_PAGE_URL}
+    # Extract site name from URL for logging
+    ${site_name}=    Set Variable    Unitary Test Site
+    ${url_without_protocol}=    Remove String    ${UNITARY_PAGE_URL}    https://    http://
+    ${clean_url}=    Remove String    ${url_without_protocol}    /
+    ${site_name}=    Set Variable    ${clean_url}
+
+    Log To Console    \n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    Log To Console    🧪 UNITARY MODE: Testing Website via Sitemap
+    Log To Console    📍 Site: ${site_name}
+    Log To Console    🌐 URL: ${UNITARY_PAGE_URL}
     Log To Console    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
     ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
 
-    # Stability options
+    # Stability options (always enabled)
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --disable-dev-shm-usage
     Call Method    ${chrome_options}    add_argument    --disable-gpu
+    Call Method    ${chrome_options}    add_argument    --disable-software-rasterizer
+    Call Method    ${chrome_options}    add_argument    --disable-extensions
+    Call Method    ${chrome_options}    add_argument    --disable-background-networking
+    Call Method    ${chrome_options}    add_argument    --disable-sync
+    Call Method    ${chrome_options}    add_argument    --disable-translate
+    Call Method    ${chrome_options}    add_argument    --disable-web-security
+    Call Method    ${chrome_options}    add_argument    --metrics-recording-only
+    Call Method    ${chrome_options}    add_argument    --mute-audio
+    Call Method    ${chrome_options}    add_argument    --no-first-run
+    Call Method    ${chrome_options}    add_argument    --safebrowsing-disable-auto-update
+    Call Method    ${chrome_options}    add_argument    --disable-breakpad
+    Call Method    ${chrome_options}    add_argument    --disable-component-update
+    Call Method    ${chrome_options}    add_argument    --disable-domain-reliability
+    Call Method    ${chrome_options}    add_argument    --disable-notifications
+    Call Method    ${chrome_options}    add_argument    --disable-popup-blocking
+    ${blink_features_arg}=    Set Variable    --disable-blink-features=AutomationControlled
+    Call Method    ${chrome_options}    add_argument    ${blink_features_arg}
+    ${disable_features_arg}=    Set Variable    --disable-features=TranslateUI,BlinkGenPropertyTrees,VizDisplayCompositor
+    Call Method    ${chrome_options}    add_argument    ${disable_features_arg}
 
-    # Headless mode if enabled
+    # Memory management
+    ${js_flags_arg}=    Set Variable    --js-flags=--max-old-space-size=4096
+    Call Method    ${chrome_options}    add_argument    ${js_flags_arg}
+    Call Method    ${chrome_options}    add_argument    --disable-renderer-backgrounding
+
+    # Headless mode if enabled (using old headless for stability)
     IF    '${HEADLESS}' == 'true'
         Call Method    ${chrome_options}    add_argument    headless
+        # Window size for headless (helps with rendering)
         ${window_size_arg}=    Set Variable    --window-size=1920,1080
         Call Method    ${chrome_options}    add_argument    ${window_size_arg}
+        Call Method    ${chrome_options}    add_argument    --start-maximized
+        Call Method    ${chrome_options}    add_argument    --disable-crash-reporter
     END
 
+    # Page load strategy
+    Call Method    ${chrome_options}    set_capability    pageLoadStrategy    normal
+
     Open Browser    about:blank    chrome    options=${chrome_options}
+
+    # Set timeouts to prevent hanging
     Set Selenium Timeout    30 seconds
     Set Selenium Implicit Wait    10 seconds
     Set Selenium Page Load Timeout    30 seconds
 
     ${passed}=    Set Variable    0
     ${failed}=    Set Variable    0
+    @{failed_data}=    Create List
 
-    # Navigate to page
+    # Initialize a minimal checkpoint for this single site (matches full checkpoint structure)
+    ${timestamp}=    Get Current Date    result_format=%Y-%m-%dT%H:%M:%SZ
+    ${test_run_id}=    Catenate    SEPARATOR=_    test_unitary    ${timestamp}
+    ${test_run_id}=    Replace String    ${test_run_id}    :    ${EMPTY}
+    ${test_run_id}=    Replace String    ${test_run_id}    -    ${EMPTY}
+
+    # Create section counters for the site
+    &{section_counters}=    Create Dictionary
+    ...    pages=0/0
+    ...    used_vehicles=0/0
+    ...    new_vehicles=0/0
+    ...    showroom=0/0
+    ...    models=0/0
+    ...    model_trims=0/0
+
+    # Create pages_link_tracking structure
+    &{tested_links_dict}=    Create Dictionary
+    &{all_pages_covered_dict}=    Create Dictionary
+    &{pages_link_tracking}=    Create Dictionary
+    ...    tested_links=${tested_links_dict}
+    ...    all_pages_covered=${all_pages_covered_dict}
+
+    # Create site entry with in_progress status
+    &{site_entry}=    Create Dictionary
+    ...    name=${site_name}
+    ...    url=${UNITARY_PAGE_URL}
+    ...    status=in_progress
+    ...    section_counters=${section_counters}
+    ...    pages_link_tracking=${pages_link_tracking}
+
+    # Create sites_completed list with the in-progress site
+    @{sites_completed_list}=    Create List    ${site_entry}
+
+    # Create checkpoint_data dictionary
+    @{empty_validations}=    Create List
+    &{checkpoint_data}=    Create Dictionary
+    ...    timestamp=${timestamp}
+    ...    test_run_id=${test_run_id}
+    ...    total_sites=1
+    ...    sites_processed=0
+    ...    sites_completed=${sites_completed_list}
+    ...    expected_validations=${empty_validations}
+
+    # Create summary dictionary
+    &{summary}=    Create Dictionary
+    ...    sites_pending=1
+    ...    total_urls_tested=0
+    ...    total_passed=0
+    ...    total_failed=0
+    ...    failed_sites=@{EMPTY}
+
+    # Create full checkpoint structure (checkpoint + summary)
+    &{checkpoint}=    Create Dictionary    checkpoint=${checkpoint_data}    summary=${summary}
+
+    # Test site with sitemap sampling
+    Log To Console    \n📋 Running ${validation_keywords.__len__()} validation(s) on sitemap URLs...\n
+
     TRY
-        Go To    ${UNITARY_PAGE_URL}
-        Sleep    3s
-        Log To Console    ✓ Page loaded
+        # Use the same testing logic as sitemap mode, but for this single site
+        ${site_passed}    ${site_failed}    @{site_failed_data}=    Test Sitemap URLs In Real Time With Details
+        ...    ${checkpoint}
+        ...    ${UNITARY_PAGE_URL}
+        ...    ${site_name}
+        ...    ${validation_keywords}
+        ...    ${PAGES_SAMPLES}
+        ...    ${USED_VEHICLE_SAMPLES}
+        ...    ${NEW_VEHICLE_SAMPLES}
+        ...    ${SHOWROOM_SAMPLES}
+        ...    ${MODELS_SAMPLES}
+        ...    ${MODEL_TRIMS_SAMPLES}
+        ...    ${SKIP_PAGES_IF_SAMPLED}
+        ...    ${SKIP_USED_VEHICLES_IF_SAMPLED}
+        ...    ${SKIP_NEW_VEHICLES_IF_SAMPLED}
+        ...    ${SKIP_SHOWROOM_IF_SAMPLED}
+        ...    ${SKIP_MODELS_IF_SAMPLED}
+        ...    ${SKIP_MODEL_TRIMS_IF_SAMPLED}
+
+        ${passed}=    Set Variable    ${site_passed}
+        ${failed}=    Set Variable    ${site_failed}
+        @{failed_data}=    Set Variable    @{site_failed_data}
     EXCEPT    AS    ${error}
-        Log To Console    ✗ Failed to load page: ${error}
+        Log To Console    ✗ Error occurred during sitemap testing: ${error}
         Close Browser Safely
-        Fail    Could not load page: ${UNITARY_PAGE_URL}
+        Fail    Failed to test sitemap for ${UNITARY_PAGE_URL}: ${error}
     END
 
-    # Run all validations
-    Log To Console    \n📋 Running ${validation_keywords.__len__()} validation(s)...\n
+    # Log issues for failed URLs
+    FOR    ${fail_info}    IN    @{failed_data}
+        ${failed_url}=    Get From Dictionary    ${fail_info}    url
+        ${category}=    Get From Dictionary    ${fail_info}    category
+        ${description}=    Get From Dictionary    ${fail_info}    description
+        ${details}=    Get From Dictionary    ${fail_info}    details
 
-    @{failed_validations}=    Create List
+        # Check if unique_id exists in fail_info
+        ${has_unique_id}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${fail_info}    unique_id
+        IF    ${has_unique_id}
+            ${unique_id}=    Get From Dictionary    ${fail_info}    unique_id
 
-    FOR    ${validation_keyword}    IN    @{validation_keywords}
-        Log To Console    ▶ ${validation_keyword}
-        TRY
-            Run Keyword    ${validation_keyword}
-            Log To Console    ✓ PASSED\n
-            ${passed}=    Evaluate    ${passed} + 1
-        EXCEPT    AS    ${error}
-            Log To Console    ✗ FAILED: ${error}\n
-            ${failed}=    Evaluate    ${failed} + 1
-            Append To List    ${failed_validations}    ${validation_keyword}: ${error}
-
-            # Create unique key to prevent duplicates (URL + validation)
-            ${unique_id}=    Catenate    SEPARATOR=::    ${UNITARY_PAGE_URL}    ${validation_keyword}
-            ${raw_description}=    Set Variable    ${validation_keyword} failed
-
-            # Only log if not already logged (prevents duplicates)
-            ${already_logged}=    Has Issue With Unique ID    ${issues_data}    Unitary Test    ${unique_id}    ${raw_description}
-            IF    not ${already_logged}
-                Log Issue    ${issues_data}    Unitary Test    ${UNITARY_PAGE_URL}    ${raw_description}    ${validation_keyword}    validation_failure    ${error}    ${unique_id}
+            # Check if issue with same unique_id already exists
+            ${has_duplicate}=    Has Issue With Unique ID    ${issues_data}    ${site_name}    ${unique_id}    ${description}
+            IF    not ${has_duplicate}
+                Log Issue    ${issues_data}    ${site_name}    ${failed_url}    ${description}    ${category}    details=${details}    unique_id=${unique_id}
             ELSE
                 Log To Console    (Issue already logged, skipping duplicate)
             END
+        ELSE
+            # No unique_id, log as usual
+            Log Issue    ${issues_data}    ${site_name}    ${failed_url}    ${description}    ${category}    details=${details}
         END
     END
 
+    # Always close browser
+    Close Browser Safely
+
     # Summary
     ${total}=    Evaluate    ${passed} + ${failed}
-    Log To Console    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    Log To Console    📊 Results: ${passed}/${total} PASSED, ${failed}/${total} FAILED
+    Log To Console    \n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    Log To Console    📊 FINAL Results: ${passed}/${total} PASSED, ${failed}/${total} FAILED
     Log To Console    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
     # Fail the test if any validations failed
     IF    ${failed} > 0
-        ${failed_list}=    Catenate    SEPARATOR=\n    @{failed_validations}
-        Fail    ${failed} validation(s) failed:\n${failed_list}
+        Fail    ${failed} validation(s) failed across sitemap URLs
     END
 
 Parse Sitemap URLs

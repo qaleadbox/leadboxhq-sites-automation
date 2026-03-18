@@ -61,9 +61,10 @@ commands/                            # This folder - prompts & docs
 - Other sections: URL path patterns
 
 ### 4. Multi-Site Batch Testing
-- Tests multiple dealership sites from CSV/spreadsheet
-- Opens each URL in new tab, validates, tracks results
-- Checkpoint system for resumable testing
+- **Sitemap Mode**: Tests multiple dealership sites from CSV/spreadsheet
+- **Unitary Mode**: Tests single website via sitemap (manually enter URL in variables.robot)
+- Opens sitemap, samples URLs from each section (pages, vehicles, models, etc.)
+- Checkpoint system for resumable testing (sitemap mode)
 - Issues log for tracking failures across sites
 - Provides pass/fail summary
 
