@@ -739,7 +739,420 @@
       "category": "Model Trim",
       "timestamp": "2026-02-25T13:38:10Z",
       "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/instant-cash-offer/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:15:53Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Site name does not match sitemap reference",
+      "raw_description": "Site name does not match sitemap reference",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:15:54Z",
+      "details": [
+        "Title tag - Expected: Processed text, Found: Template variable (%%) in \"Chevrolet, GMC, and Buick Dealership %%sep%% %%sitename%%\"",
+        "Expected: Title format \"Page Name - Site Name\" | Found: \"Chevrolet, GMC, and Buick Dealership %%sep%% %%sitename%%\" (no separator)",
+        "Expected (from sitemap): \"Addison on Eglinton\" | Found (on page): \"Chevrolet, GMC, and Buick Dealership %%sep%% %%sitename%%\""
+      ],
+      "unique_id": "https://addisononeglinton.com/::Validate SEO Metadata"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:15:54Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/view/used-2025-gmc-sierra-1500-1325611/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Used Vehicle",
+      "timestamp": "2026-03-19T13:15:54Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/view/new-2026-gmc-sierra-1500-1652873/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "New Vehicle",
+      "timestamp": "2026-03-19T13:15:54Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/showroom/2025-chevrolet-brightdrop_51865/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Site name does not match sitemap reference",
+      "raw_description": "Site name does not match sitemap reference",
+      "category": "Showroom",
+      "timestamp": "2026-03-19T13:15:54Z",
+      "details": [
+        "Expected (from title): \"Addison on Eglinton Showroom\" | Found (og:site_name): \"Addison on Eglinton\"",
+        "Expected (from sitemap): \"Addison on Eglinton\" | Found (on page): \"Addison on Eglinton Showroom\""
+      ],
+      "unique_id": "https://addisononeglinton.com/showroom/2025-chevrolet-brightdrop_51865/::Validate SEO Metadata"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/showroom/2025-chevrolet-brightdrop_51865/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Showroom",
+      "timestamp": "2026-03-19T13:15:54Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/new/2026-chevrolet-silverado-ev/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Model",
+      "timestamp": "2026-03-19T13:15:54Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/new/2025-chevrolet-equinox-ev-rs/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Model Trim",
+      "timestamp": "2026-03-19T13:15:54Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/service/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:22Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/service/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:22Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/prequalify-for-financing/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:22Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/prequalify-for-financing/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:22Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/service-menu/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:22Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/service-menu/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:22Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/parts/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:22Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/parts/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:22Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/warranties-protection/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/warranties-protection/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/instant-cash-offer/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/instant-cash-offer/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/can-i-get-financing/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/can-i-get-financing/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/special/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/special/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/sitemap/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/sitemap/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/popular-accessories/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/popular-accessories/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Pages",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/view/used-2023-gmc-sierra-1500-1446225/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Used Vehicle",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/view/used-2023-gmc-sierra-1500-1446225/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Used Vehicle",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/view/new-2026-gmc-acadia-1620186/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "New Vehicle",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/view/new-2026-gmc-acadia-1620186/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "New Vehicle",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/showroom/2025-chevrolet-suburban_48080/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Site name does not match sitemap reference",
+      "raw_description": "Site name does not match sitemap reference",
+      "category": "Showroom",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": [
+        "Expected (from title): \"Addison on Eglinton Showroom\" | Found (og:site_name): \"Addison on Eglinton\"",
+        "Expected (from sitemap): \"Addison on Eglinton\" | Found (on page): \"Addison on Eglinton Showroom\""
+      ],
+      "unique_id": "https://addisononeglinton.com/showroom/2025-chevrolet-suburban_48080/::Validate SEO Metadata"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/showroom/2025-chevrolet-suburban_48080/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Showroom",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/showroom/2025-chevrolet-suburban_48080/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Showroom",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/new/2025-gmc-sierra-ev/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Model",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/new/2025-gmc-sierra-ev/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Model",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/new/2025-gmc-savana-passenger-3500-extended-wheelbase-ls/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "raw_description": "Validate Header Layout With Wrapping Check failed: Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines",
+      "category": "Model Trim",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Header validation failed at 1366px: Navigation tabs are wrapping/breaking into multiple lines"
+    },
+    {
+      "site_name": "addisononeglinton.com",
+      "url": "https://addisononeglinton.com/new/2025-gmc-savana-passenger-3500-extended-wheelbase-ls/",
+      "issue_type": "validation_failure",
+      "description": "addisononeglinton.com after the Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "raw_description": "Validate Address Format Consistency failed: Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'",
+      "category": "Model Trim",
+      "timestamp": "2026-03-19T13:40:23Z",
+      "details": "Evaluating expression \"__import__('urllib.parse').urlparse($current_url).netloc\" failed: AttributeError: module 'urllib' has no attribute 'urlparse'"
     }
   ],
-  "total_issues": 71
+  "total_issues": 111
 }

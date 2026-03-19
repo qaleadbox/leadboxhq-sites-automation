@@ -1,24 +1,27 @@
 *** Settings ***
 Documentation    Interface & Content Testing
 ...              Validates interface consistency and content quality across pages
-...              Checks: header layout, favicons, SEO metadata (title, meta tags, og:site_name), compare tool
+...              Checks: header layout, favicons, SEO metadata (title, meta tags, og:site_name), compare tool, address consistency
 ...              SEO validation includes: capitalization, template variables (%%), og:site_name consistency, sitemap site name consistency
 Resource    ../Resources/variables.robot
 Resource    ../Resources/Validations/header_layout.robot
 Resource    ../Resources/Validations/seo_metadata.robot
 Resource    ../Resources/Validations/compare_tool.robot
+Resource    ../Resources/Validations/address_consistency.robot
+Resource    ../Resources/Validations/favicon.robot
 Resource    ../Resources/Integrated Tests/multi_site_testing.robot
 Suite Teardown    Close Browser Safely
 
 *** Test Cases ***
 Test Interface And Content From Sitemap URLs
     [Documentation]    Validates interface elements and content quality
-    ...                Includes: Favicons, SEO metadata validation, Header layout with tab wrapping check, Compare Tool opt-in check
+    ...                Includes: Favicons, SEO metadata validation, Header layout with tab wrapping check, Compare Tool opt-in check, Address consistency
     ...                Tab wrapping settings: CHECK_TAB_WRAPPING, TAB_WRAPPING_TEST_WIDTHS in variables.robot
     Run Test Environment
     ...    Validate Favicons
     ...    Validate SEO Metadata
     ...    Validate Header Layout With Wrapping Check
     ...    Validate Compare Tool
+    ...    Validate Address Format Consistency
 
 # Settings can be found on ./Resources/variables.robot

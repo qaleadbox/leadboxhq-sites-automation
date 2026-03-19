@@ -26,6 +26,7 @@ commands/                            # This folder - prompts & docs
 - **SEO Metadata** - Capitalization, template variables (%%var%%), og:site_name consistency, sitemap consistency
 - **Header Layout** - Structure, navigation, tab wrapping detection at breakpoints
 - **Compare Tool** - Validates presence and consistency of compare tool icons in header and vehicle cards
+- **Address Consistency** - Validates address link consistency between header and footer (checks for maps URLs: https://maps.app.goo.gl/ or https://g.page/)
 
 **Features:**
 - Concise console output format (matches across all validations)
@@ -82,6 +83,7 @@ commands/                            # This folder - prompts & docs
 - `Resources/Validations/seo_metadata.robot` - SEO metadata validation keywords
 - `Resources/Validations/header_layout.robot` - Header layout validation keywords
 - `Resources/Validations/compare_tool.robot` - Compare Tool validation keywords
+- `Resources/Validations/address_consistency.robot` - Address consistency validation keywords
 - `Resources/Integrated Tests/multi_site_testing.robot` - Multi-site testing framework
 
 ### Main Test Suites
@@ -143,6 +145,19 @@ robot "Suites/path/to/test.robot"
 5. **All parameters end with `_samples`** - Remember this suffix for all sampling parameters
 
 ## Recent Changes
+- **[2026-03-19]** Added Address Consistency validation
+  - New validation: Verifies address format consistency between header and footer
+  - Checks for address links with maps URLs (https://maps.app.goo.gl/ or https://g.page/)
+  - Validates presence in both header and footer and ensures they match
+  - Follows standard validation output format
+- **[2026-03-19]** Optimized Compare Tool validation performance
+  - Reduced delay from 2s to 0.5s (75% faster)
+  - Saves 1.5 seconds per page tested
+  - No impact on validation accuracy
+- **[2026-03-19]** Enhanced Unitary Mode functionality
+  - Changed from single page testing to full website sitemap testing
+  - Now uses same sampling logic as sitemap mode but for single manually-entered website
+  - Set TEST_MODE=unitary and UNITARY_PAGE_URL to test entire website via sitemap
 - **[2026-02-24]** Updated Compare Tool validation detection
   - Changed page detection from URL-based to element-based (filter divs)
   - Added three validation methods:
@@ -189,5 +204,5 @@ If you need deeper understanding of any component:
 
 ---
 
-**Last Updated**: 2026-02-24
-**Version**: 2.0.1
+**Last Updated**: 2026-03-19
+**Version**: 2.1.0

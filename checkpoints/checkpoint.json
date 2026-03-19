@@ -1,7 +1,7 @@
 {
   "checkpoint": {
-    "timestamp": "2026-03-18T14:08:37Z",
-    "test_run_id": "test_unitary_20260318T140739Z",
+    "timestamp": "2026-03-19T14:04:15Z",
+    "test_run_id": "test_unitary_20260319T135953Z",
     "total_sites": "1",
     "sites_processed": "0",
     "sites_completed": [
@@ -10,7 +10,7 @@
         "url": "https://addisononeglinton.com/",
         "status": "in_progress",
         "section_counters": {
-          "pages": "2/53",
+          "pages": "4/53",
           "used_vehicles": "0/0",
           "new_vehicles": "0/0",
           "showroom": "0/0",
@@ -19,8 +19,10 @@
         },
         "pages_link_tracking": {
           "tested_links": {
-            "https://addisononeglinton.com/": ["Contact Links", "URL Links", "Page URL  HTTPS"],
-            "https://addisononeglinton.com/24-hour-test-drive/": ["Contact Links", "URL Links", "Page URL  HTTPS"]
+            "https://addisononeglinton.com/about-us/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool", "Address Format Consistency"],
+            "https://addisononeglinton.com/fleet/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool", "Address Format Consistency"],
+            "https://addisononeglinton.com/parts/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool", "Address Format Consistency"],
+            "https://addisononeglinton.com/portuguese-sales/": ["Favicons", "SEO Metadata", "Header Layout With Wrapping Check", "Compare Tool", "Address Format Consistency"]
           },
           "all_pages_covered": {}
         }

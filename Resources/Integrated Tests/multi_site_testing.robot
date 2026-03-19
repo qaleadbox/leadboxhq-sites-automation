@@ -8,6 +8,7 @@ Resource    ../Helpers/issue_logger.robot
 Resource    ../Validations/contact_links.robot
 Resource    ../Validations/favicon.robot
 Resource    ../Validations/seo_metadata.robot
+Resource    ../Validations/address_consistency.robot
 Resource    ../../Parser/sitemap_parser.robot
 Library    SeleniumLibrary    run_on_failure=Nothing
 Library    String
